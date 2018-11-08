@@ -1,24 +1,3 @@
-# README
+# µTube
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Hello and welcome to my App Academy fullstack project! Please see the wiki tab for documentation on this project, and please visit the live site (when it's up)!
