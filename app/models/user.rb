@@ -33,9 +33,13 @@ class User < ApplicationRecord
     self.pw_digest = BCrypt::Password.create(pw)
   end
 
-  def reset_session_token!(old_session_token)
+  def reset_session!(old_session_token)
     destroy_session!(old_session_token)
     create_session!
+  end
+
+  def destroy_session!(old_session_token)
+    self.sessions.find_by(token: old_session_token).destroy
   end
 
   private
@@ -44,9 +48,6 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.pw_digest).is_password?(pw)
   end
 
-  def destroy_session!(old_session_token)
-    self.sessions.find_by(token: old_session_token).destroy
-  end
 
   def create_session!
     new_session = self.sessions.create(token: Session.generate_token)
