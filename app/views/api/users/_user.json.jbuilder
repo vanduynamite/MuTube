@@ -1,4 +1,1 @@
-json.id user.id
-json.username user.username
-json.name user.name
-json.user_image_url user.user_image_url
+json.extract! user, :id, :username, :name, :user_image_url

@@ -10,10 +10,17 @@
 #
 
 class Session < ApplicationRecord
+  validates :user_id, :token, presence: true
+  validates :token, uniqueness: true
 
   belongs_to :user
-    class_name: :User,
-    foreign_key: :user_id
+  before_validation :create_token
+
+  private
+
+  def create_token
+    self.token = Session.generate_token
+  end
 
   def self.generate_token
     SecureRandom::urlsafe_base64

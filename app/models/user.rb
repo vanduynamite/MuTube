@@ -17,15 +17,12 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true}
 
   has_many :sessions
-    class_name: :Session
-    foreign_key: :user_id
-
   attr_reader :password
 
   def self.find_by_credentials(username, pw)
     user = User.find_by(username: username)
     return nil unless user
-    user.is_password?(pw)
+    user.is_password?(pw) ? user : nil
   end
 
   def password=(pw)
@@ -33,8 +30,12 @@ class User < ApplicationRecord
     self.pw_digest = BCrypt::Password.create(pw)
   end
 
-  def reset_session!(old_session_token)
-    destroy_session!(old_session_token)
+  def is_password?(pw)
+    BCrypt::Password.new(self.pw_digest).is_password?(pw)
+  end
+
+  def reset_session!(old_session_token = nil)
+    destroy_session!(old_session_token) if old_session_token
     create_session!
   end
 
@@ -44,14 +45,8 @@ class User < ApplicationRecord
 
   private
 
-  def is_password?(pw)
-    BCrypt::Password.new(self.pw_digest).is_password?(pw)
-  end
-
-
   def create_session!
-    new_session = self.sessions.create(token: Session.generate_token)
-    new_session.token
+    self.sessions.create.token
   end
 
 end
