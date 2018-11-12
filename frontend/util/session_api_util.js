@@ -14,3 +14,10 @@ export const login = user => {
     data: { user },
   });
 };
+
+export const logout = () => {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/session',
+  });
+};

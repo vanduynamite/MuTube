@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Main extends React.Component {
 
@@ -7,8 +8,22 @@ class Main extends React.Component {
   }
 
   render() {
+    let greeting;
+    let button;
+    
+    if (this.props.currentUser) {
+      greeting = `${this.props.currentUser.name}, `;
+      button = <button onClick={this.props.logout}>Log Out</button>;
+    } else {
+      greeting = '';
+      button = <Link to='/login'>Log In</Link> ;
+    }
+
     return (
-      <h1>Hello from the main component!</h1>
+      <div>
+        <h1>Hello, {greeting} from the main component!</h1>
+        {button}
+      </div>
     );
   }
 
