@@ -1,5 +1,41 @@
 {
-  "name": "µTube",
-  "private": true,
-  "dependencies": {}
+  "name": "MuTube",
+  "version": "1.0.0",
+  "description": "Hello and welcome to my App Academy fullstack project! Please see the wiki tab for documentation on this project, and please visit the live site (when it's up)!",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanduynamite/MuTube.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanduynamite/MuTube/issues"
+  },
+  "homepage": "https://github.com/vanduynamite/MuTube#readme",
+  "dependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "lodash": "^4.17.11",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
 }
