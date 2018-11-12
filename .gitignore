@@ -20,7 +20,7 @@
 /node_modules
 /yarn-error.log
 bundle.js
-bundle.map.js
+bundle.js.map
 
 /public/assets
 .byebug_history
