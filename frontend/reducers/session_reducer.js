@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, REMOVE_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const sessionReducer = (state = {}, action) => {
@@ -8,7 +8,12 @@ const sessionReducer = (state = {}, action) => {
   switch (action.type) {
     case (RECEIVE_CURRENT_USER):
       return merge(newState, {
-        currentUserId: action.user.id,
+        id: action.user.id,
+      });
+
+    case (REMOVE_CURRENT_USER):
+      return merge(newState, {
+        id: null,
       });
 
     default:

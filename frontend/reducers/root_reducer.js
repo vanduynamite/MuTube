@@ -89,11 +89,11 @@ export default rootReducer;
 //     volume: 0.72,
 //   },
 //   errors: {
-//     login: ["Incorrect username or password"],
+//     session: ["Incorrect username or password"],
 //     videoUrl: ["Video URL is invalid"],
 //     commentBody: ["Please enter text"],
 //   },
 //   session: {
-//     currentUserId: 1
+//     id: 1
 //   }
 // }
