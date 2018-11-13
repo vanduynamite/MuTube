@@ -75,7 +75,6 @@
      input:focus {
        outline: none;
        border-bottom: 2px solid #1F6DE8;
-       transition-property:
      }
 
  .errors {
