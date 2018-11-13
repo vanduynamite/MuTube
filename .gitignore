@@ -15,6 +15,8 @@ bundle.js.map
 !/log/.keep
 !/tmp/.keep
 
+/css-friends-12
+
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep

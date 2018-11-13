@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, searchUser } from '../../actions/session_actions';
+import { login, searchUser, demoLogin } from '../../actions/session_actions';
 import LoginForm from './login_form';
 
 const msp = state => {
@@ -14,7 +14,7 @@ const msp = state => {
 
   if (potentialId) {
     user = state.entities.users[potentialId];
-    title = `Hi ${user.name}`; // TODO: change to firstName
+    title = `Hi ${user.firstName}`;
     subtitle = `${user.email}`;
     fieldName = 'Enter your password';
     formTypeSearch = false;
@@ -40,6 +40,7 @@ const mdp = dispatch => {
   return {
     searchUser: user => dispatch(searchUser(user)),
     login: user => dispatch(login(user)),
+    demoLogin: () => dispatch(demoLogin()),
   };
 };
 

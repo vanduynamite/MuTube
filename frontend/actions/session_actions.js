@@ -61,3 +61,11 @@ export const searchUser = (user) => dispatch => {
     errors => dispatch(receiveSessionErrors(errors))
   );
 };
+
+export const demoLogin = () => dispatch => {
+  const user = {
+    username: 'demo',
+    password: 'password',
+  };
+  return dispatch(login(user));
+};

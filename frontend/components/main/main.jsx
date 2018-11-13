@@ -10,9 +10,9 @@ class Main extends React.Component {
   render() {
     let greeting;
     let button;
-    
+
     if (this.props.currentUser) {
-      greeting = `${this.props.currentUser.name}, `;
+      greeting = `${this.props.currentUser.firstName}, `;
       button = <button onClick={this.props.logout}>Log Out</button>;
     } else {
       greeting = '';

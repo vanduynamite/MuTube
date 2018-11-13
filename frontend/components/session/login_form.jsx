@@ -8,6 +8,11 @@ class LoginForm extends React.Component {
     super(props);
     this.state = props.user;
     this.submit = this.submit.bind(this);
+    this.demoLoginCb = this.demoLoginCb.bind(this);
+  }
+
+  componentWillUnmount() {
+    // consider making an action that will clear out session.potentialId
   }
 
   submit(e) {
@@ -29,6 +34,7 @@ class LoginForm extends React.Component {
       return (
         <input id='login-field'
           type='text'
+          autoComplete='off'
           value={this.state.search}
           onChange={this.updateField('search')}>
         </input>
@@ -37,6 +43,7 @@ class LoginForm extends React.Component {
       return (
         <input id='login-field'
           type='password'
+          autoComplete='off'
           value={this.state.password}
           onChange={this.updateField('password')}>
         </input>
@@ -47,10 +54,30 @@ class LoginForm extends React.Component {
   buildErrors() {
     if (this.props.errors.length !== 0) {
       return (
-        <>
-          <br></br>
+        <div className='errors'>
           {this.props.errors}
-        </>
+        </div>
+      );
+    } else {
+      return <></>;
+    }
+  }
+
+  demoLoginCb() {
+    return e => this.props.demoLogin();
+  }
+
+  buildDemoLogin() {
+    if (this.props.formTypeSearch) {
+      return (
+        <div className='demo-login'>
+          <span>Not interested in signing up? Try the demo mode instead.</span>
+          <span
+            className='demo-span'
+            onClick={this.demoLoginCb()}>
+            Demo login
+          </span>
+        </div>
       );
     } else {
       return <></>;
@@ -60,22 +87,31 @@ class LoginForm extends React.Component {
   render() {
     const inputField = this.buildInputField();
     const errors = this.buildErrors();
-    // debugger
+    const demoLogin = this.buildDemoLogin();
+
     return (
       <div id='session-window'>
+        <img src='/google.png' />
+        <span className='title'>{this.props.title}</span>
+        <span className='subtitle'>{this.props.subtitle}</span>
+
         <form onSubmit={this.submit} className='session-form'>
-          <h1>{this.props.title}</h1>
-          <span>{this.props.subtitle}</span>
-          <br></br>
-          <label htmlFor='login-field'>
-            {this.props.fieldName}
-          </label>
-          <br></br>
-          {inputField}
-          {errors}
-          <br></br>
-          <button className="blue-button">Next</button>
-          <SignInButton render={this.props.formTypeSearch}/>
+
+          <div className='inputs'>
+            <label htmlFor='login-field'>
+              {this.props.fieldName}
+            </label>
+
+            {inputField}
+            {errors}
+          </div>
+
+          {demoLogin}
+
+          <div className='buttons'>
+            <SignInButton render={this.props.formTypeSearch}/>
+            <button className="blue-button">Next</button>
+          </div>
         </form>
       </div>
     );
@@ -86,9 +122,7 @@ class LoginForm extends React.Component {
 const SignInButton = (props) => {
   if (props.render) {
     return (
-      <button className="clear-blue-button">
-        <Link className="button-link" to='/signup'>Create account</Link>
-      </button>
+      <Link className="button-link" to='/signup'>Create account</Link>
     );
   } else {
     return <></>;

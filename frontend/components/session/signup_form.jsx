@@ -7,8 +7,8 @@ class SignupForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       user_image_url: '',
     };
@@ -25,7 +25,6 @@ class SignupForm extends React.Component {
 
   submit(e) {
     e.preventDefault();
-    this.name = `${this.first_name} ${this.last_name}`;
     this.props.processForm(this.state);
   }
 
