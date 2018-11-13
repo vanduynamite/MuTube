@@ -4,17 +4,18 @@
 #
 #  id             :bigint(8)        not null, primary key
 #  username       :string           not null
-#  name           :string           not null
 #  user_image_url :string
 #  email          :string           not null
 #  pw_digest      :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  first_name     :string           not null
+#  last_name      :string           not null
 #
 
 class User < ApplicationRecord
-  validates :username, :name, :email, :pw_digest, presence: true, uniqueness: true
-  validates :password, length: { minimum: 6, allow_nil: true}
+  validates :username, :first_name, :last_name, :email, :pw_digest, presence: true, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :sessions
   attr_reader :password
