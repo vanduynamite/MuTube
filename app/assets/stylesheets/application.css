@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  font-family: 'Roboto', arial, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+}
+
+#session-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.session-form {
+  box-sizing: inherit;
+  min-height: 500px;
+  overflow-y: auto;
+  -webkit-box-flex: 1;
+  /* flex-grow: 1; */
+  line-height: 1.4286;
+  width: 450px;
+  border: 1px solid black;
+  border-radius: 7px;
+  /* display: flex; */
+  justify-content: : center;
+  padding: 48px 40px 36px
+}
+
+.button-link {
+  text-decoration: none;
+}
