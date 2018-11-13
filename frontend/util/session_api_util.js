@@ -21,3 +21,11 @@ export const logout = () => {
     url: '/api/session',
   });
 };
+
+export const searchUser = (user) => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/users/search',
+    data: { user }
+  });
+};

@@ -1,57 +1,99 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { merge } from 'lodash';
 
 class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-
+    this.state = props.user;
     this.submit = this.submit.bind(this);
   }
 
   submit(e) {
     e.preventDefault();
-    this.props.login(this.state);
+
+    if (this.props.formTypeSearch) {
+      this.props.searchUser(this.state);
+    } else {
+      this.props.login(merge(this.props.user, this.state));
+    }
   }
 
   updateField(field) {
     return e => this.setState({[field]: e.target.value});
   }
 
-  render() {
-
-    return (
-      <form onSubmit={this.submit}>
-        <h2>Sign in</h2>
-        <span>with your µTube Account</span>
-
-        <label htmlFor='login-username'>
-          Username
-        </label>
-        <input id='login-username'
+  buildInputField() {
+    if (this.props.formTypeSearch) {
+      return (
+        <input id='login-field'
           type='text'
-          value={this.state.username}
-          onChange={this.updateField('username')}>
+          value={this.state.search}
+          onChange={this.updateField('search')}>
         </input>
-
-        <label htmlFor='login-password'>
-          Enter your password
-        </label>
-        <input id='login-password'
+      );
+    } else {
+      return (
+        <input id='login-field'
           type='password'
           value={this.state.password}
           onChange={this.updateField('password')}>
         </input>
+      );
+    }
+  }
 
-        <button className="blue-button">Next</button>
-      </form>
+  buildErrors() {
+    if (this.props.errors.length !== 0) {
+      return (
+        <>
+          <br></br>
+          {this.props.errors}
+        </>
+      );
+    } else {
+      return <></>;
+    }
+  }
+
+  render() {
+    const inputField = this.buildInputField();
+    const errors = this.buildErrors();
+    // debugger
+    return (
+      <div id='session-window'>
+        <form onSubmit={this.submit} className='session-form'>
+          <h1>{this.props.title}</h1>
+          <span>{this.props.subtitle}</span>
+          <br></br>
+          <label htmlFor='login-field'>
+            {this.props.fieldName}
+          </label>
+          <br></br>
+          {inputField}
+          {errors}
+          <br></br>
+          <button className="blue-button">Next</button>
+          <SignInButton render={this.props.formTypeSearch}/>
+        </form>
+      </div>
     );
   }
 
 }
+
+const SignInButton = (props) => {
+  if (props.render) {
+    return (
+      <button className="clear-blue-button">
+        <Link className="button-link" to='/signup'>Create account</Link>
+      </button>
+    );
+  } else {
+    return <></>;
+  }
+};
 
 
 export default LoginForm;

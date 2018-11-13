@@ -7,12 +7,12 @@ import Signup from './session/signup_form_container';
 
 export default () => {
   return (
-    <div>
+    <>
       <Switch>
         <AuthRoute exact path='/login' component={ Login } />
         <Route path='/' component={ Main } />
       </Switch>
-    </div>
+    </>
   );
 };
 // <AuthRoute exact path='/signup' component={ Signup } />
