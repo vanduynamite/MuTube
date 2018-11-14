@@ -15,7 +15,6 @@ const receiveCurrentUser = user => {
 };
 
 const receiveSessionErrors = errors => {
-  console.log(errors);
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors,
