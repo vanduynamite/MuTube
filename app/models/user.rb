@@ -14,9 +14,12 @@
 #
 
 class User < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+
   validates :username, :first_name, :last_name, :email, :pw_digest, presence: true
   validates :username, :email, :pw_digest, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates :email, format: { with: VALID_EMAIL_REGEX, message: 'address is invalid'}
 
   has_many :sessions
   attr_reader :password

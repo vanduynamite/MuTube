@@ -26,15 +26,16 @@ const errorsReducer = (state = {}, action) => {
 
 const errorFieldMap = {
   "Couldn't find your µTube Account": "search",
-  "Wrong password. Try again or use the demo login.": "password",
-  "Username can't be blank": "username",
   "First name can't be blank": "firstName",
   "Last name can't be blank": "lastName",
-  "Email can't be blank": "email",
+  "Username can't be blank": "username",
   "Username has already been taken": "username",
+  "Email can't be blank": "email",
   "Email has already been taken": "email",
+  "Email address is invalid" : "email",
+  "Wrong password. Try again or use the demo login.": "password",
   "Password is too short (minimum is 6 characters)": "password",
-  "Passwords do not match": "password"
+  "Passwords do not match": "password",
 };
 
 export default errorsReducer;
