@@ -5,6 +5,7 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_ERRORS';
 export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER';
 export const RECEIVE_POTENTIAL_LOGIN = 'RECEIVE_POTENTIAL_LOGIN';
+export const CLEAR_POTENTIAL_SESSION = 'CLEAR_POTENTIAL_SESSION';
 
 const receiveCurrentUser = user => {
   return {
@@ -32,6 +33,12 @@ const receivePotentialLogin = user => {
   return {
     type: RECEIVE_POTENTIAL_LOGIN,
     user,
+  };
+};
+
+export const clearPotentialSession = () => {
+  return {
+    type: CLEAR_POTENTIAL_SESSION,
   };
 };
 

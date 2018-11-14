@@ -12,7 +12,7 @@ class LoginForm extends React.Component {
   }
 
   componentWillUnmount() {
-    // consider making an action that will clear out session.potentialId
+    this.props.clearPotentialSession();
   }
 
   submit(e) {

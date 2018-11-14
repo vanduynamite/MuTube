@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
-import { login, searchUser, demoLogin } from '../../actions/session_actions';
+import { login,
+  searchUser,
+  demoLogin,
+  clearPotentialSession } from '../../actions/session_actions';
 import LoginForm from './login_form';
 
 const msp = state => {
@@ -41,6 +44,7 @@ const mdp = dispatch => {
     searchUser: user => dispatch(searchUser(user)),
     login: user => dispatch(login(user)),
     demoLogin: () => dispatch(demoLogin()),
+    clearPotentialSession: () => dispatch(clearPotentialSession()),
   };
 };
 
