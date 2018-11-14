@@ -16,7 +16,7 @@ class Main extends React.Component {
       button = <button onClick={this.props.logout} className='blue-button'>Log Out</button>;
     } else {
       greeting = '';
-      button = <Link to='/login' className='button-link'>Log In</Link> ;
+      button = <Link to='/login' className='button-link'>Sign In</Link> ;
     }
 
     return (
