@@ -105,7 +105,7 @@ class LoginForm extends React.Component {
 
     return (
       <div className='session-window'>
-        <img src='/google.png' />
+        <img src='/mutube.png' />
         {title}
         {subtitle}
         <form onSubmit={this.submit} className='session-form'>
