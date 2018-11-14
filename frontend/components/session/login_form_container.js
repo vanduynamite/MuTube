@@ -22,7 +22,7 @@ const msp = state => {
     user = {password: '', search: ''};
     title = 'Sign in';
     subtitle = 'to continue to µTube';
-    fieldName = 'Username or email';
+    fieldName = 'Email or username';
     formTypeSearch = true;
   }
 

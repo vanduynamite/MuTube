@@ -1,0 +1,197 @@
+.session-window {
+  min-height: 500px;
+  width: 450px;
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 1.4286;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 40px 36px 40px;
+
+  border-radius: 7px;
+  box-shadow: 0.5px 2px 2px #b1b1b1, -0.1px 0px 2px #b1b1b1;
+}
+
+#signup-form {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.session-window img {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 74px;
+  display: flex;
+  justify-content: center;
+}
+
+.session-window .title {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  padding-top: 16px;
+  line-height: 1.3333;
+}
+
+.session-window .subtitle {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  line-height: 1.5;
+}
+
+.session-form {
+  padding: 24px 0px 24px 0px;
+  min-height: 255px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.single-input {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+.helper-text {
+  font-size: 12px;
+}
+
+.errors {
+  font-size: 12px;
+  padding-top: 8px;
+  color: #D61619;
+}
+
+.demo-login {
+  font-size: 14px;
+  color: #62666b;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-span {
+  color: #1a73e8;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.25px;
+  display: inline-block;
+  line-height: 1.4286;
+}
+
+.session-form .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.blue-button {
+  height: 36px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: .25px;
+  line-height: 20px;
+  min-width: 88px;
+  color: white;
+  background-color: #1a73e8;
+  border-radius: 5px;
+}
+
+.blue-button:hover {
+  box-shadow: 1px 1px 2px #9FC1F7, -1px 0px 2px #9FC1F7;
+  background-color: #2C75E6;
+  transition: 0.2s;
+}
+
+
+
+.button-link {
+  /* margin: 8px 8px; */
+  font-weight: 500;
+  color: #1a73e8;
+  line-height: 1.4286;
+
+  height: 36px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: .25px;
+  min-width: 88px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  position: relative;
+  left: -11px;
+}
+
+.button-link:hover {
+  background-color: #f6fafe;
+  transition: 0.2s;
+}
+
+
+
+
+
+
+.session-form label {
+  position: relative;
+  top: 19px;
+  font-size: 16px;
+	color: #9e9e9e;
+	transform-origin: 0 -110px;
+	transition: transform 0.3s ease;
+	pointer-events: none;
+}
+
+.session-form input {
+  cursor: text;
+  font-size: 16px;
+  font-weight: 400;
+
+  padding-left: 0;
+  box-sizing: content-box;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1px;
+}
+
+.active-label {
+  transform: scale(0.75);
+  // color: #1a73e8; // this doesn't seem to be working anyways
+}
+
+.session-form input:focus {
+  outline: none;
+  border-bottom: 2px solid #1F6DE8;
+  margin-bottom: 0px;
+}

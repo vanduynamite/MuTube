@@ -29,12 +29,33 @@ class LoginForm extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
+  demoLoginCb() {
+    return e => this.props.demoLogin();
+  }
+
+  buildInputLabel() {
+    if (this.props.formTypeSearch && this.state.search !== "") {
+      return (
+        <label className='active-label' >
+          {this.props.fieldName}
+        </label>
+      );
+    } else if (this.state.password !== '') {
+      return (
+        <label className='active-label' >
+          {this.props.fieldName}
+        </label>
+      );
+    } else {
+      return <label>{this.props.fieldName}</label>;
+    }
+  }
+
   buildInputField() {
     if (this.props.formTypeSearch) {
       return (
         <input id='login-field'
           type='text'
-          autoComplete='off'
           value={this.state.search}
           onChange={this.updateField('search')}>
         </input>
@@ -43,7 +64,6 @@ class LoginForm extends React.Component {
       return (
         <input id='login-field'
           type='password'
-          autoComplete='off'
           value={this.state.password}
           onChange={this.updateField('password')}>
         </input>
@@ -61,10 +81,6 @@ class LoginForm extends React.Component {
     } else {
       return <></>;
     }
-  }
-
-  demoLoginCb() {
-    return e => this.props.demoLogin();
   }
 
   buildDemoLogin() {
@@ -85,49 +101,36 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const title = <span className='title'>{this.props.title}</span>;
+    const subtitle = <span className='subtitle'>{this.props.subtitle}</span>;
+    const inputLabel = this.buildInputLabel();
     const inputField = this.buildInputField();
     const errors = this.buildErrors();
     const demoLogin = this.buildDemoLogin();
+    const signUpButton = this.props.formTypeSearch ?
+        <Link to='/signup' className='button-link'>Create account</Link> : <></>
+    const nextButton = <button className="blue-button">Next</button>;
 
     return (
-      <div id='session-window'>
+      <div className='session-window'>
         <img src='/google.png' />
-        <span className='title'>{this.props.title}</span>
-        <span className='subtitle'>{this.props.subtitle}</span>
-
+        {title}
+        {subtitle}
         <form onSubmit={this.submit} className='session-form'>
-
           <div className='inputs'>
-            <label htmlFor='login-field'>
-              {this.props.fieldName}
-            </label>
-
+            {inputLabel}
             {inputField}
             {errors}
           </div>
-
           {demoLogin}
-
           <div className='buttons'>
-            <SignInButton render={this.props.formTypeSearch}/>
-            <button className="blue-button">Next</button>
+            {signUpButton}
+            {nextButton}
           </div>
         </form>
       </div>
     );
   }
-
 }
-
-const SignInButton = (props) => {
-  if (props.render) {
-    return (
-      <Link className="button-link" to='/signup'>Create account</Link>
-    );
-  } else {
-    return <></>;
-  }
-};
-
 
 export default LoginForm;

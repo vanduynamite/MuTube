@@ -12,16 +12,16 @@ class Main extends React.Component {
     let button;
 
     if (this.props.currentUser) {
-      greeting = `${this.props.currentUser.firstName}, `;
-      button = <button onClick={this.props.logout}>Log Out</button>;
+      greeting = `, ${this.props.currentUser.firstName}`;
+      button = <button onClick={this.props.logout} className='blue-button'>Log Out</button>;
     } else {
       greeting = '';
-      button = <Link to='/login'>Log In</Link> ;
+      button = <Link to='/login' className='button-link'>Log In</Link> ;
     }
 
     return (
       <div>
-        <h1>Hello, {greeting} from the main component!</h1>
+        <h1>Hello{greeting}! Welcome to the main component!</h1>
         {button}
       </div>
     );
