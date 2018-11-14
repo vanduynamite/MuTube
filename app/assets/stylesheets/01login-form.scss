@@ -54,9 +54,11 @@
   justify-content: space-between;
 }
 
+// layout of the sign up form
 .inputs {
   display: flex;
   flex-direction: column;
+  // margin-top: 10px;
 }
 
 .group-inputs {
@@ -66,6 +68,7 @@
 }
 
 .single-input {
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
 }
@@ -73,17 +76,20 @@
 
 
 
-
-.helper-text {
+// helper text and error text
+.helper-normal {
+  color: #757575;
+  height: 12px;
   font-size: 12px;
+  padding-top: 6px;
 }
 
-.errors {
-  font-size: 12px;
-  padding-top: 8px;
+.helper-error {
   color: #D61619;
 }
 
+
+// demo span for the login page 1
 .demo-login {
   font-size: 14px;
   color: #62666b;
@@ -100,6 +106,9 @@
   line-height: 1.4286;
 }
 
+
+
+// buttons
 .session-form .buttons {
   display: flex;
   justify-content: space-between;
@@ -160,16 +169,7 @@
 
 
 
-.session-form label {
-  position: relative;
-  top: 19px;
-  font-size: 16px;
-	color: #9e9e9e;
-	transform-origin: 0 -110px;
-	transition: transform 0.3s ease;
-	pointer-events: none;
-}
-
+// below is for making the transition for when the field has content
 .session-form input {
   cursor: text;
   font-size: 16px;
@@ -185,9 +185,19 @@
   margin-bottom: 1px;
 }
 
-.active-label {
+.session-form label {
+  position: relative;
+  top: 19px;
+  font-size: 16px;
+  color: #757575;
+  transform-origin: 0 -90px;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.session-form .active-label {
   transform: scale(0.75);
-  // color: #1a73e8; // this doesn't seem to be working anyways
+  color: #1a73e8;
 }
 
 .session-form input:focus {
@@ -195,3 +205,7 @@
   border-bottom: 2px solid #1F6DE8;
   margin-bottom: 0px;
 }
+
+// .session-form input:focus ~ .session-form .active-label {
+//   color: #1a73e8;
+// }

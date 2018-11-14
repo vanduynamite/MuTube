@@ -33,54 +33,48 @@ class LoginForm extends React.Component {
     return e => this.props.demoLogin();
   }
 
-  buildInputLabel() {
-    if (this.props.formTypeSearch && this.state.search !== "") {
-      return (
-        <label className='active-label' >
-          {this.props.fieldName}
-        </label>
-      );
-    } else if (this.state.password !== '') {
-      return (
-        <label className='active-label' >
-          {this.props.fieldName}
-        </label>
-      );
-    } else {
-      return <label>{this.props.fieldName}</label>;
-    }
-  }
+  buildField() {
+    const fieldName = this.props.formTypeSearch
+      ? 'search'
+      : 'password';
+    const label = this.props.formTypeSearch
+      ? 'Email or username'
+      : 'Password';
+    const password = !this.props.formTypeSearch;
+    const error = this.props.errors[fieldName];
 
-  buildInputField() {
-    if (this.props.formTypeSearch) {
-      return (
-        <input id='login-field'
-          type='text'
-          value={this.state.search}
-          onChange={this.updateField('search')}>
-        </input>
-      );
-    } else {
-      return (
-        <input id='login-field'
-          type='password'
-          value={this.state.password}
-          onChange={this.updateField('password')}>
-        </input>
-      );
-    }
-  }
+    // label
+    let labelKlass = '';
+    if (this.state[fieldName] !== '') labelKlass += 'active-label';
+    if (error) labelKlass += ' error-label';
+    const inputLabel = <label htmlFor={fieldName} className={labelKlass}>{label}</label>;
 
-  buildErrors() {
-    if (this.props.errors.length !== 0) {
-      return (
-        <div className='errors'>
-          {this.props.errors}
-        </div>
-      );
-    } else {
-      return <></>;
+    // input
+    const inputType = password ? 'password' : 'text';
+    const inputKlass = error ? 'error-input': '';
+    const inputField =
+      <input type={inputType}
+        className={inputKlass}
+        id={fieldName}
+        onChange={this.updateField(fieldName)}
+        value={this.state[fieldName]}></input>;
+
+    // helper text
+    let helperText = '';
+    let helperKlass = 'helper-normal';
+    if (error) {
+      helperText = error;
+      helperKlass += ' helper-error';
     }
+    const helperDiv = <div className={helperKlass}>{helperText}</div>;
+
+    return (
+      <div className='single-input'>
+        {inputLabel}
+        {inputField}
+        {helperDiv}
+      </div>
+    );
   }
 
   buildDemoLogin() {
@@ -103,12 +97,10 @@ class LoginForm extends React.Component {
   render() {
     const title = <span className='title'>{this.props.title}</span>;
     const subtitle = <span className='subtitle'>{this.props.subtitle}</span>;
-    const inputLabel = this.buildInputLabel();
-    const inputField = this.buildInputField();
-    const errors = this.buildErrors();
+    const inputField = this.buildField();
     const demoLogin = this.buildDemoLogin();
     const signUpButton = this.props.formTypeSearch ?
-        <Link to='/signup' className='button-link'>Create account</Link> : <></>
+        <Link to='/signup' className='button-link'>Create account</Link> : <div></div>
     const nextButton = <button className="blue-button">Next</button>;
 
     return (
@@ -118,9 +110,7 @@ class LoginForm extends React.Component {
         {subtitle}
         <form onSubmit={this.submit} className='session-form'>
           <div className='inputs'>
-            {inputLabel}
             {inputField}
-            {errors}
           </div>
           {demoLogin}
           <div className='buttons'>

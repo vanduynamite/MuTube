@@ -8,8 +8,8 @@ import Signup from './session/signup_form_container';
 export default () => {
   return (
     <Switch>
-      <Route exact path='/login' component={ Login } />
-      <Route exact path='/signup' component={ Signup } />
+      <AuthRoute exact path='/login' component={ Login } />
+      <AuthRoute exact path='/signup' component={ Signup } />
       <Route path='/' component={ Main } />
     </Switch>
   );

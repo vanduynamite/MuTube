@@ -14,18 +14,6 @@ class SignupForm extends React.Component {
     this.props.clearPotentialSession();
   }
 
-  buildErrors() {
-    if (this.props.errors.length !== 0) {
-      return (
-        <div className='errors'>
-          {this.props.errors}
-        </div>
-      );
-    } else {
-      return <></>;
-    }
-  }
-
   submit(e) {
     e.preventDefault();
     this.props.signup(this.state);
@@ -35,28 +23,47 @@ class SignupForm extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
-  field(field, label) {
-    const errMsg = "";
-    const inputLabel = this.state[field] !== "" ?
-      <label htmlFor={field} className='active-label'>{label}</label> :
-      <label htmlFor={field}>{label}</label>;
+  field(fieldName, label, password) {
+    const error = this.props.errors[fieldName];
+
+    // label
+    let labelKlass = '';
+    if (this.state[fieldName] !== '') labelKlass += 'active-label';
+    if (error) labelKlass += ' error-label';
+    const inputLabel = <label htmlFor={fieldName} className={labelKlass}>{label}</label>;
+
+    // input
+    const inputType = password ? 'password' : 'text';
+    const inputKlass = error ? 'error-input': '';
+    const inputField =
+      <input type={inputType}
+        className={inputKlass}
+        id={fieldName}
+        onChange={this.updateField(fieldName)}
+        value={this.state[fieldName]}></input>;
+
+    // helper text
+    let helperText = this.props.helperTexts[fieldName] || '';
+    let helperKlass = 'helper-normal';
+    if (error) {
+      helperText = error;
+      helperKlass += ' helper-error';
+    }
+    const helperDiv = <div className={helperKlass}>{helperText}</div>;
 
     return (
-      <>
+      <div className='single-input'>
         {inputLabel}
-        <input type='text'
-          id={field}
-          onChange={this.updateField(field)}
-          value={this.state[field]}></input>
-        <div className='errors'>
-          {errMsg}
-        </div>
-      </>
+        {inputField}
+        {helperDiv}
+      </div>
     );
   }
 
   render() {
-    const errors = this.buildErrors();
+    const signInButton = <Link className="button-link" to='/login'>
+      Sign in instead</Link>;
+    const nextButton = <button className="blue-button">Next</button>;
 
     return (
       <div className='session-window'>
@@ -67,37 +74,17 @@ class SignupForm extends React.Component {
 
           <div className='inputs'>
             <div className='group-inputs'>
-              <div className='single-input'>
-                  {this.field('first_name', 'First name')}
-              </div>
-              <div className='single-input'>
-                {this.field('last_name', 'Last name')}
-              </div>
+              {this.field('firstName', 'First name')}
+              {this.field('lastName', 'Last name')}
             </div>
             {this.field('username', 'Username')}
-
             {this.field('email', 'Your email address')}
-            <span className='helper-text'>
-              You will not need to confirm that this email belongs to you.
-            </span>
-            <div className='group-inputs'>
-              <div className='single-input'>
-                {this.field('password', 'Password')}
-              </div>
-              <div className='single-input'>
-                {this.field('confirm', 'Confirm')}
-              </div>
-            </div>
-            <span className='helper-text'>
-              Use 6 or more characters with a mix of letters, letters & letters
-            </span>
-
-            {errors}
+            {this.field('password', 'Password', true)}
           </div>
 
           <div className='buttons'>
-            <Link className="button-link" to='/login'>Sign in instead</Link>
-            <button className='blue-button'>Next</button>
+            {signInButton}
+            {nextButton}
           </div>
         </form>
       </div>
