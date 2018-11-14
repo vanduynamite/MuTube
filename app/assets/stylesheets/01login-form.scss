@@ -170,21 +170,6 @@
 
 
 // below is for making the transition for when the field has content
-.session-form input {
-  cursor: text;
-  font-size: 16px;
-  font-weight: 400;
-
-  padding-left: 0;
-  box-sizing: content-box;
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 1px;
-}
-
 .session-form label {
   position: relative;
   top: 19px;
@@ -200,11 +185,39 @@
   color: #1a73e8;
 }
 
+.session-form .error-label {
+  color: #D61619;
+}
+
+.session-form input {
+  cursor: text;
+  font-size: 16px;
+  font-weight: 400;
+
+  padding-left: 0;
+  box-sizing: content-box;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1px;
+}
+
+.session-form .error-input {
+  border-bottom: 2px solid #D61619;
+}
+
 .session-form input:focus {
   outline: none;
   border-bottom: 2px solid #1F6DE8;
   margin-bottom: 0px;
 }
+
+.session-form .error-input:focus {
+  border-bottom: 2px solid #D61619;
+}
+
 
 // .session-form input:focus ~ .session-form .active-label {
 //   color: #1a73e8;
