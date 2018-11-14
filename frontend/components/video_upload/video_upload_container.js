@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
-import Main from './main';
+import VideoUpload from './video_upload';
 
 const msp = state => {
-  const ui = { leftsidebar: true };
-
   return {
-    ui,
+
   };
 };
 
@@ -15,4 +13,4 @@ const mdp = dispatch => {
   };
 };
 
-export default connect(msp, mdp)(Main);
+export default connect(msp, mdp)(VideoUpload);

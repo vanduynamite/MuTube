@@ -1,0 +1,15 @@
+#titlebar {
+  height: 56px;
+  padding: 0px 16px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  box-shadow: 0.5px 2px 2px #f3f3f3;
+  // , -0.1px 0px 2px #b1b1b1;
+}
+
+#titlebar img {
+  height: 24px;
+}

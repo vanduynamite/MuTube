@@ -13,10 +13,19 @@
  *= require 00reset
  *= require_self
  *= require 01login-form
+ *= require 02titlebar
  */
 
- * {
-   font-family: 'Roboto', arial, sans-serif;
-   font-style: normal;
-   font-weight: 400;
- }
+* {
+ font-family: 'Roboto', arial, sans-serif;
+ font-style: normal;
+ font-weight: 400;
+}
+
+#main {
+  display: block;
+}
+
+#main-content {
+  display: inline-block;
+}

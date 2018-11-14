@@ -1,28 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
+import { ProtectedRoute } from '../../util/route_util';
+import Titlebar from './titlebar_container';
+import LeftSidebar from './leftsidebar_container';
+import VideoIndex from '../video_index/video_index_container';
+import VideoUpload from '../video_upload/video_upload_container';
+import VideoShow from '../video_show/video_show_container';
+import UserShow from '../user_show/user_show_container';
 
 class Main extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let greeting;
-    let button;
-
-    if (this.props.currentUser) {
-      greeting = `, ${this.props.currentUser.firstName}`;
-      button = <button onClick={this.props.logout} className='blue-button'>Log Out</button>;
-    } else {
-      greeting = '';
-      button = <Link to='/login' className='button-link'>Sign In</Link> ;
-    }
-
     return (
-      <div>
-        <h1>Hello{greeting}! Welcome to the main component!</h1>
-        {button}
+      <div id='main'>
+        <Titlebar />
+        <div id='main-content'>
+          {this.props.ui.leftsidebar ? <LeftSidebar /> : <></>}
+          <Switch>
+            <Route exact path='/' component={ VideoIndex } />
+            <Route path='/videos/:videoId' component={ VideoShow } />
+            <Route path='/users/:userId' component={ UserShow } />
+            <ProtectedRoute exact path='/upload' component={ VideoUpload } />
+          </Switch>
+        </div>
       </div>
     );
   }
