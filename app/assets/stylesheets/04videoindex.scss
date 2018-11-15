@@ -1,5 +1,66 @@
 #video-index {
   height: 80%;
-  padding: 30px;
-  margin: 30px;
+  // padding: 0px;
+  margin: 24px 40px;
+  min-width: 450px;
+  max-width: 1284px;
+}
+
+.video-index-container {
+}
+
+.index-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+#video-index ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#video-index li {
+}
+
+.video-thumbnail {
+  margin: 25px 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-thumbnail-image {
+  width: 210px;
+  height: 118px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  // margin: 40px 10px;
+}
+
+.video-thumbnail-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-thumb-title {
+  padding: 7px 0px;
+  color: black;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.video-thumb-uploader {
+  color: #6e6e6e;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.video-thumb-views {
+  color: #6e6e6e;
+  font-weight: 400;
+  font-size: 13px;
 }

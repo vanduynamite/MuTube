@@ -15,10 +15,11 @@ class Main extends React.Component {
       <div id='main'>
         <Titlebar />
         <div id='main-content'>
-          {this.props.ui.leftSidebar ? <></> : <LeftSidebar />}
+          {this.props.ui.leftSidebar ? <LeftSidebar /> : <></> }
           <Switch>
             <Route exact path='/' component={ VideoIndex } />
             <Route path='/videos/:videoId' component={ VideoShow } />
+            <Route path='/users/:userId' component={ UserShow } />
             <ProtectedRoute exact path='/upload' component={ VideoUpload } />
           </Switch>
         </div>
@@ -29,6 +30,5 @@ class Main extends React.Component {
 }
 
 // TODO: bonus, implement a user show page
-// <Route path='/users/:userId' component={ UserShow } />
 
 export default Main;
