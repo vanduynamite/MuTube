@@ -8,6 +8,14 @@
   box-shadow: inset 0px 2px 2px #eeeeee;
 
   z-index: 4;
+
+  animation-name: slide-from-left;
+  animation-duration: .3s;
+}
+
+@keyframes slide-from-left {
+   0%   {left: -240px;}
+   100% {left: 0px;}
 }
 
 #modal-background {
@@ -21,6 +29,14 @@
   background: #000000;
   opacity: 0.50;
   z-index: 3;
+
+  animation-name: get-darker;
+  animation-duration: .3s;
+}
+
+@keyframes get-darker {
+  0%    {opacity: 0; left: 0px}
+  100%  {opactiy: 0.5; left: 240px}
 }
 
 #left-sidebar ul {
