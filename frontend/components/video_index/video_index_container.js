@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import VideoIndex from './video_index';
 
 const msp = state => {
-
+  const currentUserId = state.session.id;
+  const currentUser = state.entities.users[currentUserId] || null;
   const videos = {};
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 100; i++) {
     videos[i] = {
       id: i,
       uploaderId: i*3,
@@ -20,6 +21,7 @@ const msp = state => {
 
   return {
     videos: Object.values(videos),
+    currentUser,
   };
 };
 

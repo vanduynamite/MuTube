@@ -1,0 +1,80 @@
+#video-upload-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  padding: 15px;
+  margin: 14px;
+  max-width: 743px;
+  background-color: #ffffff;
+  box-shadow: 2.5px 2.5px 3px #f2f2f2, -2.5px -2.5px 3px #f2f2f2;
+}
+
+#video-upload-card {
+  width: 90%;
+  height: 385px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#upload-clickable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#upload-clickable #video-upload-button-red {
+  display: none;
+}
+#upload-clickable:hover #video-upload-button-red {
+  display: block;
+}
+#upload-clickable:hover #video-upload-button {
+  display: none;
+}
+
+#video-upload-button  {
+  width: 120px;
+}
+
+#video-upload-button-red  {
+  width: 120px;
+}
+
+#video-upload-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: #444444;
+  margin-top: 15px;
+  margin-bottom: 9px;
+}
+
+#video-upload-subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  color: #666666;
+  padding: 7px;
+}
+
+#upload-instructions-card {
+  width: 90%;
+  margin-top: 0px;
+}
+
+#upload-instructions-title {
+  color: #444444;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+#upload-instructions {
+  color: #666666;
+  font-weight: 400;
+  font-size: 12px;
+}

@@ -16,9 +16,11 @@ class VideoIndex extends React.Component {
     const videos = this.props.videos;
     const lis = videos.map(video => <VideoIndexItem key={video.id} video={video} />);
 
+    const title = this.props.currentUser ? ` for you, ${this.props.currentUser.firstName}` : '';
+
     return (
     <div id='video-index'>
-      <span className='index-title'>Recommended</span>
+      <span className='index-title'>{`Recommended${title}`}</span>
       <ul>
         {lis}
       </ul>

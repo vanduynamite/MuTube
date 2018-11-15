@@ -1,12 +1,8 @@
 #video-index {
   height: 80%;
-  // padding: 0px;
   margin: 24px 40px;
   min-width: 450px;
   max-width: 1284px;
-}
-
-.video-index-container {
 }
 
 .index-title {
@@ -19,6 +15,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  // justify-content: center;
 }
 
 #video-index li {
