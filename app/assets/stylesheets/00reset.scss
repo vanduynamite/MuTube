@@ -3,25 +3,25 @@ ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
 span, article, footer, time, small {
-  /* margin: 0;
+  margin: 0;
   padding: 0;
   border: 0;
-  outline: 0; */
-  /* color: inherit;
+  outline: 0;
+  color: inherit;
   text-decoration: inherit;
   vertical-align: inherit;
   box-sizing: inherit;
-  background: transparent; */
+  background: transparent;
 }
 
 ul {
-  /* list-style: none; */
+  list-style: none;
 }
 
 img {
-  /* display: block;
-  width: 100%;
-  height: auto; */
+  display: block;
+  width: auto;
+  height: auto;
 }
 
 input[type="password"],
@@ -30,11 +30,11 @@ input[type="text"],
 input[type="submit"],
 textarea,
 button {
-  /* -webkit-appearance: none;
-  -moz-appearance: none; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 button,
 input[type="submit"] {
-  /* cursor: pointer; */
+  cursor: pointer;
 }
