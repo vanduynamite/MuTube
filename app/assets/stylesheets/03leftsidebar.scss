@@ -15,10 +15,46 @@
   top: 0;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 240px;
   height: 100%;
   width: 100%;
   background: #000000;
-  opacity: 0.51;
+  opacity: 0.50;
   z-index: 3;
+}
+
+#left-sidebar ul {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 16px;
+}
+
+#left-sidebar span {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.007px;
+  color: #6c6c6c;
+  padding: 19px 0px 19px 24px;
+  margin-bottom: 30px;
+}
+
+#left-sidebar li {
+  font-weight: 400;
+  font-size: 14px;
+  color: #111111;
+  padding: 16px 0px 16px 27px;
+  display: flex;
+  align-items: center;
+}
+
+#left-sidebar li:hover {
+  background-color: #ebebeb;
+}
+
+#left-sidebar li:active {
+  background-color: #dcdcdc;
+}
+
+#left-sidebar img {
+  height: 12px;
+  margin-right: 24px;
 }

@@ -15,7 +15,7 @@ export default (props) => {
 
   const searchBar = () => {
     return (
-      <h1>Hello{greeting}! Welcome to the main component!</h1>
+      <h1>Hello{greeting}!</h1>
     );
   };
 

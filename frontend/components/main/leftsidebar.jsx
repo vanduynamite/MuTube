@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 export default (props) => {
 
   const buildLis = (list) => {
-    return list.map(li => <li>{li}</li>)
+    return list.map(li => (<li>
+      <img src='/hamburger.png' />
+      {li}</li>));
   };
 
   const mainLis = buildLis([
@@ -38,12 +40,12 @@ export default (props) => {
         <ul>
           {mainLis}
         </ul>
-        <span>LIBRARY</span>
         <ul>
+          <span>LIBRARY</span>
           {libraryLis}
         </ul>
-        <span>SUBSCRIPTIONS</span>
         <ul>
+          <span>SUBSCRIPTIONS</span>
           {subscriptionsLis}
         </ul>
       </div>
