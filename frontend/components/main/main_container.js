@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Main from './main';
 
 const msp = state => {
-  const ui = { leftsidebar: true };
+  const ui = state.ui;
 
   return {
     ui,

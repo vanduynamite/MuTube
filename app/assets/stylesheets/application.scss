@@ -14,6 +14,7 @@
  *= require_self
  *= require 01login-form
  *= require 02titlebar
+ *= require 03leftsidebar
  */
 
 * {
@@ -22,10 +23,50 @@
  font-weight: 400;
 }
 
+html {
+  height: 100%;
+}
+
+.vsc-initialized {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 #main {
   display: block;
+  height: 100%;
 }
 
 #main-content {
-  display: inline-block;
+  position: relative;
+  top: 56px;
+  display: flex;
+  flex-direction: row;
+  // height: 100%;
+}
+
+.blue-button {
+  height: 36px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: .25px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 88px;
+  color: white;
+  background-color: #1a73e8;
+  border-radius: 5px;
+}
+
+.blue-button:hover {
+  box-shadow: 1px 1px 2px #9FC1F7, -1px 0px 2px #9FC1F7;
+  background-color: #2C75E6;
+  transition: 0.2s;
 }

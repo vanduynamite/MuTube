@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { toggleLeftSidebar } from '../../actions/ui_actions';
 import Titlebar from './titlebar';
 
 const msp = state => {
@@ -14,6 +15,7 @@ const msp = state => {
 const mdp = dispatch => {
   return {
     logout: () => dispatch(logout()),
+    toggleLeftSidebar: () => dispatch(toggleLeftSidebar()),
   };
 };
 
