@@ -8,8 +8,13 @@ Rails.application.routes.draw do
       collection do
         get :search
       end
+      resources :videos, only: [:create]
     end
     resource :session, only: [:create, :destroy]
+
+    resources :videos, only: [:index, :show, :destroy] do
+      resources :views, only: [:create]
+    end
   end
 
 end

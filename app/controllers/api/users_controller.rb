@@ -1,6 +1,12 @@
 
 class Api::UsersController < ApplicationController
 
+  def show
+    # TODO: bonus section for viewing a user's page
+    # will need to get their views and store it as array
+    # which can be done in json I suppose
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -8,7 +14,7 @@ class Api::UsersController < ApplicationController
       login!(@user)
       render 'api/users/show.json.jbuilder'
     else
-      render json: @user.errors.full_messages, status: 401
+      render json: @user.errors.full_messages, status: 422
     end
   end
 

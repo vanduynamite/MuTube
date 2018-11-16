@@ -22,6 +22,11 @@ class User < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX, message: 'address is invalid'}
 
   has_many :sessions
+  has_many :views
+  has_many :videos,
+    class_name: :Video,
+    foreign_key: :uploader_id
+
   attr_reader :password
 
   def self.find_by_credentials(username, pw)

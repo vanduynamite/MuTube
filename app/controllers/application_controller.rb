@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  
+
   helper_method :logged_in?, :current_user
 
   private
@@ -21,6 +21,22 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def authorized_user?(id)
+
+    unless logged_in?
+      render json: ['Requires user to be logged in.'], status: 401
+      return false
+    end
+
+    unless current_user.id == id
+      render json: ['You are logged in as the wrong user.'], status: 401
+      return false
+    end
+
+    true
+
   end
 
 end
