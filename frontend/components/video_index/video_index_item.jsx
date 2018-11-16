@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const VideoIndexItem = (props) => {
   const video = props.video;
+  const user = props.user;
 
   return (
     <div className='video-thumbnail'>
@@ -20,14 +21,14 @@ const VideoIndexItem = (props) => {
         </div>
 
         <div className='video-thumb-uploader'>
-          <Link to={`/users/${video.uploaderId}`}>
-            {video.uploaderName}
+          <Link to={`/users/${user.id}`}>
+            {user.username}
           </Link>
         </div>
 
         <div className='video-thumb-views'>
           <Link to={`/videos/${video.id}`}>
-            {`${video.views} • ${video.createdTimeAgo}`}
+            {`${video.views} views • ${video.createdTimeAgo}`}
           </Link>
         </div>
 

@@ -3,7 +3,9 @@ class Api::VideosController < ApplicationController
 
   def index
     @videos = Video.all
-    debugger
+
+    # TODO: make this not grab all the videos!! user hereDoc
+
     if params[:search]
       scores = search_scores(params[:search])
       @videos = @videos.select { |video| scores[video.id] > 0 }
@@ -58,7 +60,6 @@ class Api::VideosController < ApplicationController
   end
 
   def search_scores(search_params)
-
     search_words = search_params.downcase.split(' ')
     scores = {}
 

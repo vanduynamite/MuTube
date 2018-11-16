@@ -6,24 +6,38 @@ class VideoIndex extends React.Component {
 
   constructor(props) {
     super(props);
+    this.buildVideoIndexItem = this.buildVideoIndexItem.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchVideos();
   }
 
+  buildVideoIndexItem(video) {
+    const user = this.props.users[video.uploaderId];
+    
+    return (
+      <VideoIndexItem
+        key={video.id}
+        video={video}
+        user={user} />
+    );
+  }
+
   render() {
     const videos = this.props.videos;
-    const lis = videos.map(video => <VideoIndexItem key={video.id} video={video} />);
+    const lis = videos.map(video => this.buildVideoIndexItem(video));
 
     const title = this.props.currentUser ? ` for you, ${this.props.currentUser.firstName}` : '';
 
     return (
     <div id='video-index'>
-      <span className='index-title'>{`Recommended${title}`}</span>
-      <ul>
-        {lis}
-      </ul>
+      <div id='video-index-container'>
+        <span className='index-title'>{`Recommended${title}`}</span>
+        <ul>
+          {lis}
+        </ul>
+      </div>
     </div>);
 
   }

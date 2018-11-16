@@ -5,9 +5,9 @@ import { fetchVideos } from '../../actions/video_actions';
 const msp = state => {
   const currentUserId = state.session.id;
   const currentUser = state.entities.users[currentUserId] || null;
-  const users = Object.values(state.entities.users);
+  const users = state.entities.users;
   const videos = Object.values(state.entities.videos);
-
+  
   return {
     users,
     videos,

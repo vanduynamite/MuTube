@@ -15,8 +15,7 @@ class titleBar extends React.Component {
 
   search(e) {
     e.preventDefault();
-    debugger
-    this.state.search = '' ? this.props.fetchVideos() : this.props.fetchVideos(this.state);
+    this.props.fetchVideos(this.state);
   }
 
   render() {

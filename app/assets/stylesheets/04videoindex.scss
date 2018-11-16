@@ -5,6 +5,10 @@
   max-width: 1284px;
 }
 
+#video-index-container {
+  // margin: 0 auto;
+}
+
 .index-title {
   font-weight: 500;
   font-size: 16px;
@@ -25,10 +29,11 @@
   margin: 25px 2px;
   display: flex;
   flex-direction: column;
+  width: 210px;
 }
 
 .video-thumbnail-image {
-  width: 210px;
+  width: inherit;
   height: 118px;
   display: flex;
   justify-content: center;
@@ -41,13 +46,24 @@
 .video-thumbnail-details {
   display: flex;
   flex-direction: column;
+  width: inherit;
 }
 
 .video-thumb-title {
   padding: 7px 0px;
   color: black;
-  font-weight: 900;
   font-size: 14px;
+  width: inherit;
+  height: 28px;
+
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.video-thumb-title link {
+  font-weight: 900;
+
 }
 
 .video-thumb-uploader {
