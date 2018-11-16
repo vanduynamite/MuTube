@@ -188,18 +188,23 @@ thumb_urls = [
   "https://s3.amazonaws.com/mutube-videos/cows_mooing_K_EsxukdNXM_360p.mp4",
 ]
 
+partial_rand = Random.new(31415926)
+
 titles.count.times do |i|
   video = Video.create(
     title: titles[i],
     description: descriptions[i],
     video_url: video_urls[i],
     thumb_url: thumb_urls[i],
-    uploader_id: users[i % 3].id,
+    uploader_id: users[i % 4].id,
   )
-end
+  video.created_at = video.created_at - partial_rand.rand(100000000)
+  video.save
 
-videos = Video.all
+  num_views = partial_rand.rand(10000)
+  puts "#{num_views} for #{video.title}"
+  num_views.times do |_|
+    View.create(video_id: video.id, user_id: users.sample)
+  end
 
-800.times do |i|
-  View.create(video_id: videos.sample.id, user_id: users.sample)
 end
