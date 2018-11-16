@@ -1,27 +1,17 @@
 import {
-  RECEIVE_CURRENT_USER,
-  RECEIVE_POTENTIAL_LOGIN,
-} from '../actions/session_actions';
-import {
   RECEIVE_VIDEO,
   RECEIVE_VIDEOS,
 } from '../actions/video_actions';
 import { merge } from 'lodash';
 
-const usersReducer = (state = {}, action) => {
+const videosReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = merge({}, state);
 
   switch (action.type) {
-    case RECEIVE_POTENTIAL_LOGIN:
-    case RECEIVE_CURRENT_USER:
-      return merge(newState, {
-        [action.user.id]: action.user,
-      });
-
     case RECEIVE_VIDEO:
     case RECEIVE_VIDEOS:
-      return merge(newState, action.users);
+      return merge({}, action.videos);
 
     default:
       return newState;
@@ -30,7 +20,7 @@ const usersReducer = (state = {}, action) => {
 
 };
 
-export default usersReducer;
+export default videosReducer;
 
 // 1: {
 //   id: 1,

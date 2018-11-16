@@ -27,11 +27,6 @@ export default (props) => {
     'Channel6',
   ]);
 
-
-  // <div className="modal-child" onClick={e => e.stopPropagation()}>
-  //   stuff
-  // </div>
-
   return (
     <div id='left-sidebar-modal'>
       <div id='modal-background' onClick={props.toggleLeftSidebar}>

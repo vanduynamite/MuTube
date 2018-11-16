@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // DEBUG:
 const store = configureStore();
-import * as SessionActions from './actions/session_actions';
+import * as VideoActions from './actions/video_actions';
 window.getState = store.getState;
 window.dispatch = store.dispatch;
-window.actions = SessionActions;
+window.actions = VideoActions;

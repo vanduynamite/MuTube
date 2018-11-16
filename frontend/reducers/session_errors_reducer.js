@@ -3,7 +3,7 @@ import { RECEIVE_SESSION_ERRORS,
   CLEAR_POTENTIAL_SESSION } from '../actions/session_actions';
 import { merge } from 'lodash';
 
-const errorsReducer = (state = {}, action) => {
+const sessionErrorsReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = {};
 
@@ -38,6 +38,6 @@ const errorFieldMap = {
   "Passwords do not match": "password",
 };
 
-export default errorsReducer;
+export default sessionErrorsReducer;
 
 // ["Incorrect username or password"],
