@@ -2,6 +2,15 @@
 class Api::VideosController < ApplicationController
 
   def index
+    @videos = Video.all
+    debugger
+    if params[:search]
+      scores = search_scores(params[:search])
+      @videos = @videos.select { |video| scores[video.id] > 0 }
+    end
+
+    # render json: ["Found #{@videos.count} videos with the search '#{params[:search]}''"]
+    render 'api/videos/index.json.jbuilder'
 
   end
 
@@ -46,6 +55,25 @@ class Api::VideosController < ApplicationController
 
   def video_params
     params.require(:video).permit(:title, :description, :video_url, :thumb_url)
+  end
+
+  def search_scores(search_params)
+
+    search_words = search_params.downcase.split(' ')
+    scores = {}
+
+    @videos.map do |video|
+      score = 0
+      title = video.title.downcase
+      desc = video.title.downcase
+
+      search_words.each { |word| score += 1 if title.include?("#{word}") || desc.include?("#{word}") }
+
+      scores[video.id] = score
+    end
+
+    scores
+
   end
 
 end
