@@ -10,6 +10,10 @@ View.delete_all
 Video.delete_all
 User.delete_all
 
+dev_null = Logger.new("/dev/null")
+Rails.logger = dev_null
+ActiveRecord::Base.logger = dev_null
+
 demo = User.create(
   username: 'demo',
   password: 'password',
