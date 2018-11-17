@@ -22,4 +22,6 @@ class Video < ApplicationRecord
 
   has_many :views
 
+  has_one_attached :video_file
+
 end

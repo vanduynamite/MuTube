@@ -20,14 +20,27 @@ class videoShow extends React.Component {
   }
 
   render() {
-    const message = this.props.video
-      ? `You are viewing video id ${this.props.video.id}`
-      : 'Please wait while loading';
 
-    return (
-      <div>
-        {message}
+    if (!this.props.video) {
+      return (<div>
+        Please wait while loading
       </div>);
+    }
+
+    const video = this.props.video;
+    return (
+      <div id='video-show'>
+        <div id='video-show-container'>
+          <video className='video' autoPlay={true}>
+            <source src={ video.videoUrl } type='video/mp4' />
+          </video>
+        </div>
+        <div id='up-next-container'>
+          Up Next
+        </div>
+      </div>
+    );
+
   }
 
 }

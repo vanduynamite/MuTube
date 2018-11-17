@@ -1,17 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import Thumbnail from 'react-native-thumbnail-video';
 
 const VideoIndexItem = (props) => {
   const video = props.video;
   const user = props.user;
-
+  // <Thumbnail
+  //   url={video.videoUrl}
+  //   className='video-thumbnail-image' />
   return (
     <div className='video-thumbnail'>
+
       <Link to={`/videos/${video.id}`}>
-        <div className='video-thumbnail-image'>
-            {`Video ${video.id}!`}
-        </div>
+        <video className='video-thumbnail-image'>
+          <source src={ video.videoUrl } type="video/mp4" />
+        </video>
       </Link>
+
       <div className='video-thumb-details'>
 
         <div className='video-thumb-title'>

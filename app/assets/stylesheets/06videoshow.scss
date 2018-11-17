@@ -1,0 +1,23 @@
+#video-show {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#video-show-container {
+  height: 100%;
+  width: 73%;
+  display: flex;
+  flex-direction: column;
+}
+
+#up-next-container {
+  height: 100%;
+  width: 27%;
+  background-color: red;
+}
+
+#video {
+  max-width: 1280px;
+  margin: 0px 12px 20px 12px;
+}

@@ -173,39 +173,47 @@ video_urls = [
   "https://s3.amazonaws.com/mutube-videos/cows_mooing_K_EsxukdNXM_360p.mp4",
 ]
 
-thumb_urls = [
-  "https://s3.amazonaws.com/mutube-videos/biggest_cat_that_purrs_and_meows_BXhfZRE08ko_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_has_a_crazy_deep_meow_w7x_lWJNnNg_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_meowing_sound_effect_download_rdYE3Wm6jX8_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_meowing_very_loudly_f67TcSJ6eTs_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Cute+Baby+Kitten+meows+because+Mama+Cat+is+not+there.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Cute+cat+meowing+to+get+outside..mp4",
-  "https://s3.amazonaws.com/mutube-videos/every_cat_has_a_different_meowing_voice_4xhzacM1PSA_360p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/every_day_every_darn_day_9EYZnSXEla0_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/female_cat_in_heat_meowing_mate_calling_tb24B2Y-51M_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Happy+Meowing+Cat.mp4",
-  "https://s3.amazonaws.com/mutube-videos/kittens_and_cats_meowing_nX1YzS_CYIw_360p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Ragdoll+cat+meowing.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cow_mooing_cow_mooing_sounds_100_real_J0HgEEY2jts_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_go_moo_baby_edition_cutest_compilation_YsM1QwjpUpc_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_mooing_b8-opJNfhUI_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_mooing_K_EsxukdNXM_360p.mp4",
+filepaths = [
+  "/Users/paul/Desktop/µTube_seeds/1.mp4",
+  "/Users/paul/Desktop/µTube_seeds/2.mp4",
+  "/Users/paul/Desktop/µTube_seeds/3.mp4",
+  "/Users/paul/Desktop/µTube_seeds/4.mp4",
+  "/Users/paul/Desktop/µTube_seeds/5.mp4",
+  "/Users/paul/Desktop/µTube_seeds/6.mp4",
+  "/Users/paul/Desktop/µTube_seeds/7.mp4",
+  "/Users/paul/Desktop/µTube_seeds/8.mp4",
+  "/Users/paul/Desktop/µTube_seeds/9.mp4",
+  "/Users/paul/Desktop/µTube_seeds/10.mp4",
+  "/Users/paul/Desktop/µTube_seeds/11.mp4",
+  "/Users/paul/Desktop/µTube_seeds/12.mp4",
+  "/Users/paul/Desktop/µTube_seeds/13.mp4",
+  "/Users/paul/Desktop/µTube_seeds/14.mp4",
+  "/Users/paul/Desktop/µTube_seeds/15.mp4",
+  "/Users/paul/Desktop/µTube_seeds/16.mp4",
 ]
 
 partial_rand = Random.new(31415926)
 
 titles.count.times do |i|
-  video = Video.create(
+  video = Video.new(
     title: titles[i],
     description: descriptions[i],
-    video_url: video_urls[i],
-    thumb_url: thumb_urls[i],
     uploader_id: users[i % 4].id,
   )
+
+  # video.video_file.attach(io: File.open(filepaths[i]), filename: "#{i}.mp4")
+  #
+  # video.video_url= url_for(video.video_file)
+  # video.thumb_url= url_for(video.video_file)
+  video.video_url= "tbd"
+  video.thumb_url= "tbd"
+  video.save
+
   video.created_at = video.created_at - partial_rand.rand(100000000)
   video.save
 
-  num_views = partial_rand.rand(10000)
+
+  num_views = partial_rand.rand(100)
   puts "#{num_views} for #{video.title}"
   num_views.times do |_|
     View.create(video_id: video.id, user_id: users.sample)
