@@ -73,3 +73,32 @@ html {
   background-color: #2C75E6;
   transition: 0.2s;
 }
+
+.button-link {
+  height: 36px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: .25px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 88px;
+  color: #1a73e8;
+  border-radius: 5px;
+
+  line-height: 1.4286;
+
+  text-decoration: none;
+  padding-left: 11px;
+  padding-right: 11px;
+  position: relative;
+  left: -11px;
+}
+
+.button-link:hover {
+  background-color: #f6fafe;
+  transition: 0.2s;
+}

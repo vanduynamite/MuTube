@@ -58,7 +58,9 @@ class titleBar extends React.Component {
         </div>
 
         <div id='title-middle'>
-          {searchBar()}
+          <div id='title-middle-container'>
+            {searchBar()}
+          </div>
         </div>
 
         <div id='title-right'>

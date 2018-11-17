@@ -22,13 +22,19 @@
   justify-content: flex-start;
 }
 
-.session-window img {
+.session-window #signin-logo {
   position: relative;
   left: 50%;
   transform: translate(-50%);
   width: 74px;
   display: flex;
   justify-content: center;
+}
+
+.session-window #signup-logo {
+  position: relative;
+  left: -8px;
+  width: 74px;
 }
 
 .session-window .title {
@@ -44,6 +50,21 @@
   justify-content: center;
   padding-top: 8px;
   line-height: 1.5;
+}
+
+.session-window .signup-subtitle {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 8px;
+  line-height: 1.5;
+}
+
+.session-window .signup-title {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 24px;
+  padding-top: 16px;
+  line-height: 1.3333;
 }
 
 .session-form {
@@ -113,33 +134,6 @@
   display: flex;
   justify-content: space-between;
   margin-top: 32px;
-}
-
-.button-link {
-  /* margin: 8px 8px; */
-  font-weight: 500;
-  color: #1a73e8;
-  line-height: 1.4286;
-
-  height: 36px;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  letter-spacing: .25px;
-  min-width: 88px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  border-radius: 5px;
-  padding-left: 11px;
-  padding-right: 11px;
-  position: relative;
-  left: -11px;
-}
-
-.button-link:hover {
-  background-color: #f6fafe;
-  transition: 0.2s;
 }
 
 
