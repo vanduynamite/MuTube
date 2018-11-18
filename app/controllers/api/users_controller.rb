@@ -2,9 +2,13 @@
 class Api::UsersController < ApplicationController
 
   def show
-    # TODO: bonus section for viewing a user's page
-    # will need to get their views and store it as array
-    # which can be done in json I suppose
+    @user = User.find_by(id: params[:id])
+
+    if @user
+      render 'api/users/show.json.jbuilder'
+    else
+      render json: ['User not found.'], status: 404
+    end
   end
 
   def create

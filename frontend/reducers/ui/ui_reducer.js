@@ -1,5 +1,5 @@
 import {
-  TOGGLE_LEFT_SIDEBAR }from '../actions/ui_actions';
+  TOGGLE_LEFT_SIDEBAR }from '../../actions/ui_actions';
 import { merge } from 'lodash';
 
 const uiReducer = (state, action) => {

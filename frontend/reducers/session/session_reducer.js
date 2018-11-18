@@ -2,7 +2,7 @@ import {
   RECEIVE_CURRENT_USER,
   REMOVE_CURRENT_USER,
   RECEIVE_POTENTIAL_LOGIN,
-  CLEAR_POTENTIAL_SESSION } from '../actions/session_actions';
+  CLEAR_POTENTIAL_SESSION } from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 const sessionReducer = (state = {}, action) => {

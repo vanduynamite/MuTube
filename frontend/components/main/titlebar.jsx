@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class titleBar extends React.Component {
+class TitleBar extends React.Component {
 
   constructor(props) {
     super(props);
@@ -78,4 +78,4 @@ class titleBar extends React.Component {
   }
 }
 
-export default titleBar;
+export default TitleBar;
