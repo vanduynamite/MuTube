@@ -18,6 +18,9 @@
  *= require 04videoindex
  *= require 05videoupload
  *= require 06videoshow
+ *= require 07rightsidebar
+ *= require 08videoplayer
+ *= require 09comments
  */
 
 * {
@@ -103,4 +106,18 @@ html {
 .button-link:hover {
   background-color: #f6fafe;
   transition: 0.2s;
+}
+
+
+.user-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  // background-color: #5C4039;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  border-radius: 24px;
+  margin: 1px;
 }

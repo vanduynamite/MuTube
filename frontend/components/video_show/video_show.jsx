@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserImage from '../main/user_image';
+import VideoPlayer from './video_player_container';
+import RightSidebar from './rightsidebar_container';
+import Comments from './comments_container';
 
 class videoShow extends React.Component {
 
   constructor(props) {
     super(props);
+    this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
   }
 
   componentDidMount() {
@@ -19,41 +24,46 @@ class videoShow extends React.Component {
     }
   }
 
-  videoElement(video) {
-    return (
-      <div id='video-player'>
-        <video id='video' autoPlay={false}>
-          <source src={ video.videoUrl } type='video/mp4' />
-        </video>
-        <div id='video-controls'>
-        </div>
-      </div>
-    );
+
+  ensureLoggedIn() {
+    if (!this.props.currentUser) { createHistory().push('/login'); }
   }
 
   firstDetail(video) {
+    const detailTop = (
+      <div id='first-detail-top'>
+        <span id='video-title'>{video.title}</span>
+      </div>
+    );
+
+    const likesAndShares = (
+      <div id='likes-shares'>
+        <div className='highlight-circle-small'>
+          <img src='/thumbs-up.png' id='like-button' />
+        </div>
+        <span className='like-text'>likes</span>
+        <div className='highlight-circle-small'>
+          <img src='/thumbs-down.png' id='dislike-button' />
+        </div>
+        <span className='like-text'>dislikes</span>
+        <div className='highlight-circle-small'>
+          <img src='/share.png' id='dislike-button' />
+        </div>
+        <span className='like-text'>share</span>
+      </div>
+    );
+
+    const detailBottom = (
+      <div id='first-detail-bottom'>
+        <span id='video-views'>{`${video.views} views`}</span>
+        {likesAndShares}
+      </div>
+    );
+
     return (
       <div className='video-detail-section'>
-        <div id='first-detail-top'>
-          <span id='video-title'>{video.title}</span>
-        </div>
-        <div id='first-detail-bottom'>
-          <span id='video-views'>{`${video.views} views`}</span>
-          <div id='likes-shares'>
-            <div className='highlight-circle-small'>
-              <img src='/thumbs-up.png' id='like-button' />
-            </div>
-            <span className='like-text'>likes</span>
-            <div className='highlight-circle-small'>
-              <img src='/thumbs-down.png' id='dislike-button' />
-            </div>
-            <span className='like-text'>dislikes</span>
-            <div className='highlight-circle-small'>
-              <img src='/share.png' id='dislike-button' />
-            </div>
-            <span className='like-text'>share</span>
-          </div>
-        </div>
+        {detailTop}
+        {detailBottom}
       </div>
     );
   }
@@ -64,31 +74,39 @@ class videoShow extends React.Component {
     const date = new Date(video.createdAt);
     const dateStr = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 
-    return (
-      <div className='video-detail-section'>
-        <div id='second-detail-top'>
-          <div id='second-detail-left'>
-            {publisher.username.slice(0,1).toUpperCase()}
-            <div id='channel-and-published'>
-              <span id='publisher'>{publisher.username}</span>
-              <span id='published-on'>{`Published on ${dateStr}`}</span>
-            </div>
-          </div>
-          <div id='second-detail-right'>
-            <button className='red-button'>SUBSCRIBE</button>
-          </div>
-        </div>
-        <div id='second-detail-bottom'>
-          <span id='video-description'>{video.description}</span>
+    const detailTopLeft = (
+      <div id='second-detail-left'>
+        <UserImage user={publisher} />
+        <div id='channel-and-published'>
+          <span id='publisher'>{publisher.username}</span>
+          <span id='published-on'>{`Published on ${dateStr}`}</span>
         </div>
       </div>
     );
-  }
 
-  comments(video) {
+    const detailTopRight = (
+      <div id='second-detail-right'>
+        <button className='red-button'>SUBSCRIBE</button>
+      </div>
+    );
+
+    const detailTop = (
+      <div id='second-detail-top'>
+        {detailTopLeft}
+        {detailTopRight}
+      </div>
+    );
+
+    const detailBottom = (
+      <div id='second-detail-bottom'>
+        <span id='video-description'>{video.description}</span>
+      </div>
+    );
+
     return (
-      <div>
-        comments
+      <div className='video-detail-section'>
+        {detailTop}
+        {detailBottom}
       </div>
     );
   }
@@ -107,14 +125,12 @@ class videoShow extends React.Component {
     return (
       <div id='video-show'>
         <div id='video-show-container'>
-          { this.videoElement(video) }
+          <VideoPlayer videoId={video.id} />
           { this.firstDetail(video) }
           { this.secondDetail(video, publisher) }
-          { this.comments(video) }
+          <Comments videoId={video.id} />
         </div>
-        <div id='up-next-container'>
-          Up Next
-        </div>
+        <RightSidebar />
       </div>
     );
 

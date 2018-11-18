@@ -1,0 +1,46 @@
+// video player
+
+#video-show-container {
+  height: 100%;
+  width: calc(100% - 402px);
+  max-width: 1280px;
+
+  margin-left: 24px;
+  margin-top: 24px;
+  margin-right: 24px;
+}
+
+#video-player {
+  position: relative;
+}
+
+#video {
+  width: 100%;
+}
+
+#video-controls {
+  position: absolute;
+  bottom: 3px;
+  // height: 100px;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  // background-color: red;
+  z-index: 2;
+}
+
+#video-controls:hover {
+  opacity: 1;
+
+  background-image: linear-gradient(
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(255,255,255,0),
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.7));
+  transition: .3s;
+}
