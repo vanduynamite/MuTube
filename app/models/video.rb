@@ -13,8 +13,7 @@
 #
 
 class Video < ApplicationRecord
-  validates :title, :uploader_id, :video_url, :thumb_url, presence: true
-  #validates :video_url, :thumb_url, uniqueness: true
+  validates :title, :uploader_id, presence: true
 
   belongs_to :uploader,
     class_name: :User,

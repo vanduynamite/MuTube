@@ -9,13 +9,13 @@ import { merge } from 'lodash';
 const msp = (state, ownProps) => {
   const videoId = ownProps.match.params.videoId;
   const video = state.entities.videos[videoId];
-  const user = {};
-  if (video) { merge(user, state.entities.users[video.uploaderId]) };
+  const publisher = {};
+  if (video) { merge(publisher, state.entities.users[video.uploaderId]) };
 
   return {
     videoId,
     video,
-    user,
+    publisher,
   };
 };
 

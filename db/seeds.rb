@@ -173,25 +173,6 @@ video_urls = [
   "https://s3.amazonaws.com/mutube-videos/cows_mooing_K_EsxukdNXM_360p.mp4",
 ]
 
-filepaths = [
-  "/Users/paul/Desktop/µTube_seeds/1.mp4",
-  "/Users/paul/Desktop/µTube_seeds/2.mp4",
-  "/Users/paul/Desktop/µTube_seeds/3.mp4",
-  "/Users/paul/Desktop/µTube_seeds/4.mp4",
-  "/Users/paul/Desktop/µTube_seeds/5.mp4",
-  "/Users/paul/Desktop/µTube_seeds/6.mp4",
-  "/Users/paul/Desktop/µTube_seeds/7.mp4",
-  "/Users/paul/Desktop/µTube_seeds/8.mp4",
-  "/Users/paul/Desktop/µTube_seeds/9.mp4",
-  "/Users/paul/Desktop/µTube_seeds/10.mp4",
-  "/Users/paul/Desktop/µTube_seeds/11.mp4",
-  "/Users/paul/Desktop/µTube_seeds/12.mp4",
-  "/Users/paul/Desktop/µTube_seeds/13.mp4",
-  "/Users/paul/Desktop/µTube_seeds/14.mp4",
-  "/Users/paul/Desktop/µTube_seeds/15.mp4",
-  "/Users/paul/Desktop/µTube_seeds/16.mp4",
-]
-
 partial_rand = Random.new(31415926)
 
 titles.count.times do |i|
@@ -201,19 +182,15 @@ titles.count.times do |i|
     uploader_id: users[i % 4].id,
   )
 
-  # video.video_file.attach(io: File.open(filepaths[i]), filename: "#{i}.mp4")
-  #
-  # video.video_url= url_for(video.video_file)
-  # video.thumb_url= url_for(video.video_file)
-  video.video_url= "tbd"
-  video.thumb_url= "tbd"
+  filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
+  filename = "#{i+1}.mp4"
+  video.video_file.attach(io: File.open(filepath), filename: filename)
   video.save
 
   video.created_at = video.created_at - partial_rand.rand(100000000)
   video.save
 
-
-  num_views = partial_rand.rand(100)
+  num_views = partial_rand.rand(5000)
   puts "#{num_views} for #{video.title}"
   num_views.times do |_|
     View.create(video_id: video.id, user_id: users.sample)

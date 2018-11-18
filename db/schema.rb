@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_17_190439) do
+ActiveRecord::Schema.define(version: 2018_11_17_220545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 2018_11_17_190439) do
     t.string "title", null: false
     t.string "description"
     t.integer "uploader_id", null: false
-    t.string "video_url", null: false
-    t.string "thumb_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["description"], name: "index_videos_on_description"
