@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default (props) => {
 
-  return (<div>Hello from Rightsidebar</div>);
+  return (
+    <div id='up-next-container'>
+      Hello from RightSidebar! Up Next...
+    </div>
+  );
 
 };

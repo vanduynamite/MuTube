@@ -2,7 +2,7 @@ import {
   RECEIVE_VIDEO,
   RECEIVE_VIDEOS,
   RECEIVE_VIDEOS_ERRORS,
-} from '../actions/video_actions';
+} from '../../actions/video_actions';
 import { merge } from 'lodash';
 
 const videosErrorsReducer = (state = {}, action) => {

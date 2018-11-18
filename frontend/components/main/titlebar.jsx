@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import createHistory from 'history/createHashHistory';
 
-class titleBar extends React.Component {
+class TitleBar extends React.Component {
 
   constructor(props) {
     super(props);
@@ -10,12 +11,16 @@ class titleBar extends React.Component {
   }
 
   updateField(field) {
-    return e => this.setState({[field]: e.target.value});
+    return e => {
+      this.setState({[field]: e.target.value});
+      this.props.updateSearchField(e.target.value);
+    };
   }
 
   search(e) {
     e.preventDefault();
     this.props.fetchVideos(this.state);
+    createHistory().push('/');
   }
 
   render() {
@@ -78,4 +83,4 @@ class titleBar extends React.Component {
   }
 }
 
-export default titleBar;
+export default TitleBar;

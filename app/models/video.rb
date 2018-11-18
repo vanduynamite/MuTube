@@ -12,14 +12,12 @@
 #
 
 class Video < ApplicationRecord
-  validates :title, :uploader_id, :video_url, :thumb_url, presence: true
-
-  # commented out for testing purposes. Also not sure how much it matters
-  ## as AWS is taking care of it
-  #validates :video_url, :thumb_url, uniqueness: true
+  validates :title, :uploader_id, presence: true
 
   belongs_to :uploader,
     class_name: :User,
     foreign_key: :uploader_id
+
+  has_one_attached :video_file
 
 end

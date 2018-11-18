@@ -12,7 +12,7 @@ export const fetchVideos = search => {
   if (search && search.search !== '') {
     Object.assign(data, search);
   }
-  
+
   return $.ajax({
     method: 'GET',
     url: '/api/videos',

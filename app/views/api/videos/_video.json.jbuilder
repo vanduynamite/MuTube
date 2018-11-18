@@ -14,7 +14,7 @@ json.videos do
   json.set! video.id do
     json.id video.id
     json.title video.title
-    json.videoUrl video.video_url
+    json.videoUrl url_for(video.video_file)
     json.views video.views.count
     json.uploaderId video.uploader_id
     json.createdAt video.created_at

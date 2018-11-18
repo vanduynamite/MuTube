@@ -10,12 +10,12 @@ class VideoIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchVideos();
+    this.props.fetchVideos({ search: this.props.search });
   }
 
   buildVideoIndexItem(video) {
     const user = this.props.users[video.uploaderId];
-    
+
     return (
       <VideoIndexItem
         key={video.id}

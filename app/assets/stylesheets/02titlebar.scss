@@ -4,11 +4,9 @@
   width: 100%;
   z-index: 2;
   height: 56px;
+  min-width: 550px;
 
   display: flex;
-  height: 56px;
-  // flex-direction: row;
-  // justify-content: space-between;
   align-items: center;
 
   background-color: white;
@@ -20,9 +18,7 @@
 #title-middle {
   position: fixed;
   width: 100%;
-  // max-width: 560px;
-  // left: 50%;
-  // transform: translateX(-50%);
+  min-width: 550px;
   display: flex;
   justify-content: center;
 }

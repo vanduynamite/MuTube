@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import { toggleLeftSidebar } from '../../actions/ui_actions';
+import {
+  toggleLeftSidebar,
+  updateSearchField,
+} from '../../actions/ui_actions';
 import { fetchVideos } from '../../actions/video_actions';
 import Titlebar from './titlebar';
 
@@ -18,6 +21,7 @@ const mdp = dispatch => {
     logout: () => dispatch(logout()),
     toggleLeftSidebar: () => dispatch(toggleLeftSidebar()),
     fetchVideos: search => dispatch(fetchVideos(search)),
+    updateSearchField: search => dispatch(updateSearchField(search)),
   };
 };
 

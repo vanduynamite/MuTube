@@ -1,6 +1,6 @@
 import { RECEIVE_SESSION_ERRORS,
   RECEIVE_CURRENT_USER,
-  CLEAR_POTENTIAL_SESSION } from '../actions/session_actions';
+  CLEAR_POTENTIAL_SESSION } from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 const sessionErrorsReducer = (state = {}, action) => {
