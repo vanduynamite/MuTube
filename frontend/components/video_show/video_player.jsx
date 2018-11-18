@@ -6,7 +6,7 @@ export default (props) => {
 
   return (
     <div id='video-player'>
-      <video id='video' autoPlay={false}>
+      <video id='video' autoPlay={true}>
         <source src={ video.videoUrl } type='video/mp4' />
       </video>
       <div id='video-controls'>

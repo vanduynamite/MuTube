@@ -154,24 +154,25 @@ descriptions = [
   "Cows mooing",
 ]
 
-video_urls = [
-  "https://s3.amazonaws.com/mutube-videos/biggest_cat_that_purrs_and_meows_BXhfZRE08ko_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_has_a_crazy_deep_meow_w7x_lWJNnNg_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_meowing_sound_effect_download_rdYE3Wm6jX8_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cat_meowing_very_loudly_f67TcSJ6eTs_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Cute+Baby+Kitten+meows+because+Mama+Cat+is+not+there.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Cute+cat+meowing+to+get+outside..mp4",
-  "https://s3.amazonaws.com/mutube-videos/every_cat_has_a_different_meowing_voice_4xhzacM1PSA_360p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/every_day_every_darn_day_9EYZnSXEla0_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/female_cat_in_heat_meowing_mate_calling_tb24B2Y-51M_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Happy+Meowing+Cat.mp4",
-  "https://s3.amazonaws.com/mutube-videos/kittens_and_cats_meowing_nX1YzS_CYIw_360p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/Ragdoll+cat+meowing.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cow_mooing_cow_mooing_sounds_100_real_J0HgEEY2jts_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_go_moo_baby_edition_cutest_compilation_YsM1QwjpUpc_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_mooing_b8-opJNfhUI_1080p.mp4",
-  "https://s3.amazonaws.com/mutube-videos/cows_mooing_K_EsxukdNXM_360p.mp4",
-]
+# out of date...
+# video_urls = [
+#   "https://s3.amazonaws.com/mutube-videos/KvsfLxQhMqZxNWGJDZhwtpbb",
+#   "https://s3.amazonaws.com/mutube-videos/4pVfZpxfgcSUKab7qvHTY7ut",
+#   "https://s3.amazonaws.com/mutube-videos/A3VxEagXSYArPAJwEcz7Weqk", #3
+#   "https://s3.amazonaws.com/mutube-videos/WcxoT9JWvcuw7jWNnPbkkhv4",
+#   "https://s3.amazonaws.com/mutube-videos/MkXZXu6gUakpTjXeSpWb4h4X",
+#   "https://s3.amazonaws.com/mutube-videos/AnKTKPrcyct5T6LBLnXUBjBs", #6
+#   "https://s3.amazonaws.com/mutube-videos/er7sHG6LZdngomtPU6WoHjqo",
+#   "https://s3.amazonaws.com/mutube-videos/e3XKQwZMrrJRWEv4yq7HAt8L",
+#   "https://s3.amazonaws.com/mutube-videos/pi34butEbsH6vekuYRC4oHLv", #9
+#   "https://s3.amazonaws.com/mutube-videos/Dj2DR9SxtmuQCravvXJrv6dy",
+#   "https://s3.amazonaws.com/mutube-videos/crQrev1KGskpVTiRaWvh9V1i",
+#   "https://s3.amazonaws.com/mutube-videos/vRc86Uk6tr9zRBSRGHBAs9Dr", #12
+#   "https://s3.amazonaws.com/mutube-videos/D6HUXKY93FafHVJFtb5fL4qS",
+#   "https://s3.amazonaws.com/mutube-videos/n1bEv8Ggh6F3ogNaio9Lg6QU",
+#   "https://s3.amazonaws.com/mutube-videos/BUHvLBdC9XWrhDHd5i6p9yCM", #15
+#   "https://s3.amazonaws.com/mutube-videos/kLCVdr6scQW9qPZPTkvpSQqv",
+# ]
 
 partial_rand = Random.new(31415926)
 
@@ -182,9 +183,18 @@ titles.count.times do |i|
     uploader_id: users[i % 4].id,
   )
 
+  # for seeding from desktop
   filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
   filename = "#{i+1}.mp4"
   video.video_file.attach(io: File.open(filepath), filename: filename)
+
+  # for seeding from S3, if the videos are there and the same as above links
+  # filepath = video_urls[i]
+  # file = EzDownload.open(filepath)
+  # filename = filepath.split("https://s3.amazonaws.com/mutube-videos/")[1]
+  # video.video_file.attach(io: file, filename: filename)
+  # video.save!
+
   num_views = partial_rand.rand(5000)
   puts "#{num_views} for #{video.title}"
   video.views = num_views

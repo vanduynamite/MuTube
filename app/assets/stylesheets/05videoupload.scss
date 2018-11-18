@@ -78,3 +78,49 @@
   font-weight: 400;
   font-size: 12px;
 }
+
+
+// second page
+#video-upload-details {
+  width: 90%;
+  height: 385px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#post-file-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-form-field {
+  font-size: 13px;
+  font-weight: 400;
+  border: 1px solid #d3d3d3;
+  padding: 5px 10px 6px 10px;
+  margin-bottom: 15px;
+}
+
+#upload-form-title {
+  margin-top: 15px;
+  color: #333333;
+}
+
+#upload-form-description {
+  width: 425px;
+  max-width: 425px;
+  min-width: 425px;
+  max-height: 247px;
+  line-height: 20px;
+
+  color: #2E2E2E;
+}
+
+.upload-form-field:hover {
+  border: 1px solid #b9b9b9;
+}
+
+.upload-form-field:focus {
+  border: 1px solid #1578c3;
+}

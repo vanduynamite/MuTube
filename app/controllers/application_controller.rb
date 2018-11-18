@@ -23,14 +23,14 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def authorized_user?(id)
+  def authorized_user?(id=nil)
 
     unless logged_in?
       render json: ['Requires user to be logged in.'], status: 401
       return false
     end
 
-    unless current_user.id == id
+    if current_user.id != id && id != nil
       render json: ['You are logged in as the wrong user.'], status: 401
       return false
     end

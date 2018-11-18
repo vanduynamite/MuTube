@@ -29,12 +29,11 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-    user_id = params[:user_id].to_i
-    return false unless authorized_user?(user_id)
+    return false unless authorized_user?
 
-    @user = User.find_by(id: user_id)
+    @user = current_user
     @video = @user.videos.new(video_params)
-
+  
     if @video.save
       render 'api/videos/show.json.jbuilder'
     else
@@ -56,7 +55,7 @@ class Api::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :video_url, :thumb_url)
+    params.require(:video).permit(:title, :description, :video_file)
   end
 
   def search_scores(search_params)

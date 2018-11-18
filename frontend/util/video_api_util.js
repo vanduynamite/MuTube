@@ -1,3 +1,19 @@
+export const createVideo = data => {
+
+  const formData = new FormData();
+  formData.append('video[title]', data.title);
+  formData.append('video[description]', data.description);
+  formData.append('video[video_file]', data.file);
+
+  return $.ajax({
+    method: 'POST',
+    url: `/api/videos`,
+    data: formData,
+    contentType: false,
+    processData: false,
+  });
+};
+
 
 export const fetchVideo = id => {
   return $.ajax({

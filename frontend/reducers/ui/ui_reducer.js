@@ -3,6 +3,7 @@ import {
   SHOW_COMMENT_BUTTONS,
   HIDE_COMMENT_BUTTONS,
   UPDATE_SEARCH_FIELD,
+  RECENT_UPLOAD_UI,
 } from '../../actions/ui_actions';
 import { merge } from 'lodash';
 
@@ -22,6 +23,9 @@ const uiReducer = (state, action) => {
 
     case UPDATE_SEARCH_FIELD:
       return merge(newState, { search: action.search });
+
+    case RECENT_UPLOAD_UI:
+      return merge(newState, { lastVideoUploadId: action.videoId });
 
     default:
       return newState;
