@@ -10,7 +10,11 @@
 #
 
 class View < ApplicationRecord
-  belongs_to :user,
-    optional: true
+  validates :video_id, uniqueness: { scope: :user_id,
+    message: 'should only have one record per user.' }
+
   belongs_to :video
+  belongs_to :user
+    # optional: true # this used to be true when every view was recorded
+
 end
