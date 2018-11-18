@@ -4,12 +4,17 @@ import UserImage from '../main/user_image';
 import VideoPlayer from './video_player_container';
 import RightSidebar from './rightsidebar_container';
 import Comments from './comments_container';
+import createHistory from 'history/createHashHistory';
 
 class videoShow extends React.Component {
 
   constructor(props) {
     super(props);
     this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
+    this.like = this.like.bind(this);
+    this.dislike = this.dislike.bind(this);
+    this.subscribe = this.subscribe.bind(this);
+    this.share = this.share.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +31,43 @@ class videoShow extends React.Component {
 
 
   ensureLoggedIn() {
-    if (!this.props.currentUser) { createHistory().push('/login'); }
+    if (!this.props.currentUser) {
+      const message = 'This requires you to be logged in. Would you like to log in now?';
+      const res = confirm(message);
+      if (res) {
+        createHistory().push('/login');
+      } else {
+        return false;
+      }
+    }
+  }
+
+  like() {
+    this.ensureLoggedIn();
+  }
+
+  dislike() {
+    this.ensureLoggedIn();
+  }
+
+  subscribe() {
+    this.ensureLoggedIn();
+  }
+
+  share() {
+    alert("hi!");
+  }
+
+  likeShareComponent(action, pic, picId, text) {
+
+    return (
+      <div className='like-container' onClick={action}>
+        <div className='highlight-circle-small'>
+          <img src={pic} id={picId} />
+        </div>
+        <span className='like-text'>{text}</span>
+      </div>
+    );
   }
 
   firstDetail(video) {
@@ -38,18 +79,12 @@ class videoShow extends React.Component {
 
     const likesAndShares = (
       <div id='likes-shares'>
-        <div className='highlight-circle-small'>
-          <img src='/thumbs-up.png' id='like-button' />
-        </div>
-        <span className='like-text'>likes</span>
-        <div className='highlight-circle-small'>
-          <img src='/thumbs-down.png' id='dislike-button' />
-        </div>
-        <span className='like-text'>dislikes</span>
-        <div className='highlight-circle-small'>
-          <img src='/share.png' id='dislike-button' />
-        </div>
-        <span className='like-text'>share</span>
+        {this.likeShareComponent(this.like, '/thumbs-up.png',
+          'like-button', 'likes')}
+        {this.likeShareComponent(this.dislike, '/thumbs-down.png',
+          'dislike-button', 'dislikes')}
+        {this.likeShareComponent(this.share, '/share.png',
+          'share-button', 'share')}
       </div>
     );
 
@@ -76,9 +111,13 @@ class videoShow extends React.Component {
 
     const detailTopLeft = (
       <div id='second-detail-left'>
-        <UserImage user={publisher} />
+        <Link to={`/users/${publisher.id}`}>
+          <UserImage user={publisher} />
+        </Link>
         <div id='channel-and-published'>
-          <span id='publisher'>{publisher.username}</span>
+          <Link to={`/users/${publisher.id}`}>
+            <span id='publisher'>{publisher.username}</span>
+          </Link>
           <span id='published-on'>{`Published on ${dateStr}`}</span>
         </div>
       </div>
@@ -86,7 +125,8 @@ class videoShow extends React.Component {
 
     const detailTopRight = (
       <div id='second-detail-right'>
-        <button className='red-button'>SUBSCRIBE</button>
+        <button className='red-button'
+          onClick={this.subscribe}>SUBSCRIBE</button>
       </div>
     );
 
