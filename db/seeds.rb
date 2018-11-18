@@ -185,15 +185,12 @@ titles.count.times do |i|
   filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
   filename = "#{i+1}.mp4"
   video.video_file.attach(io: File.open(filepath), filename: filename)
+  num_views = partial_rand.rand(5000)
+  puts "#{num_views} for #{video.title}"
+  video.views = num_views
   video.save
 
   video.created_at = video.created_at - partial_rand.rand(100000000)
   video.save
-
-  num_views = partial_rand.rand(5000)
-  puts "#{num_views} for #{video.title}"
-  num_views.times do |_|
-    View.create(video_id: video.id, user_id: users.sample)
-  end
 
 end
