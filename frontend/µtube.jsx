@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
+import { merge } from 'lodash';
 
 const loadCurrentUser = (currentUser) => {
   return {
@@ -17,7 +18,12 @@ const loadCurrentUser = (currentUser) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const prevState = (window.currentUser) ? loadCurrentUser(window.currentUser) : {};
+  const prevUserState = window.currentUser ? loadCurrentUser(window.currentUser) : {};
+  const prevUIState = {
+    spaceToPlay: true,
+  };
+  const prevState = merge(prevUserState, { ui: prevUIState });
+
   const store = configureStore(prevState);
   const root = document.getElementById('root');
 

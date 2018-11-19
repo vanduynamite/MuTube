@@ -3,6 +3,7 @@ import { logout } from '../../actions/session_actions';
 import {
   toggleLeftSidebar,
   updateSearchField,
+  spaceToPlay,
 } from '../../actions/ui_actions';
 import { fetchVideos } from '../../actions/video_actions';
 import Titlebar from './titlebar';
@@ -22,6 +23,7 @@ const mdp = dispatch => {
     toggleLeftSidebar: () => dispatch(toggleLeftSidebar()),
     fetchVideos: search => dispatch(fetchVideos(search)),
     updateSearchField: search => dispatch(updateSearchField(search)),
+    spaceToPlay: boolean => dispatch(spaceToPlay(boolean)),
   };
 };
 

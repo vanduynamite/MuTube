@@ -8,6 +8,16 @@ class TitleBar extends React.Component {
     super(props);
     this.state = { search: '' };
     this.search = this.search.bind(this);
+    this.deactivateSpaceToPlay = this.deactivateSpaceToPlay.bind(this);
+    this.reactivateSpaceToPlay = this.reactivateSpaceToPlay.bind(this);
+  }
+
+  deactivateSpaceToPlay() {
+    this.props.spaceToPlay(false);
+  }
+
+  reactivateSpaceToPlay() {
+    this.props.spaceToPlay(true);
   }
 
   updateField(field) {
@@ -41,6 +51,8 @@ class TitleBar extends React.Component {
           <input type='text'
             placeholder='Search'
             onChange={this.updateField('search')}
+            onFocus={ this.deactivateSpaceToPlay }
+            onBlur={ this.reactivateSpaceToPlay }
             value={this.state.search}>
           </input>
           <button className='button-search'>

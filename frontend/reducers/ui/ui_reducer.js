@@ -4,6 +4,7 @@ import {
   HIDE_COMMENT_BUTTONS,
   UPDATE_SEARCH_FIELD,
   RECENT_UPLOAD_UI,
+  SPACE_TO_PLAY,
 } from '../../actions/ui_actions';
 import { merge } from 'lodash';
 
@@ -26,6 +27,9 @@ const uiReducer = (state, action) => {
 
     case RECENT_UPLOAD_UI:
       return merge(newState, { lastVideoUploadId: action.videoId });
+
+    case SPACE_TO_PLAY:
+      return merge(newState, { spaceToPlay: action.spaceToPlay });
 
     default:
       return newState;

@@ -14,6 +14,8 @@ class Comment extends React.Component {
     this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
     this.cancelComment = this.cancelComment.bind(this);
     this.submit = this.submit.bind(this);
+    this.deactivateSpaceToPlay = this.deactivateSpaceToPlay.bind(this);
+    this.reactivateSpaceToPlay = this.reactivateSpaceToPlay.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,16 @@ class Comment extends React.Component {
 
   updateField(field) {
     return e => this.setState({[field]: e.target.value});
+  }
+
+  deactivateSpaceToPlay() {
+    console.log('off!');
+    this.props.spaceToPlay(false);
+  }
+
+  reactivateSpaceToPlay() {
+    console.log('on!');
+    this.props.spaceToPlay(true);
   }
 
   ensureLoggedIn() {
@@ -87,8 +99,10 @@ class Comment extends React.Component {
             <input type='text'
               id='new-comment-field'
               placeholder='Add a public comment...'
-              onClick={this.ensureLoggedIn}
-              onChange={this.updateField('comment')}>
+              onClick={ this.ensureLoggedIn }
+              onFocus={ this.deactivateSpaceToPlay }
+              onBlur={ this.reactivateSpaceToPlay }
+              onChange={ this.updateField('comment') }>
             </input>
 
             <div id='comment-buttons'>

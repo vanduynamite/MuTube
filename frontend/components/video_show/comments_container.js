@@ -3,6 +3,7 @@ import Comments from './comments';
 import {
   showCommentButtons,
   hideCommentButtons,
+  spaceToPlay,
 } from '../../actions/ui_actions';
 
 const msp = (state, ownProps) => {
@@ -22,6 +23,7 @@ const mdp = dispatch => {
   return {
     showCommentButtons: () => dispatch(showCommentButtons()),
     hideCommentButtons: () => dispatch(hideCommentButtons()),
+    spaceToPlay: (boolean) => dispatch(spaceToPlay(boolean)),
   };
 };
 
