@@ -140,17 +140,17 @@ descriptions = [
   "Cat has a crazy deep meow",
   "Cat meowing sound effect download",
   "Cat meowing very loudly",
-  "Cute baby kitten meows because mama cat is not here",
+  "Cute baby kitten meows because mama cat is not here", #5
   "Cute cat meowing to get outside",
   "Every cat has a different meowing voice",
   "Every day every darn day",
   "Female cat in heat meowing mating call",
-  "Happy meowing cat",
+  "Happy meowing cat", #10
   "Kittens and cats meowing",
   "Ragdoll meowing",
   "Cow mooing cow mooing sounds 100 real",
   "Cows go moo baby edition cutest compilation",
-  "Cows mooing",
+  "Cows mooing", #15
   "Cows mooing",
 ]
 
