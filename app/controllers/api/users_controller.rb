@@ -1,6 +1,20 @@
 
 class Api::UsersController < ApplicationController
 
+  IMAGE_COLORS = [
+    '#ED6C1F',
+    '#BD371A',
+    '#1689CE',
+    '#79909B',
+    '#0B599A',
+    '#1798A5',
+    '#064C3F',
+    '#12887A',
+    '#356823',
+    '#5133A4',
+    '#7927A0',
+  ]
+
   def show
     @user = User.find_by(id: params[:id])
 
@@ -13,6 +27,7 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.user_image_url = IMAGE_COLORS.sample
 
     if @user.save
       login!(@user)

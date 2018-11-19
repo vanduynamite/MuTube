@@ -27,6 +27,10 @@ class User < ApplicationRecord
     class_name: :Video,
     foreign_key: :uploader_id
 
+  has_many :liked_videos,
+    class_name: :Like,
+    foreign_key: :user_id
+
   attr_reader :password
 
   def self.find_by_credentials(username, pw)

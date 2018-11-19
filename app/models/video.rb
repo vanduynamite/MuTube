@@ -8,7 +8,7 @@
 #  uploader_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  views       :integer
+#  views       :integer          default(0)
 #
 
 class Video < ApplicationRecord
@@ -19,5 +19,10 @@ class Video < ApplicationRecord
     foreign_key: :uploader_id
 
   has_one_attached :video_file
+
+  has_many :likes,
+    class_name: :Like,
+    foreign_key: :likeable_id,
+    as: :likeable
 
 end
