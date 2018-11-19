@@ -2,6 +2,9 @@ import {
   RECEIVE_VIDEO,
   RECEIVE_VIDEOS,
 } from '../../actions/video_actions';
+import {
+  REMOVE_CURRENT_USER,
+} from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 const videosReducer = (state = {}, action) => {
@@ -12,6 +15,13 @@ const videosReducer = (state = {}, action) => {
     case RECEIVE_VIDEO:
     case RECEIVE_VIDEOS:
       return merge({}, action.videos);
+
+    case REMOVE_CURRENT_USER:
+      const removeCurrentUserDislikes = {};
+      Object.keys(newState).map(
+        videoId => delete newState[videoId].currentUserDislikes
+      );
+      return newState;
 
     default:
       return newState;
