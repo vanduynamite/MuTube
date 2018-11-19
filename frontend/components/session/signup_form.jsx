@@ -67,7 +67,7 @@ class SignupForm extends React.Component {
 
     return (
       <div className='session-window'>
-        <Link to='/'><img src='/mutube.png' id='signup-logo'/></Link>
+        <Link to='/'><img src={ window.mutube } id='signup-logo'/></Link>
         <span className='signup-title'>Create your µTube Account</span>
         <span className='signup-subtitle'>to continue to µTube</span>
         <form onSubmit={this.submit} className='session-form'>

@@ -56,9 +56,9 @@ class TitleBar extends React.Component {
             value={this.state.search}>
           </input>
           <button className='button-search'>
-            <img id='mag-glass' src='/mag-glass.png'></img>
-            <img id='mag-glass-dark' src='/mag-glass-dark.png'></img>
-            <img id='mag-glass-darker' src='/mag-glass-darker.png'></img>
+            <img id='mag-glass' src={ window.magGlass }></img>
+            <img id='mag-glass-dark' src={ window.magGlassDark }></img>
+            <img id='mag-glass-darker' src={ window.magGlassDarker }></img>
           </button>
         </form>
       );
@@ -69,9 +69,9 @@ class TitleBar extends React.Component {
 
         <div id='title-left'>
           <div className='highlight-circle' onClick={this.props.toggleLeftSidebar} >
-            <img id='hamburger-left' src='/hamburger.png' />
+            <img id='hamburger-left' src={window.hamburger} />
           </div>
-          <Link to='/'><img id='logo-topleft' src='/mutube.png' /></Link>
+          <Link to='/'><img id='logo-topleft' src={ window.mutube } /></Link>
         </div>
 
         <div id='title-middle'>
@@ -83,7 +83,7 @@ class TitleBar extends React.Component {
         <div id='title-right'>
           <Link to='/upload'>
             <div className='highlight-circle'>
-              <img id='upload-right' src='/upload.png' />
+              <img id='upload-right' src={ window.upload } />
             </div>
           </Link>
           {button}

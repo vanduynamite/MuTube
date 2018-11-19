@@ -138,7 +138,7 @@ class VideoUpload extends React.Component {
 
             <div id='upload-clickable'>
               <img id='video-upload-button'
-                src='/blank-upload-button.png'
+                src={ window.blankUploadButton }
                 onDragEnter={ this.handleDragEnter }
                 onDragLeave={ this.handleDragLeave }
                 className={picClass} />

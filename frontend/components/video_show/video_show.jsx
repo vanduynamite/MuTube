@@ -79,11 +79,11 @@ class videoShow extends React.Component {
 
     const likesAndShares = (
       <div id='likes-shares'>
-        {this.likeShareComponent(this.like, '/thumbs-up.png',
+        {this.likeShareComponent(this.like, window.thumbsUp,
           'like-button', 'likes')}
-        {this.likeShareComponent(this.dislike, '/thumbs-down.png',
+        {this.likeShareComponent(this.dislike, window.thumbsDown,
           'dislike-button', 'dislikes')}
-        {this.likeShareComponent(this.share, '/share.png',
+        {this.likeShareComponent(this.share, window.share,
           'share-button', 'share')}
       </div>
     );

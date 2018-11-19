@@ -67,7 +67,7 @@ class Comment extends React.Component {
       <div id='comments-top'>
         <span id='comment-count'>0 Comments</span>
         <button id='sort-button'>
-          <img id='sort-img' src='/sort.png'></img>
+          <img id='sort-img' src={ window.sort }></img>
           SORT BY
         </button>
       </div>

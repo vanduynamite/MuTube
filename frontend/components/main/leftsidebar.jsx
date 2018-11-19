@@ -5,7 +5,7 @@ export default (props) => {
 
   const buildLis = (list) => {
     return list.map(li => (<li>
-      <img src='/hamburger.png' />
+      <img src={window.hamburger} />
       {li}</li>));
   };
 
