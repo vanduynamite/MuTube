@@ -59,43 +59,43 @@ class VideoUpload extends React.Component {
   }
 
   handleDrop(e) {
-    console.log('dropped');
     e.preventDefault();
 
-    if (e.dataTransfer.items) {
-      if (e.dataTransfer.items.length > 1) {
-        this.oneFileOnly();
-      } else if (e.dataTransfer.items[0].kind === 'file') {
-        this.setState({
-          file: e.dataTransfer.items[0].getAsFile(),
-          title: e.dataTransfer.items[0].getAsFile().name,
-        });
-      }
+    if (e.dataTransfer.items && e.dataTransfer.items[0].kind === 'file') {
+      this.addFileToState(e.dataTransfer.items);
     } else {
-      if (e.dataTransfer.files.length > 1) {
-        this.oneFileOnly();
-      } else {
-        this.setState({
-          file: e.dataTransfer.items[0].getAsFile(),
-          title: e.dataTransfer.items[0].getAsFile().name,
-        });
-      }
+      this.addFileToState(e.dataTransfer.files);
     }
 
     this.removeDragData(e);
   }
 
   handleFile(e) {
-    if (e.target.files.length > 1) { this.oneFileOnly(); }
-
-    this.setState({
-      file: e.target.files[0],
-      title: e.target.files[0].name,
-    });
+    this.addFileToState(e.target.files);
   }
 
-  oneFileOnly() {
-    alert('Please upload one file at a time.');
+  addFileToState(files) {
+
+    if (files.length > 1) {
+      alert('Please upload one file at a time.');
+      return;
+    }
+
+    let file = files[0];
+    if (file.kind === 'file') {
+      file = file.getAsFile();
+    }
+
+    if (file.type.slice(0,5) !== 'video') {
+      alert('Please choose a video file.');
+    } else {
+
+      this.setState({
+        file: file,
+        title: file.name,
+      });
+
+    }
   }
 
   removeDragData(e) {
@@ -126,8 +126,6 @@ class VideoUpload extends React.Component {
     const picClass = this.state.hovering
       ? 'upload-pic-hovering'
       : 'upload-pic-not-hovering';
-
-    console.log(this.state.hovering);
 
     return (
       <div id='video-upload-card' className='card'

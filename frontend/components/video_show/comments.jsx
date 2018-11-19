@@ -27,12 +27,10 @@ class Comment extends React.Component {
   }
 
   deactivateSpaceToPlay() {
-    console.log('off!');
     this.props.spaceToPlay(false);
   }
 
   reactivateSpaceToPlay() {
-    console.log('on!');
     this.props.spaceToPlay(true);
   }
 
