@@ -64,3 +64,10 @@ export const addView = id => dispatch => {
     errors => dispatch(receiveVideoErrors(errors))
   );
 };
+
+export const addLikeOrDislike = data => dispatch => {
+  return VideoAPI.addLikeOrDislike(data).then(
+    payload => dispatch(receiveVideo(payload)),
+    errors => dispatch(receiveVideoErrors(errors))
+  );
+};

@@ -3,6 +3,7 @@ import VideoShow from './video_show';
 import {
   fetchVideo,
   addView,
+  addLikeOrDislike,
 } from '../../actions/video_actions';
 import { merge } from 'lodash';
 
@@ -25,6 +26,7 @@ const mdp = dispatch => {
   return {
     fetchVideo: id => dispatch(fetchVideo(id)),
     addView: id => dispatch(addView(id)),
+    addLikeOrDislike: data => dispatch(addLikeOrDislike(data)),
   };
 };
 

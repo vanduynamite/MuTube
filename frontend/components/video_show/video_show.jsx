@@ -44,10 +44,22 @@ class videoShow extends React.Component {
 
   like() {
     this.ensureLoggedIn();
+
+    const data = {
+      videoId: this.props.videoId,
+      isDislike: false,
+    };
+    this.props.addLikeOrDislike(data);
   }
 
   dislike() {
     this.ensureLoggedIn();
+
+    const data = {
+      videoId: this.props.videoId,
+      isDislike: true,
+    };
+    this.props.addLikeOrDislike(data);
   }
 
   subscribe() {
@@ -77,12 +89,22 @@ class videoShow extends React.Component {
       </div>
     );
 
+    let thumbsUpImg = window.thumbsUp;
+    let thumbsDownImg = window.thumbsDown;
+
+    if (video.currentUserDislikes === true) {
+      thumbsDownImg = window.thumbsDownActive;
+    }
+    if (video.currentUserDislikes === false) {
+      thumbsUpImg = window.thumbsUpActive;
+    }
+    
     const likesAndShares = (
       <div id='likes-shares'>
-        {this.likeShareComponent(this.like, window.thumbsUp,
-          'like-button', 'likes')}
-        {this.likeShareComponent(this.dislike, window.thumbsDown,
-          'dislike-button', 'dislikes')}
+        {this.likeShareComponent(this.like, thumbsUpImg,
+          'like-button', video.likes)}
+        {this.likeShareComponent(this.dislike, thumbsDownImg,
+          'dislike-button', video.dislikes)}
         {this.likeShareComponent(this.share, window.share,
           'share-button', 'share')}
       </div>

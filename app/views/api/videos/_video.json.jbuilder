@@ -25,7 +25,7 @@ json.videos do
                           user_id: current_user.id,
                           likeable_id: video.id,
                           likeable_type: 'Video')
-    json.currentUserDisikes current_like ? current_like.is_dislike : nil
+    json.currentUserDislikes current_like ? current_like.is_dislike : nil
 
     json.createdAt video.created_at
     createdTimeAgo = time_ago_in_words(video.created_at)
