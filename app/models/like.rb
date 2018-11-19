@@ -12,8 +12,8 @@
 #
 
 class Like < ApplicationRecord
-  validates :user_id, uniqueness: { scope: :likeable_id, :likeable_type,
-   message: 'should only have one like per item.'}
+  validates :user_id, uniqueness: { scope: [:likeable_id, :likeable_type],
+   message: 'should only have one like per item.' }
 
   belongs_to :user,
     class_name: :User,

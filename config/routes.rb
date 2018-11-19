@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :videos, only: [:create, :index, :show, :destroy] do
       resources :views, only: [:create]
+      resources :likes, only: [:create]
     end
   end
 

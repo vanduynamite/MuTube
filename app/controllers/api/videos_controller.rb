@@ -4,14 +4,13 @@ class Api::VideosController < ApplicationController
   def index
     @videos = Video.all
 
-    # TODO: make this not grab all the videos!! user hereDoc
+    # TODO: make this not grab all the videos!! use hereDoc
 
     if params[:search]
       scores = search_scores(params[:search])
       @videos = @videos.select { |video| scores[video.id] > 0 }
     end
 
-    # render json: ["Found #{@videos.count} videos with the search '#{params[:search]}''"]
     render 'api/videos/index.json.jbuilder'
 
   end
@@ -33,7 +32,7 @@ class Api::VideosController < ApplicationController
 
     @user = current_user
     @video = @user.videos.new(video_params)
-  
+
     if @video.save
       render 'api/videos/show.json.jbuilder'
     else
@@ -59,6 +58,9 @@ class Api::VideosController < ApplicationController
   end
 
   def search_scores(search_params)
+
+    # room for improvement here
+
     search_words = search_params.downcase.split(' ')
     scores = {}
 
