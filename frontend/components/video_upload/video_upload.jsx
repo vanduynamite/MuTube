@@ -11,10 +11,15 @@ class VideoUpload extends React.Component {
       title: '',
       description: '',
       loading: false,
+      hovering: false,
+      hoverOverride: false,
     };
     this.handleFile = this.handleFile.bind(this);
     this.cancelUpload = this.cancelUpload.bind(this);
     this.submit = this.submit.bind(this);
+    this.handleDragEnter = this.handleDragEnter.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
   componentDidUpdate(oldProps) {
@@ -35,11 +40,70 @@ class VideoUpload extends React.Component {
     });
   }
 
+  handleDragEnter(e) {
+    e.preventDefault();
+    if (this.state.hovering === true) {
+      this.setState({ hoverOverride: true });
+    } else {
+      this.setState({ hovering: true });
+    }
+  }
+
+  handleDragLeave(e) {
+    e.preventDefault();
+    if (this.state.hoverOverride) {
+      this.setState({ hoverOverride: false });
+    } else {
+      this.setState({ hovering: false });
+    }
+  }
+
+  handleDrop(e) {
+    console.log('dropped');
+    e.preventDefault();
+
+    if (e.dataTransfer.items) {
+      if (e.dataTransfer.items.length > 1) {
+        this.oneFileOnly();
+      } else if (e.dataTransfer.items[0].kind === 'file') {
+        this.setState({
+          file: e.dataTransfer.items[0].getAsFile(),
+          title: e.dataTransfer.items[0].getAsFile().name,
+        });
+      }
+    } else {
+      if (e.dataTransfer.files.length > 1) {
+        this.oneFileOnly();
+      } else {
+        this.setState({
+          file: e.dataTransfer.items[0].getAsFile(),
+          title: e.dataTransfer.items[0].getAsFile().name,
+        });
+      }
+    }
+
+    this.removeDragData(e);
+  }
+
   handleFile(e) {
+    if (e.target.files.length > 1) { this.oneFileOnly(); }
+
     this.setState({
       file: e.target.files[0],
       title: e.target.files[0].name,
     });
+  }
+
+  oneFileOnly() {
+    alert('Please upload one file at a time.');
+  }
+
+  removeDragData(e) {
+    if (e.dataTransfer.items) {
+      e.dataTransfer.items.clear();
+    } else {
+      e.dataTransfer.clearData();
+    }
   }
 
   submit(e) {
@@ -58,17 +122,44 @@ class VideoUpload extends React.Component {
   }
 
   preFileForm() {
+
+    const picClass = this.state.hovering
+      ? 'upload-pic-hovering'
+      : 'upload-pic-not-hovering';
+
+    console.log(this.state.hovering);
+
     return (
-      <div id='video-upload-card' className='card'>
+      <div id='video-upload-card' className='card'
+        onDrop={e => e.preventDefault()}
+        onDragOver={e => e.preventDefault()} >
+
         <form>
-          <div id='upload-clickable'>
-            <img id='video-upload-button' src='/upload-button.png' />
-            <img id='video-upload-button-red' src='/upload-button-red.png' />
-            <span id='video-upload-title'>Select files to upload</span>
-            <span id='video-upload-subtitle'>Or drag and drop video files</span>
-          </div>
-          <input type='file' accept='video' onChange={this.handleFile}>
-          </input>
+          <label
+            onDrop={this.handleDrop} >
+
+            <div id='upload-clickable'>
+              <img id='video-upload-button'
+                src='/blank-upload-button.png'
+                onDragEnter={ this.handleDragEnter }
+                onDragLeave={ this.handleDragLeave }
+                className={picClass} />
+              <span id='video-upload-title'
+                onDragEnter={ this.handleDragEnter }
+                onDragLeave={ this.handleDragLeave } >
+                Select file to upload</span>
+              <span id='video-upload-subtitle'
+                onDragEnter={ this.handleDragEnter }
+                onDragLeave={ this.handleDragLeave } >
+                Or drag and drop a video file</span>
+            </div>
+
+            <input id='upload-hidden-input'
+              type='file'
+              accept='video'
+              onChange={this.handleFile} />
+
+          </label>
         </form>
       </div>
     );

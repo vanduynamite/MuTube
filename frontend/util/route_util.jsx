@@ -6,12 +6,15 @@ import {
 import { connect } from 'react-redux';
 import React from 'react';
 
-const Auth = ({component: Component, path, loggedIn, exact}) => {
+const Auth = ({component: Component, path, loggedIn, exact, history}) => {
   return (
     <Route path={path} exact={exact} render={(props) => {
-      return !loggedIn
-        ? <Component {...props} />
-        : <Redirect to="/" />
+        if (loggedIn) {
+          return <Redirect to="/" />
+          // history.goBack(); //where does this go???
+        } else {
+          return <Component {...props} />
+        }
       }
     }/>
   );

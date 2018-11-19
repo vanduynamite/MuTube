@@ -29,30 +29,43 @@
   cursor: pointer;
 }
 
-#upload-clickable #video-upload-button-red {
-  display: none;
-}
-#upload-clickable:hover #video-upload-button-red {
-  display: block;
-}
-#upload-clickable:hover #video-upload-button {
-  display: none;
+#upload-clickable:hover .upload-pic-not-hovering {
+  width: 119px;
+  height: 81px;
+
+  background: url(upload-button-red.png);
+  background-size: contain;
 }
 
-#video-upload-button  {
-  width: 120px;
+.upload-pic-not-hovering  {
+  width: 119px;
+  height: 81px;
+
+  background: url(upload-button.png);
+  background-size: contain;
 }
 
-#video-upload-button-red  {
-  width: 120px;
+.upload-pic-not-hovering:hover  {
+  width: 119px;
+  height: 81px;
+
+  background: url(upload-button-red.png);
+  background-size: contain;
+}
+
+.upload-pic-hovering  {
+  width: 119px;
+  height: 81px;
+
+  background: url(upload-button-red.png);
+  background-size: contain;
 }
 
 #video-upload-title {
   font-size: 20px;
   font-weight: 400;
   color: #444444;
-  margin-top: 15px;
-  margin-bottom: 9px;
+  padding: 15px 13px 9px 13px;
 }
 
 #video-upload-subtitle {
@@ -60,6 +73,10 @@
   font-weight: 400;
   color: #666666;
   padding: 7px;
+}
+
+#upload-hidden-input {
+  display: none;
 }
 
 #upload-instructions-card {
