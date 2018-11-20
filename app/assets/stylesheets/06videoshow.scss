@@ -49,12 +49,33 @@
   align-items: center;
 }
 
+#like-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
 #likes-shares img {
   height: 18px;
   width: 18px;
 }
 
-.like-container {
+#like-bar {
+  position: absolute;
+  bottom: -4px;
+  height: 2px;
+}
+
+#dislike-bar {
+  position: absolute;
+  bottom: -4px;
+  right: 0px;
+  height: 2px;
+  background-color: #cccccc;
+}
+
+.single-like-container {
   display: flex;
   flex-direction: row;
   align-items: center;

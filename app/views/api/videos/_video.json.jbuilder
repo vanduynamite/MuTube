@@ -21,11 +21,14 @@ json.videos do
     json.views video.views
     json.likes video.likes.where("is_dislike = FALSE").count
     json.dislikes video.likes.where("is_dislike = TRUE").count
-    current_like = Like.find_by(
-                          user_id: current_user.id,
-                          likeable_id: video.id,
-                          likeable_type: 'Video')
-    json.currentUserDislikes current_like ? current_like.is_dislike : nil
+    
+    if logged_in?
+      current_like = Like.find_by(
+                            user_id: current_user.id,
+                            likeable_id: video.id,
+                            likeable_type: 'Video')
+      json.currentUserDislikes current_like ? current_like.is_dislike : nil
+    end
 
     json.createdAt video.created_at
     createdTimeAgo = time_ago_in_words(video.created_at)

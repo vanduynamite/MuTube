@@ -73,7 +73,7 @@ class videoShow extends React.Component {
   likeShareComponent(action, pic, picId, text) {
 
     return (
-      <div className='like-container' onClick={action}>
+      <div className='single-like-container' onClick={action}>
         <div className='highlight-circle-small'>
           <img src={pic} id={picId} />
         </div>
@@ -91,24 +91,38 @@ class videoShow extends React.Component {
 
     let thumbsUpImg = window.thumbsUp;
     let thumbsDownImg = window.thumbsDown;
+    let likeBarColor = '#909090';
 
     if (video.currentUserDislikes === true) {
       thumbsDownImg = window.thumbsDownActive;
+      likeBarColor = '#1363D1';
     }
     if (video.currentUserDislikes === false) {
       thumbsUpImg = window.thumbsUpActive;
+      likeBarColor = '#1363D1';
     }
-    
+
+    const likeBarWidth = video.likes / (video.likes + video.dislikes) * 100;
+    const dislikeBarWidth = video.dislikes / (video.likes + video.dislikes) * 100;
+
     const likesAndShares = (
       <div id='likes-shares'>
-        {this.likeShareComponent(this.like, thumbsUpImg,
-          'like-button', video.likes)}
-        {this.likeShareComponent(this.dislike, thumbsDownImg,
-          'dislike-button', video.dislikes)}
+        <div id='like-container'>
+          {this.likeShareComponent(this.like, thumbsUpImg,
+            'like-button', video.likes)}
+          {this.likeShareComponent(this.dislike, thumbsDownImg,
+            'dislike-button', video.dislikes)}
+          <div id='like-bar'
+            style={{width: `${likeBarWidth}%`, backgroundColor: likeBarColor}} >
+          </div>
+          <div id='dislike-bar' style={{width: `${dislikeBarWidth}%`}} >
+          </div>
+        </div>
         {this.likeShareComponent(this.share, window.share,
           'share-button', 'share')}
       </div>
     );
+    // style={{width: this.state.progress}}
 
     const detailBottom = (
       <div id='first-detail-bottom'>
