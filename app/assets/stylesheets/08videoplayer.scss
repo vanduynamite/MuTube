@@ -14,9 +14,13 @@
 
 #video-player {
   position: relative;
-
   max-height: 720px;
 
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  background-color: #000000;
   // border: 1px solid blue;
 }
 
@@ -29,6 +33,7 @@
 
 
 // controls
+// unused for now
 
 .video-controls-paused {
   position: absolute;

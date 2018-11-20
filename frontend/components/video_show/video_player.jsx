@@ -8,7 +8,7 @@ class VideoPlayer extends React.Component {
     super(props);
 
     this.state = {
-      videoPlaying: false,
+      videoPlaying: true,
     };
 
     this.togglePlay = this.togglePlay.bind(this);
@@ -19,10 +19,9 @@ class VideoPlayer extends React.Component {
     document.addEventListener("keydown", this.spaceBar, false);
   }
 
-  // componentDidUpdate() {
-  //   this.refs.videoRef.play();
-  //   this.refs.videoRef.muted = false;
-  // }
+  componentDidUpdate() {
+    // if (this.state.videoPlaying) this.setState({ videoPlaying: false });
+  }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.spaceBar, false);
@@ -53,15 +52,19 @@ class VideoPlayer extends React.Component {
       ? 'video-controls-playing'
       : 'video-controls-paused';
 
+    // custom controls, maybe implemented later
+    // <div id='video-controls'
+    //   onClick={this.togglePlay}
+    //   className={controlsClass}>
+    // </div>
+
     return (
-      <div id='video-player'>
-        <div id='video-controls'
-          onClick={this.togglePlay}
-          className={controlsClass}>
-        </div>
+      <div id='video-player'
+        onClick={ this.togglePlay }>
 
         <video id='video' ref='videoRef'
-          autoPlay={false}>
+          autoPlay={true}
+          controls >
           <source src={ video.videoUrl } type='video/mp4' />
         </video>
 

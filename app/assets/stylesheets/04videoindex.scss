@@ -32,15 +32,16 @@
   width: 210px;
 }
 
-.video-thumbnail-image {
-  width: inherit;
-  height: 118px;
+.video-thumbnail-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  color: white;
-  // margin: 40px 10px;
+  background-color: #000000;
+}
+
+.video-thumbnail-image {
+  width: inherit;
+  height: 118px;
 }
 
 .video-thumbnail-details {
@@ -50,26 +51,35 @@
 }
 
 .video-thumb-title {
+  margin-top: 8px;
+  margin-bottom: 6px;
+  line-height: 16px;
+  max-height: 32px;
+}
+
+.video-thumb-title-link {
   padding: 7px 0px;
-  color: black;
+  color: #111111;
   font-size: 14px;
-  width: inherit;
-  height: 28px;
+  font-weight: 500;
 
   word-wrap: break-word;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.video-thumb-title link {
-  font-weight: 900;
-
+  white-space: normal;
 }
 
 .video-thumb-uploader {
+  margin-bottom: 3px;
+}
+
+.video-thumb-uploader-link {
   color: #6e6e6e;
   font-weight: 400;
   font-size: 13px;
+  text-decoration-style: solid;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .video-thumb-views {

@@ -8,7 +8,9 @@ const VideoIndexItem = (props) => {
   return (
     <div className='video-thumbnail'>
 
-      <Link to={`/videos/${video.id}`}>
+      <Link
+        className='video-thumbnail-image-container'
+        to={`/videos/${video.id}`}>
         <video className='video-thumbnail-image'>
           <source src={ video.videoUrl } type="video/mp4" />
         </video>
@@ -17,13 +19,15 @@ const VideoIndexItem = (props) => {
       <div className='video-thumb-details'>
 
         <div className='video-thumb-title'>
-          <Link to={`/videos/${video.id}`}>
+          <Link to={`/videos/${video.id}`}
+            className='video-thumb-title-link' >
             {video.title}
           </Link>
         </div>
 
         <div className='video-thumb-uploader'>
-          <Link to={`/users/${user.id}`}>
+          <Link to={`/users/${user.id}`}
+            className='video-thumb-uploader-link' >
             {user.username}
           </Link>
         </div>

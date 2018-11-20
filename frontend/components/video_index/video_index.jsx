@@ -31,14 +31,15 @@ class VideoIndex extends React.Component {
     const title = this.props.currentUser ? ` for you, ${this.props.currentUser.firstName}` : '';
 
     return (
-    <div id='video-index'>
-      <div id='video-index-container'>
-        <span className='index-title'>{`Recommended${title}`}</span>
-        <ul>
-          {lis}
-        </ul>
+      <div id='video-index'>
+        <div id='video-index-container'>
+          <span className='index-title'>{`Recommended${title}`}</span>
+          <ul>
+            {lis}
+          </ul>
+        </div>
       </div>
-    </div>);
+    );
 
   }
 
