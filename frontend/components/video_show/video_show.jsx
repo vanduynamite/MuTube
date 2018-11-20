@@ -34,6 +34,7 @@ class videoShow extends React.Component {
     if (!this.props.currentUser) {
       createHistory().push('/login');
 
+      // TODO: get rid of alerts
       // const message = 'This requires you to be logged in. Would you like to log in now?';
       // const res = confirm(message);
       // if (res) {
@@ -68,6 +69,7 @@ class videoShow extends React.Component {
   }
 
   share() {
+    // TODO: this one weird UI feature simcha hates!
     alert("hi!");
   }
 
