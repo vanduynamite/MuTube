@@ -9,30 +9,47 @@ class Api::LikesController < ApplicationController
   end
 
   def process_comment_like
-    # TODO: process comment likes
+    @json_string = 'api/comments/like.json.jbuilder'
+    @poly_entity = Comment.find_by(id: params[:comment_id])
+    @like = Like.find_by(
+      likeable_id: @poly_entity.id,
+      likeable_type: 'Comment',
+      user_id: current_user.id
+    )
+
+    unless @like
+      new_like
+    else
+      unless @like.is_dislike == true?(like_params[:is_dislike])
+        update_like
+      else
+        destroy_like
+      end
+    end
   end
 
   def process_video_like
-    @video = Video.find_by(id: params[:video_id])
+    @json_string = 'api/videos/like.json.jbuilder'
+    @poly_entity = Video.find_by(id: params[:video_id])
     @like = Like.find_by(
-      likeable_id: @video.id,
+      likeable_id: @poly_entity.id,
       likeable_type: 'Video',
       user_id: current_user.id
     )
 
     unless @like
-      new_video_like
+      new_like
     else
       unless @like.is_dislike == true?(like_params[:is_dislike])
-        update_video_like
+        update_like
       else
-        destroy_video_like
+        destroy_like
       end
     end
   end
 
-  def new_video_like
-    @like = @video.likes.new
+  def new_like
+    @like = @poly_entity.likes.new
     @like.user = current_user
     @like.is_dislike = true?(like_params[:is_dislike])
 
@@ -43,7 +60,7 @@ class Api::LikesController < ApplicationController
     end
   end
 
-  def update_video_like
+  def update_like
     # update the record if the user has a like on this record
     ## and the is_dislike param does not match the curent record value
 
@@ -56,7 +73,7 @@ class Api::LikesController < ApplicationController
     end
   end
 
-  def destroy_video_like
+  def destroy_like
     # remove the record if the user has a like on this record
     ## and the is_dislike param matches the curent record value
 
