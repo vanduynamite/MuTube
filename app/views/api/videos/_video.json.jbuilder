@@ -1,15 +1,3 @@
-
-if user
-  json.users do
-    json.set! user.id do
-      json.id user.id
-      json.username user.username
-      json.userImageUrl user.user_image_url
-      # json.uploadedVideos user.videos.to_a.map { |vid| vid.id }
-    end
-  end
-end
-
 json.videos do
   json.set! video.id do
     json.id video.id
@@ -21,7 +9,7 @@ json.videos do
     json.views video.views
     json.likes video.likes.where("is_dislike = FALSE").count
     json.dislikes video.likes.where("is_dislike = TRUE").count
-    
+
     if logged_in?
       current_like = Like.find_by(
                             user_id: current_user.id,
@@ -31,12 +19,30 @@ json.videos do
     end
 
     json.createdAt video.created_at
-    createdTimeAgo = time_ago_in_words(video.created_at)
-    createdTimeAgo = createdTimeAgo.gsub(/about /, '')
-    createdTimeAgo = createdTimeAgo.gsub(/over /, '')
-    createdTimeAgo = createdTimeAgo.gsub(/less than /, '')
-    createdTimeAgo = createdTimeAgo.capitalize
-    createdTimeAgo += ' ago'
-    json.createdTimeAgo createdTimeAgo
+  end
+end
+
+if users
+  json.users do
+    users.each do |user|
+      json.set! user.id do
+        json.id user.id
+        json.username user.username
+        json.userImageUrl user.user_image_url
+      end
+    end
+  end
+end
+
+if comments
+  json.comments do
+    comments.each do |comment|
+      json.set! comment.id do
+        json.id comment.id
+        json.body comment.body
+        json.user comment.user_id
+        json.video comment.video_id
+      end
+    end
   end
 end

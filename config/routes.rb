@@ -17,10 +17,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
 
-    resources :comments, only: [:update, :destroy] do
+    resources :comments, only: [:destroy] do
       resources :likes, only: [:create]
     end
-    
+
   end
 
 end

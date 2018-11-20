@@ -25,4 +25,11 @@ class Video < ApplicationRecord
     foreign_key: :likeable_id,
     as: :likeable
 
+  has_many :comments
+
+  has_many :commenters,
+    -> { distinct },
+    through: :comments,
+    source: :user
+
 end

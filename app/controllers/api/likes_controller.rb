@@ -4,11 +4,15 @@ class Api::LikesController < ApplicationController
   def create
     return false unless authorized_user?
 
-    if params[:comment_id]
-      # TODO: handle if the like comes in through the comments section
-      debugger
-    end
+    process_video_like if params[:video_id]
+    process_comment_like if params[:comment_id]
+  end
 
+  def process_comment_like
+    # TODO: process comment likes
+  end
+
+  def process_video_like
     @video = Video.find_by(id: params[:video_id])
     @like = Like.find_by(
       likeable_id: @video.id,
@@ -17,51 +21,47 @@ class Api::LikesController < ApplicationController
     )
 
     unless @like
-      new_like
+      new_video_like
     else
-      process_like
+      unless @like.is_dislike == true?(like_params[:is_dislike])
+        update_video_like
+      else
+        destroy_video_like
+      end
     end
   end
 
-  def new_like
+  def new_video_like
     @like = @video.likes.new
     @like.user = current_user
     @like.is_dislike = true?(like_params[:is_dislike])
 
     if @like.save
-      render 'api/videos/show.json.jbuilder'
+      render 'api/videos/like.json.jbuilder'
     else
       render json: @like.errors.full_messages, status: 422
     end
   end
 
-  def process_like
-    unless @like.is_dislike == true?(like_params[:is_dislike])
-      update
-    else
-      destroy
-    end
-  end
-
-  def update
+  def update_video_like
     # update the record if the user has a like on this record
     ## and the is_dislike param does not match the curent record value
 
     @like.is_dislike = true?(like_params[:is_dislike])
 
     if @like.save
-      render 'api/videos/show.json.jbuilder'
+      render 'api/videos/like.json.jbuilder'
     else
       render json: @like.errors.full_messages, status: 422
     end
   end
 
-  def destroy
+  def destroy_video_like
     # remove the record if the user has a like on this record
     ## and the is_dislike param matches the curent record value
 
     if @like.delete
-      render 'api/videos/show.json.jbuilder'
+      render 'api/videos/like.json.jbuilder'
     else
       render json: @like.errors.full_messages, status: 422
     end

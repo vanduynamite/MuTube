@@ -5,11 +5,13 @@ class Api::VideosController < ApplicationController
     @videos = Video.all
 
     # TODO: make this not grab all the videos!! use hereDoc
+    # TODO: also get users here so N+1 is not happening
 
     if params[:search]
       scores = search_scores(params[:search])
       @videos = @videos.select { |video| scores[video.id] > 0 }
     end
+
 
     render 'api/videos/index.json.jbuilder'
 
@@ -19,7 +21,8 @@ class Api::VideosController < ApplicationController
     @video = Video.find_by(id: params[:id])
 
     if @video
-      @user = @video.uploader
+      @users = [@video.uploader] + @video.commenters
+      @comments = @video.comments
       render 'api/videos/show.json.jbuilder'
     else
       render json: ['Video not found.'], status: 404

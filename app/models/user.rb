@@ -31,6 +31,8 @@ class User < ApplicationRecord
     class_name: :Like,
     foreign_key: :user_id
 
+  has_many :comments
+
   attr_reader :password
 
   def self.find_by_credentials(username, pw)
