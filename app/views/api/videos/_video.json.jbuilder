@@ -19,6 +19,8 @@ json.videos do
     end
 
     json.createdAt video.created_at
+
+    json.commentIds comments.map { |comment| comment.id } if comments
   end
 end
 
@@ -40,8 +42,16 @@ if comments
       json.set! comment.id do
         json.id comment.id
         json.body comment.body
-        json.user comment.user_id
-        json.video comment.video_id
+        json.userId comment.user_id
+        json.videoId comment.video_id
+
+        createdTimeAgo = time_ago_in_words(comment.created_at)
+        createdTimeAgo = createdTimeAgo.gsub(/about /, '')
+        createdTimeAgo = createdTimeAgo.gsub(/over /, '')
+        createdTimeAgo = createdTimeAgo.gsub(/less than /, '')
+        createdTimeAgo = createdTimeAgo.capitalize
+        createdTimeAgo += ' ago'
+        json.createdTimeAgo createdTimeAgo
       end
     end
   end

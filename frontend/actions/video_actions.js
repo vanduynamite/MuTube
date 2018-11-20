@@ -5,15 +5,16 @@ export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
 export const RECEIVE_VIDEOS_ERRORS = 'RECEIVE_VIDEOS_ERRORS';
 
-const receiveVideo = ({users, videos}) => {
+const receiveVideo = ({ users, videos, comments }) => {
   return {
     type: RECEIVE_VIDEO,
     users,
     videos,
+    comments,
   };
 };
 
-const receiveUploadedVideo = ({users, videos}) => {
+const receiveUploadedVideo = ({ users, videos }) => {
   return {
     type: RECEIVE_UPLOADED_VIDEO,
     users,
@@ -21,7 +22,7 @@ const receiveUploadedVideo = ({users, videos}) => {
   };
 };
 
-const receiveVideos = ({users, videos}) => {
+const receiveVideos = ({ users, videos }) => {
   return {
     type: RECEIVE_VIDEOS,
     users,

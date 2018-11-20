@@ -4,10 +4,10 @@ class Api::CommentsController < ApplicationController
   def create
     return false unless authorized_user?()
 
-    @video = Video.find_by(id: params[:video_id])
+    video = Video.find_by(id: params[:video_id])
     @user = current_user
 
-    @comment = @video.comments.new
+    @comment = video.comments.new
     @comment.user = @user
     @comment.body = comment_params[:body]
 
@@ -32,7 +32,7 @@ class Api::CommentsController < ApplicationController
     return false unless authorized_user?(@user.id)
 
     if @comment.delete
-      render 'api/comments/show.json.jbuilder'
+      render 'api/comments/destroy.json.jbuilder'
     else
       render json: @comment.errors.full_messages, status: 422
     end
