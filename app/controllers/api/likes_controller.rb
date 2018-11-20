@@ -4,6 +4,11 @@ class Api::LikesController < ApplicationController
   def create
     return false unless authorized_user?
 
+    if params[:comment_id]
+      # TODO: handle if the like comes in through the comments section
+      debugger
+    end
+
     @video = Video.find_by(id: params[:video_id])
     @like = Like.find_by(
       likeable_id: @video.id,
