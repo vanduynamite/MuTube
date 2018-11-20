@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import { merge } from 'lodash';
+import * as Actions from './actions/comment_actions';
 
 const loadCurrentUser = (currentUser) => {
   return {
@@ -26,13 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const store = configureStore(prevState);
   const root = document.getElementById('root');
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  window.actions = Actions;
 
   ReactDOM.render(<Root store={store} />, root);
 });
 
 // DEBUG:
 const store = configureStore();
-import * as VideoActions from './actions/video_actions';
-window.getState = store.getState;
-window.dispatch = store.dispatch;
-window.actions = VideoActions;

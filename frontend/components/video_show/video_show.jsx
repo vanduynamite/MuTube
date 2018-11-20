@@ -32,13 +32,14 @@ class videoShow extends React.Component {
 
   ensureLoggedIn() {
     if (!this.props.currentUser) {
-      const message = 'This requires you to be logged in. Would you like to log in now?';
-      const res = confirm(message);
-      if (res) {
-        createHistory().push('/login');
-      } else {
-        return false;
-      }
+      createHistory().push('/login');
+
+      // const message = 'This requires you to be logged in. Would you like to log in now?';
+      // const res = confirm(message);
+      // if (res) {
+      // } else {
+      //   return false;
+      // }
     }
   }
 

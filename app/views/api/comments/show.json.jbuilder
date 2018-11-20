@@ -26,11 +26,8 @@ json.comments do
   end
 end
 
-json.videos do
-  json.set! @comment.video_id do
-    json.commentIds @comment.id
-  end
-end
+json.commentId @comment.id
+json.videoId @comment.video_id
 
 ## I don't expect this is needed, as the logged in user is making a comment
 ## so their information should pretty clearly be in state

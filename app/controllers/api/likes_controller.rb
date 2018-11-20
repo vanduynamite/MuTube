@@ -54,7 +54,7 @@ class Api::LikesController < ApplicationController
     @like.is_dislike = true?(like_params[:is_dislike])
 
     if @like.save
-      render 'api/videos/like.json.jbuilder'
+      render @json_string
     else
       render json: @like.errors.full_messages, status: 422
     end
@@ -67,7 +67,7 @@ class Api::LikesController < ApplicationController
     @like.is_dislike = true?(like_params[:is_dislike])
 
     if @like.save
-      render 'api/videos/like.json.jbuilder'
+      render @json_string
     else
       render json: @like.errors.full_messages, status: 422
     end
@@ -78,7 +78,7 @@ class Api::LikesController < ApplicationController
     ## and the is_dislike param matches the curent record value
 
     if @like.delete
-      render 'api/videos/like.json.jbuilder'
+      render @json_string
     else
       render json: @like.errors.full_messages, status: 422
     end
