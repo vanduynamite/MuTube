@@ -122,16 +122,64 @@
 // comment list
 
 .comment-ul {
-  margin-top: 18px;
+  margin-top: 22px;
+  width: 100%;
 }
 
 .single-comment {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 22px;
 }
+
+.single-comment-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.single-comment-right {
+  border-radius: 20px;
+  min-width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.single-comment-right:active {
+  background-color: #A6A6A6;
+  transition: 300ms;
+}
+
+.single-comment-menu {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+}
+
+.single-comment:hover .single-comment-menu {
+  background-image: image-url("three-dot-light.png");
+}
+
+.single-comment:hover .single-comment-right:hover .single-comment-menu {
+  background-image: image-url("three-dot-dark.png");
+}
+
+.single-comment-right:active .single-comment-menu {
+  background-image: image-url("three-dot-dark.png");
+}
+
+
+// .single-comment:hover .single-comment-menu:hover {
+//   background-image: image-url("three-dot-dark.png");
+// }
 
 .single-comment-user-image {
 
@@ -200,6 +248,11 @@
   border-radius: 16px;
 }
 
+.highlight-circle-smaller:active {
+  background-color: #CBCBCB;
+  transition: 300ms;
+}
+
 .comment-like-thumb {
   height: 16px;
   width: 16px;
@@ -208,7 +261,6 @@
 .comment-dislike-thumb {
   height: 16px;
   width: 16px;
-  margin-left: 8px;
 }
 
 .comment-like-text {
@@ -216,4 +268,5 @@
   font-weight: 400;
   line-height: 18px;
   color: #707070;
+  padding-right: 8px;
 }

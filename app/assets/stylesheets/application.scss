@@ -116,3 +116,47 @@ html {
   margin: 1px;
   min-width: 48px;
 }
+
+.overlay-menu-inactive {
+  position: absolute;
+  display: none;
+}
+
+.overlay-menu-active {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0.5px 2px 2px #b1b1b1, -0.1px 0px 2px #b1b1b1;
+  padding: 8px 0px;
+  background-color: #ffffff;
+  z-index: 3;
+}
+
+.overlay-menu-modal {
+  width: 100vh;
+  height: 100vh;
+  border: 2px solid black;
+  background-color: blue;
+
+  z-index: 2;
+
+}
+
+.overlay-menu-active button {
+  // width: 100%;
+  padding: 0px 16px;
+  height: 48px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: #111111;
+}
+
+.overlay-menu-active button:hover {
+  background-color: #eeeeee;
+}

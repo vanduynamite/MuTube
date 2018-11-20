@@ -62,15 +62,15 @@ class Comment extends React.Component {
     if (this.state.body === '') { return; }
 
     const data = Object.assign(this.state, { videoId: this.props.video.id });
-    this.setState({ body: '' });
-
     this.props.createComment(data);
+    this.cancelComment();
   }
 
   buildCommentLis() {
     const comments = this.props.comments;
     const commenters = this.props.commenters;
     const addLikeOrDislike = this.props.addLikeOrDislike;
+    const deleteComment = this.props.deleteComment;
 
     return comments.map( comment => {
       return (
@@ -79,6 +79,7 @@ class Comment extends React.Component {
           comment={ comment }
           user={ commenters[comment.userId] }
           addLikeOrDislike={ addLikeOrDislike }
+          deleteComment={ deleteComment }
         />
       );
     });
@@ -88,10 +89,12 @@ class Comment extends React.Component {
     const videoId = this.props.videoId;
     const currentUser = this.props.currentUser;
     const lis = this.buildCommentLis();
+    const numComments = this.props.comments.length;
+    const commentDescriptor = numComments === 1 ? 'Comment' : 'Comments';
 
     const commentTop = (
       <div id='comments-top'>
-        <span id='comment-count'>0 Comments</span>
+        <span id='comment-count'>{`${numComments} ${commentDescriptor}`}</span>
         <button id='sort-button'>
           <img id='sort-img' src={ window.sort }></img>
           SORT BY
