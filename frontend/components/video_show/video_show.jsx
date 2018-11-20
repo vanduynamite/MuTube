@@ -122,7 +122,6 @@ class videoShow extends React.Component {
           'share-button', 'share')}
       </div>
     );
-    // style={{width: this.state.progress}}
 
     const detailBottom = (
       <div id='first-detail-bottom'>

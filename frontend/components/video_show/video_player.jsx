@@ -19,7 +19,7 @@ class VideoPlayer extends React.Component {
     document.addEventListener("keydown", this.spaceBar, false);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     // if (this.state.videoPlaying) this.setState({ videoPlaying: false });
   }
 
@@ -64,9 +64,9 @@ class VideoPlayer extends React.Component {
 
         <video id='video' ref='videoRef'
           autoPlay={true}
-          controls >
-          <source src={ video.videoUrl } type='video/mp4' />
-        </video>
+          controls
+          src={ this.props.video.videoUrl }
+          type='video/mp4' />
 
       </div>
     );

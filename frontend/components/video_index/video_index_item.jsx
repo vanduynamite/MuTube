@@ -8,12 +8,13 @@ const VideoIndexItem = (props) => {
   return (
     <div className='video-thumbnail'>
 
-      <Link
-        className='video-thumbnail-image-container'
-        to={`/videos/${video.id}`}>
-        <video className='video-thumbnail-image'>
-          <source src={ video.videoUrl } type="video/mp4" />
-        </video>
+      <Link to={`/videos/${video.id}`}
+        className='video-thumbnail-image-container' >
+
+        <video className='video-thumbnail-image'
+          src={ video.videoUrl }
+          type="video/mp4" />
+
       </Link>
 
       <div className='video-thumb-details'>
