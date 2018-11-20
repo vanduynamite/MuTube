@@ -6,10 +6,12 @@ json.videos do
     json.videoUrl url_for(video.video_file)
     json.uploaderId video.uploader_id
 
+    # TODO: N+1
     json.views video.views
     json.likes video.likes.where("is_dislike = FALSE").count
     json.dislikes video.likes.where("is_dislike = TRUE").count
 
+    # TODO: N+1
     if logged_in?
       current_like = Like.find_by(
                             user_id: current_user.id,
@@ -44,6 +46,16 @@ if comments
         json.body comment.body
         json.userId comment.user_id
         json.videoId comment.video_id
+
+        json.likes comment.likes.where("is_dislike = FALSE").count
+        json.dislikes comment.likes.where("is_dislike = TRUE").count
+        if logged_in?
+          current_like = Like.find_by(
+                                user_id: current_user.id,
+                                likeable_id: comment.id,
+                                likeable_type: 'Comment')
+          json.currentUserDislikes current_like ? current_like.is_dislike : nil
+        end
 
         createdTimeAgo = time_ago_in_words(comment.created_at)
         createdTimeAgo = createdTimeAgo.gsub(/about /, '')

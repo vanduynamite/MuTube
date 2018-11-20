@@ -5,6 +5,17 @@ json.comments do
     json.userId @comment.user_id
     json.videoId @comment.video_id
 
+    # TODO: N+1
+    json.likes @comment.likes.where("is_dislike = FALSE").count
+    json.dislikes @comment.likes.where("is_dislike = TRUE").count
+    if logged_in?
+      current_like = Like.find_by(
+                            user_id: current_user.id,
+                            likeable_id: @comment.id,
+                            likeable_type: 'Comment')
+      json.currentUserDislikes current_like ? current_like.is_dislike : nil
+    end
+
     createdTimeAgo = time_ago_in_words(@comment.created_at)
     createdTimeAgo = createdTimeAgo.gsub(/about /, '')
     createdTimeAgo = createdTimeAgo.gsub(/over /, '')
