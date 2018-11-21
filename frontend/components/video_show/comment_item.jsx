@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import UserImage from '../main/user_image';
 
@@ -6,9 +7,6 @@ class CommentItem extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      overlayShown: false,
-    };
 
     this.addLike = this.addLike.bind(this);
     this.addDislike = this.addDislike.bind(this);
@@ -18,6 +16,11 @@ class CommentItem extends React.Component {
     this.userImageLink = this.userImageLink.bind(this);
     this.mainCommentContent = this.mainCommentContent.bind(this);
     this.toggleOverlayMenu = this.toggleOverlayMenu.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this.props.showDeleteButton) this.toggleOverlayMenu();
+    document.removeEventListener("click", this.toggleOverlayMenu);
   }
 
   addLike() {
@@ -38,11 +41,68 @@ class CommentItem extends React.Component {
     this.props.addLikeOrDislike(data);
   }
 
+  toggleOverlayMenu() {
+    this.props.toggleDeleteComment(this.props.comment.id);
+  }
+
   submit(e) {
     e.preventDefault();
-    alert("watch out!");
-    console.log("PRETTY SURE THIS IS DELETING THE WRONG COMMENT!");
     this.props.deleteComment(this.props.comment.id);
+  }
+
+  render() {
+    const comment = this.props.comment;
+    const user = this.props.user;
+
+    return (
+      <div className='single-comment'>
+
+        <div className='single-comment-left'>
+          { this.userImageLink() }
+          { this.mainCommentContent() }
+        </div>
+
+        { this.commentMenu() }
+
+      </div>
+    );
+  }
+
+  // subcomponents
+
+  userImageLink() {
+    return (
+      <Link to={`/users/${this.props.user.id}`}
+        className='single-comment-user-image' >
+        <UserImage user={ this.props.user } />
+      </Link>
+    );
+  }
+
+  mainCommentContent() {
+    const user = this.props.user;
+    const comment = this.props.comment;
+
+    return (
+      <div className='single-comment-details-container'>
+
+        <div className='single-comment-user-and-time'>
+          <Link to={`/users/${user.id}`} >
+            <div className='single-comment-username'>{user.username}</div>
+          </Link>
+          <div className='single-comment-created-time'>
+            {comment.createdTimeAgo}
+          </div>
+        </div>
+
+        <div className='single-comment-body'>
+          {comment.body}
+        </div>
+
+        { this.likeSection() }
+
+      </div>
+    );
   }
 
   likeSection() {
@@ -87,84 +147,39 @@ class CommentItem extends React.Component {
   }
 
   commentMenu() {
-    const overlayMenuStatus = this.state.overlayShown
-      ? 'overlay-menu-active'
-      : 'overlay-menu-inactive';
+    if (this.props.currentUser &&
+      this.props.currentUser.id === this.props.comment.userId) {
 
-    return (
-      <div className='single-comment-right'>
+      let overlayMenuStatus = 'overlay-menu-inactive';
 
-        <div className='single-comment-menu'
-          onClick={ this.toggleOverlayMenu } />
+      if (this.props.showDeleteButton) {
+        overlayMenuStatus = 'overlay-menu-active';
+        document.addEventListener("click", this.toggleOverlayMenu);
+      } else {
+        document.removeEventListener("click", this.toggleOverlayMenu);
+      }
 
-        <form onSubmit={ this.submit }
-          className={`${ overlayMenuStatus } comment-menu`}>
-          <button>Delete</button>
-        </form>
 
-        <div className={`${ overlayMenuStatus } overlay-menu-modal`} />
+      return (
+        <div className='single-comment-right'>
 
-      </div>
+          <div className='single-comment-menu'
+            onClick={ this.toggleOverlayMenu } />
 
-    );
-  }
+          <form onSubmit={ this.submit }
+            className={`${ overlayMenuStatus } comment-menu`}>
+            <button>Delete</button>
+          </form>
 
-  toggleOverlayMenu() {
-    this.setState({ overlayShown: !this.state.overlayShown });
-  }
-
-  userImageLink() {
-    return (
-      <Link to={`/users/${this.props.user.id}`}
-        className='single-comment-user-image' >
-        <UserImage user={ this.props.user } />
-      </Link>
-    );
-  }
-
-  mainCommentContent() {
-    const user = this.props.user;
-    const comment = this.props.comment;
-
-    return (
-      <div className='single-comment-details-container'>
-
-        <div className='single-comment-user-and-time'>
-          <Link to={`/users/${user.id}`} >
-            <div className='single-comment-username'>{user.username}</div>
-          </Link>
-          <div className='single-comment-created-time'>
-            {comment.createdTimeAgo}
-          </div>
         </div>
+      );
 
-        <div className='single-comment-body'>
-          {comment.body}
-        </div>
+    } else {
+      return <></>;
+    }
 
-        { this.likeSection() }
-
-      </div>
-    );
   }
 
-  render() {
-    const comment = this.props.comment;
-    const user = this.props.user;
-
-    return (
-      <div className='single-comment'>
-
-        <div className='single-comment-left'>
-          { this.userImageLink() }
-          { this.mainCommentContent() }
-        </div>
-
-        { this.commentMenu() }
-
-      </div>
-    );
-  }
 }
 
 export default CommentItem;

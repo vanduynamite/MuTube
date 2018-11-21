@@ -4,6 +4,7 @@ export const HIDE_COMMENT_BUTTONS = "HIDE_COMMENT_BUTTONS";
 export const UPDATE_SEARCH_FIELD = "UPDATE_SEARCH_FIELD";
 export const RECENT_UPLOAD_UI = "RECENT_UPLOAD_UI";
 export const SPACE_TO_PLAY = "SPACE_TO_PLAY";
+export const TOGGLE_DELETE_COMMENT = "TOGGLE_DELETE_COMMENT";
 
 export const toggleLeftSidebar = () => {
   return {
@@ -23,7 +24,7 @@ export const hideCommentButtons = () => {
   };
 };
 
-export const updateSearchField = (search) => {
+export const updateSearchField = search => {
   return {
     type: UPDATE_SEARCH_FIELD,
     search,
@@ -37,9 +38,17 @@ export const recentUploadUI = payload => {
   };
 };
 
-export const spaceToPlay = (boolean) => {
+export const spaceToPlay = boolean => {
   return {
     type: SPACE_TO_PLAY,
-    spaceToPlay: boolean
+    spaceToPlay: boolean,
+  };
+};
+
+
+export const toggleDeleteComment = commentId => {
+  return {
+    type: TOGGLE_DELETE_COMMENT,
+    commentId,
   };
 };

@@ -5,6 +5,7 @@ import {
   UPDATE_SEARCH_FIELD,
   RECENT_UPLOAD_UI,
   SPACE_TO_PLAY,
+  TOGGLE_DELETE_COMMENT,
 } from '../../actions/ui_actions';
 import { merge } from 'lodash';
 
@@ -30,6 +31,15 @@ const uiReducer = (state, action) => {
 
     case SPACE_TO_PLAY:
       return merge(newState, { spaceToPlay: action.spaceToPlay });
+
+    case TOGGLE_DELETE_COMMENT:
+      if (newState.showDeleteButton === action.commentId) {
+        delete newState.showDeleteButton;
+      } else {
+        newState.showDeleteButton = action.commentId;
+      }
+
+      return newState
 
     default:
       return newState;

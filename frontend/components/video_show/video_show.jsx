@@ -31,16 +31,9 @@ class videoShow extends React.Component {
 
 
   ensureLoggedIn() {
+    // TODO: Nice menu to ask user to log in
     if (!this.props.currentUser) {
       createHistory().push('/login');
-
-      // TODO: get rid of alerts
-      // const message = 'This requires you to be logged in. Would you like to log in now?';
-      // const res = confirm(message);
-      // if (res) {
-      // } else {
-      //   return false;
-      // }
     }
   }
 
@@ -73,17 +66,31 @@ class videoShow extends React.Component {
     alert("hi!");
   }
 
-  likeShareComponent(action, pic, picId, text) {
+  render() {
+
+    if (!this.props.video) {
+      return (<div>
+        Please wait while loading
+      </div>);
+    }
+
+    const video = this.props.video;
+    const publisher = this.props.publisher;
 
     return (
-      <div className='single-like-container' onClick={action}>
-        <div className='highlight-circle-small'>
-          <img src={pic} id={picId} />
+      <div id='video-show'>
+        <div id='video-show-container'>
+          <VideoPlayer videoId={video.id} />
+          { this.firstDetail(video) }
+          { this.secondDetail(video, publisher) }
+          <Comments videoId={video.id} />
         </div>
-        <span className='like-text'>{text}</span>
+        <RightSidebar />
       </div>
     );
   }
+
+  // subcomponents
 
   firstDetail(video) {
     const detailTop = (
@@ -111,20 +118,18 @@ class videoShow extends React.Component {
     const likesAndShares = (
       <div id='likes-shares'>
         <div id='like-container'>
-          {this.likeShareComponent(this.like, thumbsUpImg,
-            'like-button', video.likes)}
-          {this.likeShareComponent(this.dislike, thumbsDownImg,
-            'dislike-button', video.dislikes)}
+          {this.likeShareComponent(this.like, thumbsUpImg, 'like-button', video.likes)}
+          {this.likeShareComponent(this.dislike, thumbsDownImg, 'dislike-button', video.dislikes)}
           <div id='like-bar'
             style={{width: `${likeBarWidth}%`, backgroundColor: likeBarColor}} >
           </div>
           <div id='dislike-bar' style={{width: `${dislikeBarWidth}%`}} >
           </div>
         </div>
-        {this.likeShareComponent(this.share, window.share,
-          'share-button', 'share')}
       </div>
     );
+    // TODO: implement a share button later
+    // {this.likeShareComponent(this.share, window.share, 'share-button', 'share')}
 
     const detailBottom = (
       <div id='first-detail-bottom'>
@@ -137,6 +142,17 @@ class videoShow extends React.Component {
       <div className='video-detail-section'>
         {detailTop}
         {detailBottom}
+      </div>
+    );
+  }
+
+  likeShareComponent(action, pic, picId, text) {
+    return (
+      <div className='single-like-container' onClick={action}>
+        <div className='highlight-circle-small'>
+          <img src={pic} id={picId} />
+        </div>
+        <span className='like-text'>{text}</span>
       </div>
     );
   }
@@ -189,30 +205,6 @@ class videoShow extends React.Component {
     );
   }
 
-  render() {
-
-    if (!this.props.video) {
-      return (<div>
-        Please wait while loading
-      </div>);
-    }
-
-    const video = this.props.video;
-    const publisher = this.props.publisher;
-
-    return (
-      <div id='video-show'>
-        <div id='video-show-container'>
-          <VideoPlayer videoId={video.id} />
-          { this.firstDetail(video) }
-          { this.secondDetail(video, publisher) }
-          <Comments videoId={video.id} />
-        </div>
-        <RightSidebar />
-      </div>
-    );
-
-  }
 
 }
 
