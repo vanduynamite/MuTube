@@ -6,8 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# active_storage_attachments
+# active_storage_blobs
+Like.delete_all
+Comment.delete_all
 View.delete_all
 Video.delete_all
+Session.delete_all
 User.delete_all
 
 dev_null = Logger.new("/dev/null")
@@ -174,33 +180,33 @@ descriptions = [
 #   "https://s3.amazonaws.com/mutube-videos/kLCVdr6scQW9qPZPTkvpSQqv",
 # ]
 
-# partial_rand = Random.new(31415926)
-#
-# titles.count.times do |i|
-#   video = Video.new(
-#     title: titles[i],
-#     description: descriptions[i],
-#     uploader_id: users[i % 4].id,
-#   )
-#
-#   # for seeding from desktop
-#   filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
-#   filename = "#{i+1}.mp4"
-#   video.video_file.attach(io: File.open(filepath), filename: filename)
-#
-#   # for seeding from S3, if the videos are there and the same as above links
-#   # filepath = video_urls[i]
-#   # file = EzDownload.open(filepath)
-#   # filename = filepath.split("https://s3.amazonaws.com/mutube-videos/")[1]
-#   # video.video_file.attach(io: file, filename: filename)
-#   # video.save!
-#
-#   num_views = partial_rand.rand(5000)
-#   puts "#{num_views} for #{video.title}"
-#   video.views = num_views
-#   video.save
-#
-#   video.created_at = video.created_at - partial_rand.rand(100000000)
-#   video.save
-#
-# end
+partial_rand = Random.new(31415926)
+
+titles.count.times do |i|
+  video = Video.new(
+    title: titles[i],
+    description: descriptions[i],
+    uploader_id: users[i % 4].id,
+  )
+
+  # for seeding from desktop
+  filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
+  filename = "#{i+1}.mp4"
+  video.video_file.attach(io: File.open(filepath), filename: filename)
+
+  # for seeding from S3, if the videos are there and the same as above links
+  # filepath = video_urls[i]
+  # file = EzDownload.open(filepath)
+  # filename = filepath.split("https://s3.amazonaws.com/mutube-videos/")[1]
+  # video.video_file.attach(io: file, filename: filename)
+  # video.save!
+
+  num_views = partial_rand.rand(5000)
+  puts "#{num_views} for #{video.title}"
+  video.views = num_views
+  video.save
+
+  video.created_at = video.created_at - partial_rand.rand(100000000)
+  video.save
+
+end

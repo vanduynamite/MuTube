@@ -8,6 +8,7 @@ class VideoUpload extends React.Component {
     super(props);
     this.state = {
       file: null,
+      fileUrl: null,
       title: '',
       description: '',
       loading: false,
@@ -77,25 +78,41 @@ class VideoUpload extends React.Component {
   addFileToState(files) {
 
     if (files.length > 1) {
-      alert('Please upload one file at a time.');
-      return;
-    }
-
-    let file = files[0];
-    if (file.kind === 'file') {
-      file = file.getAsFile();
-    }
-
-    if (file.type.slice(0,5) !== 'video') {
-      alert('Please choose a video file.');
-    } else {
-
+      this.props.addUploadErrors(['Please upload one file at a time.']);
       this.setState({
-        file: file,
-        title: file.name,
+        hovering: false,
+        hoverOverride: false,
       });
+    } else {
+      let file = files[0];
+      if (file.kind === 'file') file = file.getAsFile();
 
+      if (file.type.slice(0,5) !== 'video') {
+        this.props.addUploadErrors(['Please choose a video file.']);
+        this.setState({
+          hovering: false,
+          hoverOverride: false,
+        });
+      } else {
+        this.uploadFile(file);
+      }
     }
+  }
+
+  uploadFile(file) {
+    const fileReader = new FileReader();
+    this.setState({
+      file: file,
+      fileUrl: fileReader.result,
+      title: file.name,
+    });
+    
+    // filereader.onloadend = () => {
+    // };
+    //
+    // if (file) {
+    //   fileReader.readAsDataURL(file);
+    // }
   }
 
   removeDragData(e) {
@@ -158,6 +175,9 @@ class VideoUpload extends React.Component {
               onChange={this.handleFile} />
 
           </label>
+          <div id='upload-errors'>
+            { this.props.uploadErrors }
+          </div>
         </form>
       </div>
     );

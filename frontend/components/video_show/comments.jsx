@@ -87,8 +87,8 @@ class Comment extends React.Component {
       ? window.sort
       : window.sortDesc;
     const sortName = this.state.oldestCommentFirst
-      ? 'SORT BY OLDEST'
-      : 'SORT BY NEWEST'
+      ? 'SORTING BY OLDEST'
+      : 'SORTING BY NEWEST'
 
     return (
       <div id='comments-top'>

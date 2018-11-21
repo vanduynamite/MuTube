@@ -37,6 +37,7 @@ class Api::VideosController < ApplicationController
     @video = @user.videos.new(video_params)
 
     if @video.save
+      @comments = @video.comments
       render 'api/videos/show.json.jbuilder'
     else
       render json: @video.errors.full_messages, status: 422

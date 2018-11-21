@@ -4,7 +4,7 @@ import { recentUploadUI } from './ui_actions';
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
 export const RECEIVE_SEARCH_VIDEOS = 'RECEIVE_SEARCH_VIDEOS';
-export const RECEIVE_VIDEOS_ERRORS = 'RECEIVE_VIDEOS_ERRORS';
+export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 
 const receiveVideo = ({ users, videos, comments }) => {
   return {
@@ -41,10 +41,17 @@ const receiveSearchVideos = ({ users, videos }) => {
 
 const receiveVideoErrors = errors => {
   return {
-    type: RECEIVE_VIDEOS_ERRORS,
-    errors
+    type: RECEIVE_VIDEO_ERRORS,
+    errors: errors.responseJSON,
   };
 };
+
+export const addUploadErrors = errors => {
+  return {
+    type: RECEIVE_VIDEO_ERRORS,
+    errors,
+  }
+}
 
 export const createVideo = data => dispatch => {
   return VideoAPI.createVideo(data).then(

@@ -71,6 +71,15 @@
   display: none;
 }
 
+#upload-errors {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 16px;
+  color: #D61619;
+}
+
 #upload-instructions-card {
   width: 90%;
   margin-top: 0px;
