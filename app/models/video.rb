@@ -23,9 +23,11 @@ class Video < ApplicationRecord
   has_many :likes,
     class_name: :Like,
     foreign_key: :likeable_id,
-    as: :likeable
+    as: :likeable,
+    dependent: :destroy
 
-  has_many :comments
+  has_many :comments,
+    dependent: :destroy
 
   has_many :commenters,
     -> { distinct },

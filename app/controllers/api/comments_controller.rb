@@ -31,7 +31,7 @@ class Api::CommentsController < ApplicationController
 
     return false unless authorized_user?(@user.id)
 
-    if @comment.delete
+    if @comment.destroy
       render 'api/comments/destroy.json.jbuilder'
     else
       render json: @comment.errors.full_messages, status: 422
