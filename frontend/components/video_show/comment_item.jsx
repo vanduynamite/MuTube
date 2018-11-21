@@ -51,9 +51,6 @@ class CommentItem extends React.Component {
   }
 
   render() {
-    const comment = this.props.comment;
-    const user = this.props.user;
-
     return (
       <div className='single-comment'>
 
@@ -72,23 +69,25 @@ class CommentItem extends React.Component {
 
   userImageLink() {
     return (
-      <Link to={`/users/${this.props.user.id}`}
+      <Link to={`/users/${this.props.commenter.id}`}
         className='single-comment-user-image' >
-        <UserImage user={ this.props.user } />
+        <UserImage user={ this.props.commenter } />
       </Link>
     );
   }
 
   mainCommentContent() {
-    const user = this.props.user;
+    const commenter = this.props.commenter;
     const comment = this.props.comment;
 
     return (
       <div className='single-comment-details-container'>
 
         <div className='single-comment-user-and-time'>
-          <Link to={`/users/${user.id}`} >
-            <div className='single-comment-username'>{user.username}</div>
+          <Link to={`/users/${commenter.id}`} >
+            <div className='single-comment-username'>
+              {commenter.username}
+            </div>
           </Link>
           <div className='single-comment-created-time'>
             {comment.createdTimeAgo}

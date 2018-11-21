@@ -11,6 +11,7 @@ class Comment extends React.Component {
     super(props);
     this.state = {
       body: '',
+      oldestCommentFirst: true
     };
     this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
     this.cancelComment = this.cancelComment.bind(this);
@@ -33,6 +34,10 @@ class Comment extends React.Component {
 
   reactivateSpaceToPlay() {
     this.props.spaceToPlay(true);
+  }
+
+  changeSortOrder() {
+    this.setState({ oldestCommentFirst: !this.state.oldestCommentFirst });
   }
 
   ensureLoggedIn() {
@@ -76,25 +81,25 @@ class Comment extends React.Component {
   // subcomponents
 
   commentTop() {
-    const numComments = this.props.comments.length;
+    const numComments = this.props.video.commentIds.length;
     const commentDescriptor = numComments === 1 ? 'Comment' : 'Comments';
-
-    // TODO: implement a comment sort button
-    // return (
-    //   <div id='comments-top'>
-    //     <span id='comment-count'>{`${numComments} ${commentDescriptor}`}</span>
-    //     <button id='sort-button'>
-    //       <img id='sort-img' src={ window.sort } />
-    //       SORT BY
-    //     </button>
-    //   </div>
-    // );
+    const sortIcon = this.state.oldestCommentFirst
+      ? window.sort
+      : window.sortDesc;
+    const sortName = this.state.oldestCommentFirst
+      ? 'SORT BY OLDEST'
+      : 'SORT BY NEWEST'
 
     return (
       <div id='comments-top'>
         <span id='comment-count'>{`${numComments} ${commentDescriptor}`}</span>
+        <button id='sort-button' onClick={ this.changeSortOrder.bind(this) }>
+          <img id='sort-img' src={ sortIcon } />
+          { sortName }
+        </button>
       </div>
     );
+
   }
 
   newComment() {
@@ -146,19 +151,11 @@ class Comment extends React.Component {
   }
 
   commentLis() {
-    const comments = this.props.comments;
-    const commenters = this.props.commenters;
-    const addLikeOrDislike = this.props.addLikeOrDislike;
-    const deleteComment = this.props.deleteComment;
+    const commentIds = this.state.oldestCommentFirst
+      ? this.props.video.commentIds.sort()
+      : this.props.video.commentIds.sort( (a,b) => b-a );
 
-    return comments.map( comment => {
-      return (
-        <CommentItem
-          key={ comment.id }
-          commentId={ comment.id }
-        />
-      );
-    });
+    return commentIds.map(id => <CommentItem key={ id } commentId={ id } />);
   }
 
 }

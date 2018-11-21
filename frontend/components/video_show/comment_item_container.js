@@ -11,13 +11,13 @@ import {
 const msp = (state, ownProps) => {
   const commentId = ownProps.commentId;
   const comment = state.entities.comments[commentId];
-  const user = state.entities.users[comment.userId];
+  const commenter = state.entities.users[comment.userId];
   const currentUser = state.entities.users[state.session.id];
   const showDeleteButton = state.ui.showDeleteButton === commentId;
 
   return {
     comment,
-    user,
+    commenter,
     currentUser,
     showDeleteButton,
   };
