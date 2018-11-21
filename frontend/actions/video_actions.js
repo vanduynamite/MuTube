@@ -3,6 +3,7 @@ import { recentUploadUI } from './ui_actions';
 
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
+export const RECEIVE_SEARCH_VIDEOS = 'RECEIVE_SEARCH_VIDEOS';
 export const RECEIVE_VIDEOS_ERRORS = 'RECEIVE_VIDEOS_ERRORS';
 
 const receiveVideo = ({ users, videos, comments }) => {
@@ -25,6 +26,14 @@ const receiveUploadedVideo = ({ users, videos }) => {
 const receiveVideos = ({ users, videos }) => {
   return {
     type: RECEIVE_VIDEOS,
+    users,
+    videos,
+  };
+};
+
+const receiveSearchVideos = ({ users, videos }) => {
+  return {
+    type: RECEIVE_SEARCH_VIDEOS,
     users,
     videos,
   };
@@ -53,10 +62,23 @@ export const fetchVideo = id => dispatch => {
 };
 
 export const fetchVideos = search => dispatch => {
-  return VideoAPI.fetchVideos(search).then(
-    payload => dispatch(receiveVideos(payload)),
-    errors => dispatch(receiveVideoErrors(errors))
-  );
+
+  if (search && search.search) {
+
+    return VideoAPI.fetchVideos(search).then(
+      payload => dispatch(receiveSearchVideos(payload)),
+      errors => dispatch(receiveVideoErrors(errors))
+    );
+
+  } else {
+
+    return VideoAPI.fetchVideos(search).then(
+      payload => dispatch(receiveVideos(payload)),
+      errors => dispatch(receiveVideoErrors(errors))
+    );
+
+  }
+
 };
 
 export const addView = id => dispatch => {

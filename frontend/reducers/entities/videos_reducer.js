@@ -1,6 +1,7 @@
 import {
   RECEIVE_VIDEO,
   RECEIVE_VIDEOS,
+  RECEIVE_SEARCH_VIDEOS,
 } from '../../actions/video_actions';
 import {
   REMOVE_CURRENT_USER,
@@ -21,6 +22,9 @@ const videosReducer = (state = {}, action) => {
 
     case RECEIVE_VIDEOS:
       return merge(newState, action.videos);
+
+    case RECEIVE_SEARCH_VIDEOS:
+      return merge({}, action.videos)
 
     case REMOVE_CURRENT_USER:
       const removeCurrentUserDislikes = {};
