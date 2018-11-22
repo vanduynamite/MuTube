@@ -4,6 +4,7 @@ json.videos do
     json.title video.title
     json.description video.description
     json.videoUrl url_for(video.video_file)
+    json.thumbnailUrl url_for(video.video_file.preview(resize: "210x200>"))
     json.uploaderId video.uploader_id
 
     # TODO: N+1

@@ -5,15 +5,19 @@ const RightSidebarItem = (props) => {
   const video = props.video;
   const user = props.user;
 
+  // <video className='sidebar-thumbnail-image'>
+  //   <source src={ video.videoUrl } type='video/mp4' />
+  // </video>
+
   return (
     <div id='sidebar-thumbnails'>
 
       <Link
         className='sidebar-image-container'
         to={`/videos/${video.id}`}>
-        <video className='sidebar-thumbnail-image'>
-          <source src={ video.videoUrl } type='video/mp4' />
-        </video>
+
+        <img src={ video.thumbnailUrl } />
+
       </Link>
 
       <div className='sidebar-thumb-details'>

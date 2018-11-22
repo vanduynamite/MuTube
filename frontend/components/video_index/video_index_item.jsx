@@ -5,15 +5,17 @@ const VideoIndexItem = (props) => {
   const video = props.video;
   const user = props.user;
 
+  // <video className='video-thumbnail-image'
+  //   src={ video.videoUrl }
+  //   type="video/mp4" />
+
   return (
     <div className='video-thumbnail'>
 
       <Link to={`/videos/${video.id}`}
         className='video-thumbnail-image-container' >
 
-        <video className='video-thumbnail-image'
-          src={ video.videoUrl }
-          type="video/mp4" />
+        <img src={ video.thumbnailUrl } />
 
       </Link>
 
