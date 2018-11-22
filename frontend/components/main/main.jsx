@@ -15,12 +15,15 @@ class Main extends React.Component {
       <div id='main'>
         <Titlebar />
         <div id='main-content'>
-          {this.props.ui.leftSidebar ? <LeftSidebar /> : <></> }
+          { this.props.ui.leftSidebar ? <LeftSidebar /> : <></> }
           <Switch>
             <Route exact path='/' component={ VideoIndex } />
             <Route path='/videos/:videoId' component={ VideoShow } />
             <Route path='/users/:userId' component={ UserShow } />
             <ProtectedRoute exact path='/upload' component={ VideoUpload } />
+            <ProtectedRoute exact path='/history' component={ VideoUpload } />
+            <ProtectedRoute exact path='/liked' component={ VideoUpload } />
+            <ProtectedRoute exact path='/subscriptions' component={ VideoUpload } />
           </Switch>
         </div>
       </div>

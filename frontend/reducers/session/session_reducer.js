@@ -13,7 +13,7 @@ const sessionReducer = (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
       delete newState.potentialId;
       return merge(newState, {
-        id: action.user.id,
+        id: action.session,
       });
 
     case REMOVE_CURRENT_USER:
@@ -23,7 +23,7 @@ const sessionReducer = (state = {}, action) => {
 
     case RECEIVE_POTENTIAL_LOGIN:
       return merge(newState, {
-        potentialId: action.user.id,
+        potentialId: action.session,
       });
 
     case CLEAR_POTENTIAL_SESSION:

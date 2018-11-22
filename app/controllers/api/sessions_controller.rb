@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      render 'api/users/show.json.jbuilder'
+      render 'api/users/session.json.jbuilder'
     else
       render json: ['Wrong password. Try again or use the demo login.'], status: 401
     end
@@ -21,7 +21,7 @@ class Api::SessionsController < ApplicationController
     if logged_in?
       @user = current_user
       logout!
-      render 'api/users/show.json.jbuilder'
+      render 'api/users/session.json.jbuilder'
     else
       render json: ['No current user.'], status: 404
     end

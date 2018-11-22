@@ -25,10 +25,6 @@ const usersReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_POTENTIAL_LOGIN:
     case RECEIVE_CURRENT_USER:
-      return merge(newState, {
-        [action.user.id]: action.user,
-      });
-
     case RECEIVE_VIDEO:
     case RECEIVE_VIDEOS:
     case RECEIVE_USER:

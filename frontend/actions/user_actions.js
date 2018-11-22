@@ -4,17 +4,14 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USERS_ERRORS = 'RECEIVE_USERS_ERRORS';
 
-const receiveUser = payload => {
-  const users = {
-    [payload.id]: payload,
-  };
+const receiveUser = ({ users }) => {
 
   return {
     type: RECEIVE_USER,
     users,
   };
 };
-//
+
 // const receiveUsers = ({users, videos}) => {
 //   return {
 //     type: RECEIVE_USERS,

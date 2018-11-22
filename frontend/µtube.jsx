@@ -5,15 +5,11 @@ import Root from './components/root';
 import { merge } from 'lodash';
 import * as Actions from './actions/comment_actions';
 
-const loadCurrentUser = (currentUser) => {
+const loadCurrentUser = ({ users, session }) => {
   return {
-    entities: {
-      users: {
-        [currentUser.id]: currentUser
-      }
-    },
+    entities: { users },
     session: {
-      id: currentUser.id
+      id: session
     },
   };
 };
@@ -24,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     spaceToPlay: true,
   };
   const prevState = merge(prevUserState, { ui: prevUIState });
-
+  // debugger
   const store = configureStore(prevState);
   const root = document.getElementById('root');
   window.getState = store.getState;

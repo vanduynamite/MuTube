@@ -7,10 +7,11 @@ export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER';
 export const RECEIVE_POTENTIAL_LOGIN = 'RECEIVE_POTENTIAL_LOGIN';
 export const CLEAR_POTENTIAL_SESSION = 'CLEAR_POTENTIAL_SESSION';
 
-const receiveCurrentUser = user => {
+const receiveCurrentUser = ({ users, session }) => {
   return {
     type: RECEIVE_CURRENT_USER,
-    user,
+    users,
+    session,
   };
 };
 
@@ -21,17 +22,19 @@ const receiveSessionErrors = errors => {
   };
 };
 
-const removeCurrentUser = user => {
+const removeCurrentUser = ({ users, session }) => {
   return {
     type: REMOVE_CURRENT_USER,
-    user,
+    users,
+    session,
   };
 };
 
-const receivePotentialLogin = user => {
+const receivePotentialLogin = ({ users, session }) => {
   return {
     type: RECEIVE_POTENTIAL_LOGIN,
-    user,
+    users,
+    session,
   };
 };
 

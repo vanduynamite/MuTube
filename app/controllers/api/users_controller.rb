@@ -42,7 +42,7 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(email: user_params[:search]) unless @user
 
     if @user
-      render 'api/users/show.json.jbuilder'
+      render 'api/users/session.json.jbuilder'
     else
       render json: ["Couldn't find your µTube Account"], status: 400
     end
