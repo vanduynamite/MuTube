@@ -5,8 +5,9 @@
       json.id video.id
       json.title video.title
       json.videoUrl url_for(video.video_file)
-      json.thumbnailUrl url_for(video.video_file.preview(resize: "210x200>"))
+      json.thumbnailUrl url_for(video.video_file.preview(resize: "210x118>"))
       json.uploaderId video.uploader_id
+      json.commentIds []
       json.views video.views
 
       json.createdAt video.created_at

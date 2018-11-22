@@ -179,34 +179,34 @@ descriptions = [
 #   "https://s3.amazonaws.com/mutube-videos/BUHvLBdC9XWrhDHd5i6p9yCM", #15
 #   "https://s3.amazonaws.com/mutube-videos/kLCVdr6scQW9qPZPTkvpSQqv",
 # ]
-
-partial_rand = Random.new(31415926)
-
-titles.count.times do |i|
-  video = Video.new(
-    title: titles[i],
-    description: descriptions[i],
-    uploader_id: users[i % 4].id,
-  )
-
-  # for seeding from desktop
-  filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
-  filename = "#{i+1}.mp4"
-  video.video_file.attach(io: File.open(filepath), filename: filename)
-
-  # for seeding from S3, if the videos are there and the same as above links
-  # filepath = video_urls[i]
-  # file = EzDownload.open(filepath)
-  # filename = filepath.split("https://s3.amazonaws.com/mutube-videos/")[1]
-  # video.video_file.attach(io: file, filename: filename)
-  # video.save!
-
-  num_views = partial_rand.rand(5000)
-  puts "#{num_views} for #{video.title}"
-  video.views = num_views
-  video.save
-
-  video.created_at = video.created_at - partial_rand.rand(100000000)
-  video.save
-
-end
+# 
+# partial_rand = Random.new(31415926)
+#
+# titles.count.times do |i|
+#   video = Video.new(
+#     title: titles[i],
+#     description: descriptions[i],
+#     uploader_id: users[i % 4].id,
+#   )
+#
+#   # for seeding from desktop
+#   filepath = "/Users/paul/Desktop/µTube_seeds/#{i+1}.mp4"
+#   filename = "#{i+1}.mp4"
+#   video.video_file.attach(io: File.open(filepath), filename: filename)
+#
+#   # for seeding from S3, if the videos are there and the same as above links
+#   # filepath = video_urls[i]
+#   # file = EzDownload.open(filepath)
+#   # filename = filepath.split("https://s3.amazonaws.com/mutube-videos/")[1]
+#   # video.video_file.attach(io: file, filename: filename)
+#   # video.save!
+#
+#   num_views = partial_rand.rand(5000)
+#   puts "#{num_views} for #{video.title}"
+#   video.views = num_views
+#   video.save
+#
+#   video.created_at = video.created_at - partial_rand.rand(100000000)
+#   video.save
+#
+# end

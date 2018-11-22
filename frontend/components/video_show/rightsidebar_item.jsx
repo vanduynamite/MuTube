@@ -16,7 +16,8 @@ const RightSidebarItem = (props) => {
         className='sidebar-image-container'
         to={`/videos/${video.id}`}>
 
-        <img src={ video.thumbnailUrl } />
+        <img className='sidebar-thumbnail-image'
+           src={ video.thumbnailUrl } />
 
       </Link>
 
