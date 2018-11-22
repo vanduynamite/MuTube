@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     spaceToPlay: true,
   };
   const prevState = merge(prevUserState, { ui: prevUIState });
-  // debugger
+
   const store = configureStore(prevState);
   const root = document.getElementById('root');
   window.getState = store.getState;
