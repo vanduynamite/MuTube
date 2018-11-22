@@ -5,6 +5,10 @@ import {
   addView,
   addLikeOrDislike,
 } from '../../actions/video_actions';
+import {
+  subscribe,
+  unsubscribe,
+} from '../../actions/subscription_actions';
 import { merge } from 'lodash';
 
 const msp = (state, ownProps) => {
@@ -27,6 +31,8 @@ const mdp = dispatch => {
     fetchVideo: id => dispatch(fetchVideo(id)),
     addView: id => dispatch(addView(id)),
     addLikeOrDislike: data => dispatch(addLikeOrDislike(data)),
+    subscribe: id => dispatch(subscribe(id)),
+    unsubscribe: id => dispatch(unsubscribe(id)),
   };
 };
 

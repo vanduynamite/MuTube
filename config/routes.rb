@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show] do
-      resources :subscriptions, only: [:subscribe, :unsubscribe]
       collection do
         get :search
       end
+
+      post :subscribe, to: 'subscriptions#create'
+      delete :unsubscribe, to: 'subscriptions#destroy'
     end
 
     resources :videos, only: [:create, :index, :show, :destroy] do

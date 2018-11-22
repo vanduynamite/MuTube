@@ -13,7 +13,7 @@ class videoShow extends React.Component {
     this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
     this.like = this.like.bind(this);
     this.dislike = this.dislike.bind(this);
-    this.subscribe = this.subscribe.bind(this);
+    this.toggleSubscription = this.toggleSubscription.bind(this);
     this.share = this.share.bind(this);
   }
 
@@ -57,8 +57,14 @@ class videoShow extends React.Component {
     this.props.addLikeOrDislike(data);
   }
 
-  subscribe() {
+  toggleSubscription() {
     this.ensureLoggedIn();
+
+    if (this.currentUser.subscribedChannels.includes(this.publisher.id)) {
+      this.unsubscribe(this.publisher.id);
+    } else {
+      this.subscribe(this.publisher.id);
+    }
   }
 
   share() {
@@ -177,17 +183,10 @@ class videoShow extends React.Component {
       </div>
     );
 
-    const detailTopRight = (
-      <div id='second-detail-right'>
-        <button className='red-button'
-          onClick={this.subscribe}>SUBSCRIBE</button>
-      </div>
-    );
-
     const detailTop = (
       <div id='second-detail-top'>
         {detailTopLeft}
-        {detailTopRight}
+        { this.detailTopRight() }
       </div>
     );
 
@@ -205,7 +204,37 @@ class videoShow extends React.Component {
     );
   }
 
+  detailTopRight() {
+    const publisher = this.props.publisher;
+    const currentUser = this.props.currentUser;
 
+    let buttonClass = 'red-button';
+    let buttonText = 'SUBSCRIBE';
+    let action = () => this.props.subscribe(publisher.id);
+
+    if (currentUser) {
+      if (currentUser.subscribedChannels.includes(publisher.id)) {
+        buttonClass = 'grey-button';
+        buttonText = 'SUBSCRIBED';
+        action = () => this.props.unsubscribe(publisher.id);
+      }
+    } else {
+      action = () => this.ensureLoggedIn();
+    }
+
+    return (
+      <div id='second-detail-right'>
+        <button id='subscribe-button'
+          className={ buttonClass }
+          onClick={ action }>
+            { buttonText }
+          <div id='subscriber-count'>
+            { publisher.subscriberCount }
+          </div>
+        </button>
+      </div>
+    );
+  }
 }
 
 export default videoShow;

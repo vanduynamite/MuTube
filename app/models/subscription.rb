@@ -11,7 +11,7 @@
 
 class Subscription < ApplicationRecord
   validates :subscriber_id, uniqueness: { scope: :channel_id,
-    message: 'should only have one subscription per channel.' }
+    message: 'is already subscribed to this channel.' }
 
   belongs_to :channel,
     class_name: :User,

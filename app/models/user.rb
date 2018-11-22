@@ -33,9 +33,13 @@ class User < ApplicationRecord
 
   has_many :comments
 
-  has_many :subscriptions,
+  has_many :subscription_records,
     class_name: :Subscription,
     foreign_key: :subscriber_id
+
+  has_many :channel_subscriptions,
+    through: :subscription_records,
+    source: :channel
 
   has_many :subscribers,
     class_name: :Subscription,

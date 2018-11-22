@@ -34,6 +34,7 @@ if users
         json.id user.id
         json.username user.username
         json.userImageUrl user.user_image_url
+        json.subscriberCount user.subscribers.count
       end
     end
   end

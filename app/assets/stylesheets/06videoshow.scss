@@ -150,15 +150,31 @@
   color: #707070;
 }
 
-.red-button {
-  background-color: #fc0d1b;
-  color: #ffffff;
+#subscribe-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 14px;
-  font-weight: 400;
   letter-spacing: 0.5px;
   padding: 10px 16px;
   margin: 0px 4px;
-  border-radius: 1px;
+  border-radius: 2px;
+}
+
+.red-button {
+  background-color: #fc0d1b;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.grey-button {
+  background-color: #eeeeee;
+  color: #696969;
+  font-weight: 500;
+}
+
+#subscriber-count {
+  margin-left: 8px;
 }
 
 #second-detail-bottom {

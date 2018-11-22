@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
 
   def authorized_user?(id=nil)
 
+    # TODO:  this is adding another db query
+
     unless logged_in?
       render json: ['Requires user to be logged in.'], status: 401
       return false
