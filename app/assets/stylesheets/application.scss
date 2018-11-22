@@ -106,13 +106,25 @@ html {
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  // background-color: #5C4039;
   width: 48px;
   height: 48px;
   font-size: 20px;
   border-radius: 24px;
   margin: 1px;
   min-width: 48px;
+}
+
+.user-image-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  border-radius: 12px;
+  margin: 1px;
+  min-width: 24px;
 }
 
 .overlay-menu-inactive {
