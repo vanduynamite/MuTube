@@ -109,7 +109,15 @@ class LoginForm extends React.Component {
         <Link to='/'><img src={ window.mutube } id='signin-logo' /></Link>
         { title }
         { subtitle }
-        <form onSubmit={ this.submit } className='session-form'>
+        <form
+          onSubmit={ this.submit }
+          autoComplete='off'
+          className='session-form'>
+          <input
+            autoComplete='false'
+            name='hidden'
+            type='text'
+            style={{display:'none'}} />
           <div className='inputs'>
             { inputField }
           </div>

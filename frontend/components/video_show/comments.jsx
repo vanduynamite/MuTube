@@ -122,8 +122,13 @@ class Comment extends React.Component {
 
         <UserImage user={this.props.currentUser} />
 
-        <form id='new-comment-form' onSubmit={ this.submit }>
-
+        <form id='new-comment-form' autoComplete='off'
+          onSubmit={ this.submit }>
+          <input
+            autoComplete='false'
+            name='hidden'
+            type='text'
+            style={{display:'none'}} />
           <input type='text'
             id='new-comment-field'
             placeholder='Add a public comment...'

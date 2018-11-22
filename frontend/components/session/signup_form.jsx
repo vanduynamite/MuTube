@@ -71,7 +71,13 @@ class SignupForm extends React.Component {
         <Link to='/'><img src={ window.mutube } id='signup-logo'/></Link>
         <span className='signup-title'>Create your µTube Account</span>
         <span className='signup-subtitle'>to continue to µTube</span>
-        <form onSubmit={this.submit} className='session-form'>
+        <form onSubmit={this.submit}
+          autoComplete='off'
+          className='session-form'>
+          <input autoComplete='false'
+            name='hidden'
+            type='text'
+            style={{display:'none'}} />
 
           <div className='inputs'>
             <div className='group-inputs'>

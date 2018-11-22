@@ -151,7 +151,7 @@ class VideoUpload extends React.Component {
       </div>
     );
   }
-  
+
   preFileForm() {
 
     const picClass = this.state.hovering
@@ -215,7 +215,12 @@ class VideoUpload extends React.Component {
 
     return (
       <div id='video-upload-details' className='card'>
-        <form id='post-file-form'>
+        <form id='post-file-form' autoComplete='off'>
+          <input
+            autoComplete='false'
+            name='hidden'
+            type='text'
+            style={{display:'none'}} />
           <input type='text'
             onChange={this.changeField('title')}
             className='upload-form-field'

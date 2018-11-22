@@ -165,8 +165,13 @@ class CommentItem extends React.Component {
           <div className='single-comment-menu'
             onClick={ this.toggleOverlayMenu } />
 
-          <form onSubmit={ this.submit }
+          <form onSubmit={ this.submit } autoComplete='off'
             className={`${ overlayMenuStatus } comment-menu`}>
+            <input
+              autoComplete='false'
+              name='hidden'
+              type='text'
+              style={{display:'none'}} />
             <button>Delete</button>
           </form>
 
