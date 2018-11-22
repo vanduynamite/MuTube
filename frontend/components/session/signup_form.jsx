@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
-  field(fieldName, label, password) {
+  field(fieldName, label, password, focus=false) {
     const error = this.props.errors[fieldName];
 
     // label
@@ -36,11 +36,12 @@ class SignupForm extends React.Component {
     const inputType = password ? 'password' : 'text';
     const inputKlass = error ? 'error-input': '';
     const inputField =
-      <input type={inputType}
-        className={inputKlass}
-        id={fieldName}
-        onChange={this.updateField(fieldName)}
-        value={this.state[fieldName]}></input>;
+      <input type={ inputType }
+        className={ inputKlass }
+        id={ fieldName }
+        autoFocus={ focus }
+        onChange={ this.updateField(fieldName) }
+        value={ this.state[fieldName] }></input>;
 
     // helper text
     let helperText = this.props.helperTexts[fieldName] || '';
@@ -49,13 +50,13 @@ class SignupForm extends React.Component {
       helperText = error;
       helperKlass += ' helper-error';
     }
-    const helperDiv = <div className={helperKlass}>{helperText}</div>;
+    const helperDiv = <div className={ helperKlass }>{ helperText }</div>;
 
     return (
       <div className='single-input'>
-        {inputLabel}
-        {inputField}
-        {helperDiv}
+        { inputLabel }
+        { inputField }
+        { helperDiv }
       </div>
     );
   }
@@ -74,17 +75,17 @@ class SignupForm extends React.Component {
 
           <div className='inputs'>
             <div className='group-inputs'>
-              {this.field('firstName', 'First name')}
-              {this.field('lastName', 'Last name')}
+              { this.field('firstName', 'First name', false, true) }
+              { this.field('lastName', 'Last name') }
             </div>
-            {this.field('username', 'Username')}
-            {this.field('email', 'Your email address')}
-            {this.field('password', 'Password', true)}
+            { this.field('username', 'Username') }
+            { this.field('email', 'Your email address') }
+            { this.field('password', 'Password', true) }
           </div>
 
           <div className='buttons'>
-            {signInButton}
-            {nextButton}
+            { signInButton }
+            { nextButton }
           </div>
         </form>
       </div>

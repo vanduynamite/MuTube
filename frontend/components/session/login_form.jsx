@@ -56,6 +56,7 @@ class LoginForm extends React.Component {
       <input type={inputType}
         className={inputKlass}
         id={fieldName}
+        autoFocus
         onChange={this.updateField(fieldName)}
         value={this.state[fieldName]}></input>;
 
@@ -70,9 +71,9 @@ class LoginForm extends React.Component {
 
     return (
       <div className='single-input'>
-        {inputLabel}
-        {inputField}
-        {helperDiv}
+        { inputLabel }
+        { inputField }
+        { helperDiv }
       </div>
     );
   }
@@ -106,16 +107,16 @@ class LoginForm extends React.Component {
     return (
       <div className='session-window'>
         <Link to='/'><img src={ window.mutube } id='signin-logo' /></Link>
-        {title}
-        {subtitle}
-        <form onSubmit={this.submit} className='session-form'>
+        { title }
+        { subtitle }
+        <form onSubmit={ this.submit } className='session-form'>
           <div className='inputs'>
-            {inputField}
+            { inputField }
           </div>
-          {demoLogin}
+          { demoLogin }
           <div className='buttons'>
-            {signUpButton}
-            {nextButton}
+            { signUpButton }
+            { nextButton }
           </div>
         </form>
       </div>
