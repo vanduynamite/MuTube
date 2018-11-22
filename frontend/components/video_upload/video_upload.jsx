@@ -106,7 +106,7 @@ class VideoUpload extends React.Component {
       fileUrl: fileReader.result,
       title: file.name,
     });
-    
+
     // filereader.onloadend = () => {
     // };
     //
@@ -138,6 +138,20 @@ class VideoUpload extends React.Component {
     this.props.createVideo(this.state);
   }
 
+  render() {
+
+    const form = this.state.file
+      ? this.postFileForm()
+      : this.preFileForm();
+
+    return (
+      <div id='video-upload-main'>
+        {form}
+        {this.instructionsCard()}
+      </div>
+    );
+  }
+  
   preFileForm() {
 
     const picClass = this.state.hovering
@@ -247,19 +261,6 @@ class VideoUpload extends React.Component {
     );
   }
 
-  render() {
-
-    const form = this.state.file
-      ? this.postFileForm()
-      : this.preFileForm();
-
-    return (
-      <div id='video-upload-main'>
-        {form}
-        {this.instructionsCard()}
-      </div>
-    );
-  }
 }
 
 export default VideoUpload;
