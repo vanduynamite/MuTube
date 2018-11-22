@@ -3,14 +3,17 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: #FAFAFA;
 }
 
 #video-index {
   min-height: 100%;
   height: 100%;
-  margin: 24px 40px;
+  padding: 24px 40px;
+  // margin: 24px 40px;
   min-width: 450px;
   max-width: 1284px;
+  background-color: #FAFAFA;
 }
 
 #video-index-container {
