@@ -2,10 +2,9 @@
 class Api::VideosController < ApplicationController
 
   def index
-    @videos = Video.all
+    @videos = Video.all.with_attached_video_file.includes!(:uploader)
 
     # TODO: make this not grab all the videos!! use hereDoc
-    # TODO: also get users here so N+1 is not happening
 
     if params[:search]
       scores = search_scores(params[:search])
