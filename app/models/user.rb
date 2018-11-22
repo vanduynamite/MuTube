@@ -33,6 +33,14 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  has_many :subscriptions,
+    class_name: :Subscription,
+    foreign_key: :subscriber_id
+
+  has_many :subscribers,
+    class_name: :Subscription,
+    foreign_key: :channel_id
+
   attr_reader :password
 
   def self.find_by_credentials(username, pw)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_20_052832) do
+ActiveRecord::Schema.define(version: 2018_11_22_040259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2018_11_20_052832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_sessions_on_token"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "channel_id", null: false
+    t.integer "subscriber_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id", "subscriber_id"], name: "index_subscriptions_on_channel_id_and_subscriber_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

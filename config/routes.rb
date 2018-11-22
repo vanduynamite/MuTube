@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show] do
+      resources :subscriptions, only: [:subscribe, :unsubscribe]
       collection do
         get :search
       end
     end
-    resource :session, only: [:create, :destroy]
 
     resources :videos, only: [:create, :index, :show, :destroy] do
       resources :views, only: [:create]
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy] do
       resources :likes, only: [:create]
     end
+
+    resource :session, only: [:create, :destroy]
 
   end
 
