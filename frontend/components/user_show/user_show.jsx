@@ -16,6 +16,7 @@ class UserShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.userId);
+    this.props.fetchVideos();
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +29,7 @@ class UserShow extends React.Component {
       // debugger
       this.setState({ path: curPath });
       this.props.fetchUser(this.props.userId);
-      // fetch other stuff
+      this.props.fetchVideos();
     }
   }
 

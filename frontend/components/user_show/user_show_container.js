@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import UserShow from './user_show';
 import { fetchUser } from '../../actions/user_actions';
+import { fetchVideos } from '../../actions/video_actions';
 import {
   subscribe,
   unsubscribe,
@@ -21,15 +22,10 @@ const msp = (state, ownProps) => {
   // 2. I am visiting my page. I want to see subscriptions, likes, uploads.
   // 3. I am visiting someone else's page. I want to see uploads only.
 
-  const videos = Object.values(state.entities.videos).slice(0,5);
-  const users = Object.values(state.entities.users);
+  const videos = Object.values(state.entities.videos).slice(0,6);
+  const users = state.entities.users;
 
-  // {
-  //   history: [videos]
-  //   subscriptions: [videos]
-  //   liked: [videos]
-  //
-  // }
+  // need some selectors here
 
   return {
     users,
@@ -45,6 +41,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     fetchUser: userId => dispatch(fetchUser(userId)),
+    fetchVideos: search => dispatch(fetchVideos(search)),
     subscribe: id => dispatch(subscribe(id)),
     unsubscribe: id => dispatch(unsubscribe(id)),
   };
