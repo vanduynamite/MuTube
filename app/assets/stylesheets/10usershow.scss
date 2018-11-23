@@ -50,10 +50,19 @@
   // margin-right: 12px;
 }
 
+#user-content-container {
+  width: 100%;
+  margin-left: 48px;
+  margin-right: 48px;
+  display: flex;
+  justify-content: center;
+}
+
 .users-page-section-container {
   width: 1284px;
   margin-left: 48px;
   margin-right: 48px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -64,6 +73,8 @@
 }
 
 .users-page-title {
+  // margin-left: 48px;
+  // margin-right: 48px;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -72,6 +83,8 @@
 }
 
 .users-page-content-container {
+  // margin-left: 48px;
+  // margin-right: 48px;
   padding-top: 8px;
   display: flex;
   flex-direction: row;

@@ -59,10 +59,12 @@ class UserShow extends React.Component {
     return (
       <div id='user-show-page'>
         { this.topSection() }
-        { this.subscriptionVideos() }
-        { this.likedVideos() }
-        { this.history() }
-        { this.uploads() }
+        <div id='user-content-container'>
+          { this.subscriptionVideos() }
+          { this.likedVideos() }
+          { this.history() }
+          { this.uploads() }
+        </div>
       </div>
     );
   }
