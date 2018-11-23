@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import UserShow from './user_show';
 import { fetchUser } from '../../actions/user_actions';
+import {
+  subscribe,
+  unsubscribe,
+} from '../../actions/subscription_actions';
 
 // TODO: bonus, implement a user show page
 
@@ -8,6 +12,7 @@ const msp = (state, ownProps) => {
   const userId = ownProps.match.params.userId || state.session.id;
   const ownPage = parseInt(userId) === state.session.id;
   const user = state.entities.users[userId];
+  const currentUser = state.entities.users[state.session.id];
   const path = ownProps.history.location.pathname;
 
   // 1. I am visiting one of the special routes. Easy, they are done.
@@ -16,17 +21,32 @@ const msp = (state, ownProps) => {
   // 2. I am visiting my page. I want to see subscriptions, likes, uploads.
   // 3. I am visiting someone else's page. I want to see uploads only.
 
+  const videos = Object.values(state.entities.videos).slice(0,5);
+  const users = Object.values(state.entities.users);
+
+  // {
+  //   history: [videos]
+  //   subscriptions: [videos]
+  //   liked: [videos]
+  //
+  // }
+
   return {
+    users,
     userId,
     user,
+    currentUser,
     path,
     ownPage,
+    videos,
   };
 };
 
 const mdp = dispatch => {
   return {
     fetchUser: userId => dispatch(fetchUser(userId)),
+    subscribe: id => dispatch(subscribe(id)),
+    unsubscribe: id => dispatch(unsubscribe(id)),
   };
 };
 
