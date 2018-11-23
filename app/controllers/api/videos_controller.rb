@@ -59,32 +59,35 @@ class Api::VideosController < ApplicationController
 
   def uploaded
     # NOTE: this one is different! Could be someone else's uploads.
-    user = User.find_by(id: params[:user_id])
-    @videos = user.videos.order(created_at: :desc).limit(6)
+    @user = User.find_by(id: params[:user_id])
+    @videos = @user.videos.order(created_at: :desc).limit(6)
 
-    render 'api/videos/index.json.jbuilder'
+    render 'api/videos/uploaded.json.jbuilder'
   end
 
   def subfeed
-    user = User.find_by(id: current_user.id)
-    @videos = user.sub_feed_videos.order(created_at: :desc).limit(6)
+    @user = User.find_by(id: current_user.id)
+    @videos = @user.sub_feed_videos.order(created_at: :desc).limit(6)
 
-    render 'api/videos/index.json.jbuilder'
+    render 'api/videos/subfeed.json.jbuilder'
   end
 
   def liked
-    user = User.find_by(id: current_user.id)
-    @videos = user.liked_videos.where("likeable_type = 'Video'").order(created_at: :desc).limit(6)
+    @user = User.find_by(id: current_user.id)
+    @videos = @user.liked_videos.order(created_at: :desc).limit(6)
 
-    render 'api/videos/index.json.jbuilder'
+    render 'api/videos/liked.json.jbuilder'
   end
 
   def history
-    user = User.find_by(id: current_user.id)
-    # views = user.viewed_videos.order(created_at: :desc).limit(6)
+    @user = User.find_by(id: current_user.id)
 
+    # this is horrible I know, but the active record association is not
+    ## working for some reason
+    views = @user.views.order(created_at: :desc).limit(6)
+    @videos = views.map { |view| view.video }
 
-    render 'api/videos/index.json.jbuilder'
+    render 'api/videos/history.json.jbuilder'
   end
 
 

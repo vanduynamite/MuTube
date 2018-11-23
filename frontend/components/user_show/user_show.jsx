@@ -9,9 +9,6 @@ class UserShow extends React.Component {
     super(props);
     this.state = { path: this.props.path };
     this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
-
-    const videos = this.props.videos;
-    this.lis = videos.map(video => this.buildVideoIndexItem(video));
   }
 
   componentDidMount() {

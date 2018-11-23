@@ -27,17 +27,22 @@ class User < ApplicationRecord
     class_name: :View,
     foreign_key: :user_id
 
-  has_many :viewed_videos,
-    through: :views,
-    source: :video
+  # has_many :views_of_a_video,
+  #   through: :views,
+  #   source: :video
 
   has_many :videos,
     class_name: :Video,
     foreign_key: :uploader_id
 
-  has_many :liked_videos,
+  has_many :likes,
     class_name: :Like,
     foreign_key: :user_id
+
+  has_many :liked_videos,
+    through: :likes,
+    source: :likeable,
+    source_type: 'Video'
 
   has_many :comments
 

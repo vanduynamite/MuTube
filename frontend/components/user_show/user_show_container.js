@@ -12,8 +12,6 @@ import {
   unsubscribe,
 } from '../../actions/subscription_actions';
 
-// TODO: bonus, implement a user show page
-
 const msp = (state, ownProps) => {
   const userId = ownProps.match.params.userId || state.session.id;
   const ownPage = parseInt(userId) === state.session.id;
@@ -38,14 +36,28 @@ const msp = (state, ownProps) => {
   if (path === '/liked' || (path.includes('/users') && ownPage)) renderSections.liked = true;
   if (path === '/history') renderSections.history = true;
 
-  const videos = Object.values(state.entities.videos).slice(0,6);
   const users = state.entities.users;
 
-  // need some selectors here
-  const uploadedVideos = videos;
-  const subfeedVideos = videos;
-  const likedVideos = videos;
-  const historyVideos = videos;
+  let uploadedVideos = [];
+  let subfeedVideos = [];
+  let likedVideos = [];
+  let historyVideos = [];
+
+  if (renderSections.uploads && user.uploadedVideos) {
+    uploadedVideos = user.uploadedVideos.map(id => state.entities.videos[id]);
+  }
+
+  if (renderSections.subFeed && user.subfeedVideos) {
+    subfeedVideos = user.subfeedVideos.map(id => state.entities.videos[id]);
+  }
+
+  if (renderSections.liked && user.likedVideos) {
+    likedVideos = user.likedVideos.map(id => state.entities.videos[id]);
+  }
+
+  if (renderSections.history && user.historyVideos) {
+    historyVideos = user.historyVideos.map(id => state.entities.videos[id]);
+  }
 
   return {
     users,
@@ -54,7 +66,6 @@ const msp = (state, ownProps) => {
     currentUser,
     path,
     ownPage,
-    videos,
     renderSections,
     uploadedVideos,
     subfeedVideos,
