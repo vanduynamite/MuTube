@@ -20,10 +20,10 @@ class Main extends React.Component {
             <Route exact path='/' component={ VideoIndex } />
             <Route path='/videos/:videoId' component={ VideoShow } />
             <Route path='/users/:userId' component={ UserShow } />
-            <ProtectedRoute exact path='/upload' component={ VideoUpload } />
-            <ProtectedRoute exact path='/history' component={ VideoUpload } />
-            <ProtectedRoute exact path='/liked' component={ VideoUpload } />
-            <ProtectedRoute exact path='/subscriptions' component={ VideoUpload } />
+            <ProtectedRoute exact path='/upload' component={ UserShow } />
+            <ProtectedRoute exact path='/history' component={ UserShow } />
+            <ProtectedRoute exact path='/liked' component={ UserShow } />
+            <ProtectedRoute exact path='/subscriptions' component={ UserShow } />
           </Switch>
         </div>
       </div>

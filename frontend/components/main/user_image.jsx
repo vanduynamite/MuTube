@@ -11,10 +11,10 @@ export default (props) => {
     background = props.user.userImageUrl || '#2376E5';
   }
 
-  const klass = props.small
-    ? 'user-image-small'
-    : 'user-image';
-
+  let klass = 'user-image';
+  if (props.small) klass = 'user-image-small';
+  if (props.large) klass = 'user-image-large';
+  
   return (
     <div className={ klass } style={{backgroundColor: background}}>
       {letter}

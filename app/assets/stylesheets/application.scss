@@ -21,6 +21,7 @@
  *= require 07rightsidebar
  *= require 08videoplayer
  *= require 09comments
+ *= require 10usershow
  */
 
 * {
@@ -125,6 +126,19 @@ html {
   border-radius: 12px;
   margin: 1px;
   min-width: 24px;
+}
+
+.user-image-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  border-radius: 40px;
+  margin: 1px;
+  min-width: 80px;
 }
 
 .overlay-menu-inactive {

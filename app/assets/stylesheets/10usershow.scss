@@ -1,0 +1,29 @@
+#user-show-page {
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+#user-header-full-width {
+  width: 100%;
+  background-color: #AAAAAA;
+  // background-color: #FAFAFA;
+  height: 144px;
+}
+
+#user-header-centered {
+  height: 100%;
+  max-width: 1284px;
+  margin-left: 48px;
+  margin-right: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#user-full-name {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  margin-left: 24px;
+}
