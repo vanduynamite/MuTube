@@ -42,6 +42,10 @@ const msp = (state, ownProps) => {
   const users = state.entities.users;
 
   // need some selectors here
+  const uploadedVideos = videos;
+  const subfeedVideos = videos;
+  const likedVideos = videos;
+  const historyVideos = videos;
 
   return {
     users,
@@ -52,6 +56,10 @@ const msp = (state, ownProps) => {
     ownPage,
     videos,
     renderSections,
+    uploadedVideos,
+    subfeedVideos,
+    likedVideos,
+    historyVideos,
   };
 };
 

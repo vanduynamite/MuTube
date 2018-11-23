@@ -142,6 +142,7 @@ class UserShow extends React.Component {
 
   uploads() {
     if (!this.props.renderSections.uploads) return this.blankSection();
+    const videos = this.props.uploadedVideos;
 
     return (
       <div id='user-uploads' className='users-page-section-container'>
@@ -149,7 +150,7 @@ class UserShow extends React.Component {
           Uploads
         </div>
         <div className='users-page-content-container'>
-          { this.lis }
+          { videos.map(video => this.buildVideoIndexItem(video)) }
         </div>
       </div>
     );
@@ -157,6 +158,7 @@ class UserShow extends React.Component {
 
   subscriptionVideos() {
     if (!this.props.renderSections.subFeed) return this.blankSection();
+    const videos = this.props.subfeedVideos;
 
     return (
       <div id='user-subscription-videos' className='users-page-section-container'>
@@ -164,7 +166,7 @@ class UserShow extends React.Component {
           Subscription feed
         </div>
         <div className='users-page-content-container'>
-          { this.lis }
+          { videos.map(video => this.buildVideoIndexItem(video)) }
         </div>
       </div>
     );
@@ -172,6 +174,7 @@ class UserShow extends React.Component {
 
   likedVideos() {
     if (!this.props.renderSections.liked) return this.blankSection();
+    const videos = this.props.likedVideos;
 
     return (
       <div id='user-liked-videos' className='users-page-section-container'>
@@ -179,7 +182,7 @@ class UserShow extends React.Component {
           Liked videos
         </div>
         <div className='users-page-content-container'>
-          { this.lis }
+          { videos.map(video => this.buildVideoIndexItem(video)) }
         </div>
       </div>
     );
@@ -187,6 +190,7 @@ class UserShow extends React.Component {
 
   history() {
     if (!this.props.renderSections.history) return this.blankSection();
+    const videos = this.props.historyVideos;
 
     return (
       <div id='user-history' className='users-page-section-container'>
@@ -194,7 +198,7 @@ class UserShow extends React.Component {
           History
         </div>
         <div className='users-page-content-container'>
-          { this.lis }
+          { videos.map(video => this.buildVideoIndexItem(video)) }
         </div>
       </div>
     );

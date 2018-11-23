@@ -126,7 +126,7 @@ export const fetchLikedVideos = () => dispatch => {
   );
 };
 
-export const fetchHistoryVideos = ()) => dispatch => {
+export const fetchHistoryVideos = () => dispatch => {
   return VideoAPI.fetchHistoryVideos().then(
     payload => dispatch(receiveVideos(payload)),
     errors => dispatch(receiveVideoErrors(errors))
