@@ -54,6 +54,48 @@ class Api::VideosController < ApplicationController
     render 'api/videos/show.json.jbuilder'
   end
 
+
+
+
+  def uploaded
+    # NOTE: this one is different! Could be someone else's uploads.
+    user = User.find_by(id: params[:user_id])
+    @videos = user.videos.order(created_at: :desc).limit(6)
+
+    render 'api/videos/index.json.jbuilder'
+  end
+
+  def subfeed
+    user = User.find_by(id: current_user.id)
+    @videos = user.sub_feed_videos.order(created_at: :desc).limit(6)
+
+    render 'api/videos/index.json.jbuilder'
+  end
+
+  def liked
+    user = User.find_by(id: current_user.id)
+    @videos = user.liked_videos.where("likeable_type = 'Video'").order(created_at: :desc).limit(6)
+
+    render 'api/videos/index.json.jbuilder'
+  end
+
+  def history
+    user = User.find_by(id: current_user.id)
+    # views = user.viewed_videos.order(created_at: :desc).limit(6)
+
+
+    render 'api/videos/index.json.jbuilder'
+  end
+
+
+
+
+
+
+
+
+
+
   private
 
   def video_params

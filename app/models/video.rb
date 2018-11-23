@@ -34,4 +34,8 @@ class Video < ApplicationRecord
     through: :comments,
     source: :user
 
+  has_many :views,
+    class_name: :View,
+    foreign_key: :video_id
+
 end

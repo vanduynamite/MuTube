@@ -22,7 +22,15 @@ class User < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX, message: 'address is invalid'}
 
   has_many :sessions
-  has_many :views
+
+  has_many :views,
+    class_name: :View,
+    foreign_key: :user_id
+
+  has_many :viewed_videos,
+    through: :views,
+    source: :video
+
   has_many :videos,
     class_name: :Video,
     foreign_key: :uploader_id
@@ -40,6 +48,10 @@ class User < ApplicationRecord
   has_many :channel_subscriptions,
     through: :subscription_records,
     source: :channel
+
+  has_many :sub_feed_videos,
+    through: :channel_subscriptions,
+    source: :videos
 
   has_many :subscribers,
     class_name: :Subscription,
