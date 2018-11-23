@@ -157,8 +157,8 @@ class Comment extends React.Component {
 
   commentLis() {
     const commentIds = this.state.oldestCommentFirst
-      ? this.props.video.commentIds.sort()
-      : this.props.video.commentIds.sort( (a,b) => b-a );
+      ? this.props.video.commentIds.sort( (a,b) => a - b )
+      : this.props.video.commentIds.sort( (a,b) => b - a );
 
     return commentIds.map(id => <CommentItem key={ id } commentId={ id } />);
   }
