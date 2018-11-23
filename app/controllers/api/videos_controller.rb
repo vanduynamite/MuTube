@@ -74,7 +74,7 @@ class Api::VideosController < ApplicationController
 
   def liked
     @user = User.find_by(id: current_user.id)
-    @videos = @user.liked_videos.order(created_at: :desc).limit(6)
+    @videos = @user.liked_videos.order('likes.created_at DESC').limit(6)
 
     render 'api/videos/liked.json.jbuilder'
   end
