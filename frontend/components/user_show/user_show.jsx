@@ -16,7 +16,11 @@ class UserShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.userId);
-    this.props.fetchVideos();
+
+    if (this.props.renderSections.uploads) this.props.fetchUploadedVideos(this.props.userId);
+    if (this.props.renderSections.subFeed) this.props.fetchSubscriptionVideos();
+    if (this.props.renderSections.liked) this.props.fetchLikedVideos();
+    if (this.props.renderSections.history) this.props.fetchHistoryVideos();
   }
 
   componentDidUpdate(prevProps) {
@@ -29,7 +33,10 @@ class UserShow extends React.Component {
       // debugger
       this.setState({ path: curPath });
       this.props.fetchUser(this.props.userId);
-      this.props.fetchVideos();
+      if (this.props.renderSections.uploads) this.props.fetchUploadedVideos(this.props.userId);
+      if (this.props.renderSections.subFeed) this.props.fetchSubscriptionVideos();
+      if (this.props.renderSections.liked) this.props.fetchLikedVideos();
+      if (this.props.renderSections.history) this.props.fetchHistoryVideos();
     }
   }
 
@@ -133,26 +140,8 @@ class UserShow extends React.Component {
   //   );
   // }
 
-  likedVideos() {
-    if (this.props.path !== '/liked' && !this.props.path.includes('/users')) {
-      return this.blankSection();
-    }
-    if (!this.props.ownPage) return this.blankSection();
-
-    return (
-      <div id='user-liked-videos' className='users-page-section-container'>
-        <div className='users-page-title'>
-          Liked videos
-        </div>
-        <div className='users-page-content-container'>
-          { this.lis }
-        </div>
-      </div>
-    );
-  }
-
   uploads() {
-    if (!this.props.path.includes('/users')) return this.blankSection();
+    if (!this.props.renderSections.uploads) return this.blankSection();
 
     return (
       <div id='user-uploads' className='users-page-section-container'>
@@ -167,10 +156,7 @@ class UserShow extends React.Component {
   }
 
   subscriptionVideos() {
-    if (this.props.path !== '/subscriptions' && !this.props.path.includes('/users')) {
-      return this.blankSection();
-    }
-    if (!this.props.ownPage) return this.blankSection();
+    if (!this.props.renderSections.subFeed) return this.blankSection();
 
     return (
       <div id='user-subscription-videos' className='users-page-section-container'>
@@ -184,8 +170,23 @@ class UserShow extends React.Component {
     );
   }
 
+  likedVideos() {
+    if (!this.props.renderSections.liked) return this.blankSection();
+
+    return (
+      <div id='user-liked-videos' className='users-page-section-container'>
+        <div className='users-page-title'>
+          Liked videos
+        </div>
+        <div className='users-page-content-container'>
+          { this.lis }
+        </div>
+      </div>
+    );
+  }
+
   history() {
-    if (this.props.path !== '/history') return this.blankSection();
+    if (!this.props.renderSections.history) return this.blankSection();
 
     return (
       <div id='user-history' className='users-page-section-container'>

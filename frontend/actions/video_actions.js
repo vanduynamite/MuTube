@@ -101,3 +101,34 @@ export const addLikeOrDislike = data => dispatch => {
     errors => dispatch(receiveVideoErrors(errors))
   );
 };
+
+
+
+
+export const fetchUploadedVideos = id => dispatch => {
+  return VideoAPI.fetchUploadedVideos(id).then(
+    payload => dispatch(receiveVideos(payload)),
+    errors => dispatch(receiveVideoErrors(errors))
+  );
+};
+
+export const fetchSubscriptionVideos = () => dispatch => {
+  return VideoAPI.fetchSubscriptionVideos().then(
+    payload => dispatch(receiveVideos(payload)),
+    errors => dispatch(receiveVideoErrors(errors))
+  );
+};
+
+export const fetchLikedVideos = () => dispatch => {
+  return VideoAPI.fetchLikedVideos().then(
+    payload => dispatch(receiveVideos(payload)),
+    errors => dispatch(receiveVideoErrors(errors))
+  );
+};
+
+export const fetchHistoryVideos = ()) => dispatch => {
+  return VideoAPI.fetchHistoryVideos().then(
+    payload => dispatch(receiveVideos(payload)),
+    errors => dispatch(receiveVideoErrors(errors))
+  );
+};

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         get :search
       end
 
+      get :uploaded, to: 'videos#uploaded'
       post :subscribe, to: 'subscriptions#create'
       delete :unsubscribe, to: 'subscriptions#destroy'
     end
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
       resources :views, only: [:create]
       resources :likes, only: [:create]
       resources :comments, only: [:create]
+      collection do
+        get :subfeed, :liked, :history
+      end
     end
 
     resources :comments, only: [:destroy] do

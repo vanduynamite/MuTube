@@ -56,3 +56,31 @@ export const addLikeOrDislike = data => {
     data: is_dislike,
   });
 };
+
+export const fetchUploadedVideos = id => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/users/${id}/uploaded`
+  });
+};
+
+export const fetchSubscriptionVideos = () => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/videos/subfeed'
+  });
+};
+
+export const fetchLikedVideos = () => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/videos/liked'
+  });
+};
+
+export const fetchHistoryVideos = () => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/videos/history'
+  });
+};
