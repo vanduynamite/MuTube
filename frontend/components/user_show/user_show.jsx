@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import UserImage from '../main/user_image';
 import VideoIndexItem from '../video_index/video_index_item';
+import createHistory from 'history/createHashHistory';
 
 class UserShow extends React.Component {
 
