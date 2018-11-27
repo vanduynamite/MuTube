@@ -58,7 +58,7 @@ class Api::VideosController < ApplicationController
 
 
   def uploaded
-    # NOTE: this one is different! Could be someone else's uploads.
+    # NOTE: this one searches by params[:user_id]! Could be someone else's uploads.
     @user = User.find_by(id: params[:user_id])
     @videos = @user.videos.order(created_at: :desc).limit(6)
 

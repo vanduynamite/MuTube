@@ -16,7 +16,7 @@ class UserShow extends React.Component {
     this.props.fetchUser(this.props.userId);
 
     if (this.props.renderSections.uploads) this.props.fetchUploadedVideos(this.props.userId);
-    if (this.props.renderSections.subFeed) this.props.fetchSubscriptionVideos();
+    if (this.props.renderSections.subfeed) this.props.fetchSubscriptionVideos();
     if (this.props.renderSections.liked) this.props.fetchLikedVideos();
     if (this.props.renderSections.history) this.props.fetchHistoryVideos();
   }
@@ -31,7 +31,7 @@ class UserShow extends React.Component {
       this.setState({ path: curPath });
       this.props.fetchUser(this.props.userId);
       if (this.props.renderSections.uploads) this.props.fetchUploadedVideos(this.props.userId);
-      if (this.props.renderSections.subFeed) this.props.fetchSubscriptionVideos();
+      if (this.props.renderSections.subfeed) this.props.fetchSubscriptionVideos();
       if (this.props.renderSections.liked) this.props.fetchLikedVideos();
       if (this.props.renderSections.history) this.props.fetchHistoryVideos();
     }
@@ -52,9 +52,6 @@ class UserShow extends React.Component {
       </div>);
     }
 
-    const userId = this.props.userId;
-    const user = this.props.user;
-
     return (
       <div id='user-show-page'>
         { this.topSection() }
@@ -67,7 +64,6 @@ class UserShow extends React.Component {
       </div>
     );
   }
-  // { this.subscriptions() }
 
   // subcomponents
 
@@ -123,25 +119,9 @@ class UserShow extends React.Component {
     );
   }
 
-  // subscriptions() {
-  //   if (!this.props.path.includes('/users')) return this.blankSection();
-  //   if (!this.props.ownPage) return this.blankSection();
-  //
-  //   return (
-  //     <div id='user-subscriptions' className='users-page-section-container'>
-  //       <div className='users-page-title'>
-  //         Uploads
-  //       </div>
-  //       <div className='users-page-content-container'>
-  //         { this.lis }
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   uploads() {
-    const videos = this.props.uploadedVideos;
-    if (!this.props.renderSections.uploads || videos.length === 0) return this.blankSection();
+    const videos = this.props.videos.uploads;
+    if (videos.length === 0) return this.blankSection();
 
     return (
       <div id='user-uploads' className='users-page-section-container'>
@@ -156,8 +136,8 @@ class UserShow extends React.Component {
   }
 
   subscriptionVideos() {
-    const videos = this.props.subfeedVideos;
-    if (!this.props.renderSections.subFeed || videos.length === 0) return this.blankSection();
+    const videos = this.props.videos.subfeed;
+    if (videos.length === 0) return this.blankSection();
 
     return (
       <div id='user-subscription-videos' className='users-page-section-container'>
@@ -172,8 +152,8 @@ class UserShow extends React.Component {
   }
 
   likedVideos() {
-    const videos = this.props.likedVideos;
-    if (!this.props.renderSections.liked || videos.length === 0) return this.blankSection();
+    const videos = this.props.videos.liked;
+    if (videos.length === 0) return this.blankSection();
 
     return (
       <div id='user-liked-videos' className='users-page-section-container'>
@@ -188,8 +168,8 @@ class UserShow extends React.Component {
   }
 
   history() {
-    const videos = this.props.historyVideos;
-    if (!this.props.renderSections.history || videos.length === 0) return this.blankSection();
+    const videos = this.props.videos.history;
+    if (videos.length === 0) return this.blankSection();
 
     return (
       <div id='user-history' className='users-page-section-container'>
