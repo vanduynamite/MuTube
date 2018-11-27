@@ -1,7 +1,7 @@
 {
   "name": "MuTube",
   "version": "1.0.0",
-  "description": "Hello and welcome to my App Academy fullstack project! Please see the wiki tab for documentation on this project, and please visit the live site (when it's up)!",
+  "description": "Hello and welcome to my App Academy fullstack project! Please see the wiki tab for documentation on this project, and please visit the live site!",
   "main": "index.js",
   "directories": {
     "lib": "lib",
@@ -42,13 +42,13 @@
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "redux-logger": "^3.0.6"
   }
 }

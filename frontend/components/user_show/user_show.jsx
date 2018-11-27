@@ -28,7 +28,6 @@ class UserShow extends React.Component {
     const curId = this.props.userId;
     const curPath = this.props.path;
     if ((prevId && prevId !== curId) || prevPath !== curPath) {
-      // debugger
       this.setState({ path: curPath });
       this.props.fetchUser(this.props.userId);
       if (this.props.renderSections.uploads) this.props.fetchUploadedVideos(this.props.userId);
