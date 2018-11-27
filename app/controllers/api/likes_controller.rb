@@ -1,39 +1,24 @@
 
 class Api::LikesController < ApplicationController
 
-  def create
+  def process_like
     return false unless authorized_user?
 
-    process_video_like if params[:video_id]
-    process_comment_like if params[:comment_id]
-  end
-
-  def process_comment_like
-    @json_string = 'api/comments/like.json.jbuilder'
-    @poly_entity = Comment.find_by(id: params[:comment_id])
-    @like = Like.find_by(
-      likeable_id: @poly_entity.id,
-      likeable_type: 'Comment',
-      user_id: current_user.id
-    )
-
-    unless @like
-      new_like
-    else
-      unless @like.is_dislike == true?(like_params[:is_dislike])
-        update_like
-      else
-        destroy_like
-      end
+    if params[:video_id]
+      @json_string = 'api/videos/like.json.jbuilder'
+      @poly_entity = Video.find_by(id: params[:video_id])
+      likeable_type = 'Video'
     end
-  end
 
-  def process_video_like
-    @json_string = 'api/videos/like.json.jbuilder'
-    @poly_entity = Video.find_by(id: params[:video_id])
+    if params[:comment_id]
+      @json_string = 'api/comments/like.json.jbuilder'
+      @poly_entity = Comment.find_by(id: params[:comment_id])
+      likeable_type = 'Comment'
+    end
+
     @like = Like.find_by(
       likeable_id: @poly_entity.id,
-      likeable_type: 'Video',
+      likeable_type: likeable_type,
       user_id: current_user.id
     )
 

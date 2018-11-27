@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     resources :videos, only: [:create, :index, :show, :destroy] do
       resources :views, only: [:create]
-      resources :likes, only: [:create]
+      post :likes, to: 'likes#process_like'
       resources :comments, only: [:create]
       collection do
         get :subfeed, :liked, :history
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
 
     resources :comments, only: [:destroy] do
-      resources :likes, only: [:create]
+      post :likes, to: 'likes#process_like'
     end
 
     resource :session, only: [:create, :destroy]
