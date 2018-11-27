@@ -8,7 +8,6 @@
 
 #user-header-full-width {
   width: 100%;
-  // background-color: #AAAAAA;
   background-color: #FAFAFA;
   height: 144px;
   display: flex;
@@ -51,9 +50,7 @@
 }
 
 #user-content-container {
-  width: 100%;
-  margin-left: 48px;
-  margin-right: 48px;
+  width: calc(100% - 96px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,8 +58,6 @@
 
 .users-page-section-container {
   width: 1284px;
-  margin-left: 48px;
-  margin-right: 48px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -74,8 +69,6 @@
 }
 
 .users-page-title {
-  // margin-left: 48px;
-  // margin-right: 48px;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -84,8 +77,6 @@
 }
 
 .users-page-content-container {
-  // margin-left: 48px;
-  // margin-right: 48px;
   padding-top: 8px;
   display: flex;
   flex-direction: row;
