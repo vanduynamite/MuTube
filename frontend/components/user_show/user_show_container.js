@@ -40,21 +40,22 @@ const msp = (state, ownProps) => {
   if (path === '/history') renderSections.history = true;
 
 
+  if (user) {
+    if (renderSections.uploads && user.uploadedVideos) {
+      videos.uploads = user.uploadedVideos.map(id => state.entities.videos[id]);
+    }
 
-  if (renderSections.uploads && user.uploadedVideos) {
-    videos.uploads = user.uploadedVideos.map(id => state.entities.videos[id]);
-  }
+    if (renderSections.subfeed && user.subfeedVideos) {
+      videos.subfeed = user.subfeedVideos.map(id => state.entities.videos[id]);
+    }
 
-  if (renderSections.subfeed && user.subfeedVideos) {
-    videos.subfeed = user.subfeedVideos.map(id => state.entities.videos[id]);
-  }
+    if (renderSections.liked && user.likedVideos) {
+      videos.liked = user.likedVideos.map(id => state.entities.videos[id]);
+    }
 
-  if (renderSections.liked && user.likedVideos) {
-    videos.liked = user.likedVideos.map(id => state.entities.videos[id]);
-  }
-
-  if (renderSections.history && user.historyVideos) {
-    videos.history = user.historyVideos.map(id => state.entities.videos[id]);
+    if (renderSections.history && user.historyVideos) {
+      videos.history = user.historyVideos.map(id => state.entities.videos[id]);
+    }
   }
 
   return {
