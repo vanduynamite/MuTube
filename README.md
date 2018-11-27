@@ -55,7 +55,7 @@ The CSS and level of detail on µTube is pristine, with all font colors, sizes, 
 ![YouTubeSignIn](https://lh3.googleusercontent.com/6Z_mqcPSGuNQKg5MgxrNrp1FKquzkTBpeA97R8GQsctb0a9nOet0188Ds5p15WxvB4Wd4Q2he-g0TszXhxUrbf9rnTnkTyyKhz-JMf1ci6N2AyTdPmWNmt3e2VXMLbtFBwP1hqXcFCopTRWn-LZmNyh1IpiuXGcS1wWviYvRkCFveJ-DK7GV-v5gYSbvZLYmG8qOgNM-kTD9uHHKY9Q3XLJfIe0pcFCYrriZwRSAc-QkEF72WH_NzRhK8adWbLK5tT8HQcOHiKGSV7loEKf6aG-fZQT78l43S7ZhzHoDFpm1xPhYdYHM9n-pI8VWf2tm7POznHFP7fMsYm0cVaqYFWmc-dEjfCvN85Bwf1I77Vw05GgBDDnkAawkyjQcVzRBbLd6nirqIv8CkGUUHnhI9GF45PlAvopfWKYOFdjsKl8QsMpV5E-DICgOdL3PjBJG6zx84UomKhTc31c7Bb9xs4cUuaB6b5h3q5iUlhA_wD6qPSQxkDkDOgD9mbFrY5eTKptyKnDbN29nyuz6LHw33IUhVmp-oAohGowlc7EDGAioAYTfr6bS-Ouaqzn3VfBwfb3vG6vI165YzP2DjY6RsT_zDG3ev2mzsn26ozSRUjhO454jdxJkvm3VEjWNa8RNJy3bK0KmY-_GJq5JdiUSbyvMDA=w476-h526-no)
 
 ### Other Features
-There are of course many other features of µTubejn
+There are of course many other features of µTube worth exploring. Try out the left sidebar through which you can explore specific lists of videos including your subscription feed, or try adding a comment and then deleting it. Of course try uploading a video, either by a file dialog, or through drag-and-drop! And more than anything, take a look at the code driving it - it is all from scratch and I am proud of every part.
 
 [heroku]: https://mutube.herokuapp.com/#/
 [schema]: https://github.com/vanduynamite/MuTube/wiki/Schema
