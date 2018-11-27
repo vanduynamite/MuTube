@@ -55,7 +55,8 @@
   margin-left: 48px;
   margin-right: 48px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .users-page-section-container {
