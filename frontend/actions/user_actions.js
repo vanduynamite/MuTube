@@ -12,14 +12,6 @@ const receiveUser = ({ users }) => {
   };
 };
 
-// const receiveUsers = ({users, videos}) => {
-//   return {
-//     type: RECEIVE_USERS,
-//     users,
-//     videos,
-//   };
-// };
-
 const receiveUserErrors = errors => {
   return {
     type: RECEIVE_USERS_ERRORS,
@@ -33,10 +25,3 @@ export const fetchUser = id => dispatch => {
     errors => dispatch(receiveUserErrors(errors))
   );
 };
-//
-// export const fetchUsers = search => dispatch => {
-//   return UserAPI.fetchUsers(search).then(
-//     payload => dispatch(receiveUsers(payload)),
-//     errors => dispatch(receiveUserErrors(errors))
-//   );
-// };
