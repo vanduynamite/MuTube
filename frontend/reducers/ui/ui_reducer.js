@@ -1,5 +1,6 @@
 import {
   TOGGLE_LEFT_SIDEBAR,
+  DEACTIVATE_LEFT_SIDEBAR,
   SHOW_COMMENT_BUTTONS,
   HIDE_COMMENT_BUTTONS,
   UPDATE_SEARCH_FIELD,
@@ -16,6 +17,10 @@ const uiReducer = (state, action) => {
   switch (action.type) {
     case TOGGLE_LEFT_SIDEBAR:
       return merge(newState, { leftSidebar: !newState.leftSidebar });
+
+    case DEACTIVATE_LEFT_SIDEBAR:
+      if (!newState.leftSidebar) delete(newState.leftSidebar);
+      return newState;
 
     case SHOW_COMMENT_BUTTONS:
       return merge(newState, { commentButtons: true });

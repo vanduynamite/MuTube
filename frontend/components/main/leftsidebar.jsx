@@ -18,7 +18,7 @@ class LeftSidebar extends React.Component {
     let historyImg = window.historyGray;
     let likedImg = window.likedVideosGray;
 
-    let klass = 'leftsidebar-initialized';
+    let klass = 'leftsidebar-deactive';
     if (this.props.showSidebar === true) klass = 'leftsidebar-show';
     if (this.props.showSidebar === false) klass = 'leftsidebar-hide';
 
@@ -65,7 +65,9 @@ class LeftSidebar extends React.Component {
           </div>
 
           <div id='left-library-list' className='left-list-container'>
-            <Link to={ libraryLink }>
+            <Link
+              to={ libraryLink }
+              onClick={ this.props.toggleLeftSidebar }>
               <div className='left-list-header'>
                 LIBRARY
               </div>
