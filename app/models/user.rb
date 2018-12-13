@@ -33,11 +33,13 @@ class User < ApplicationRecord
 
   has_many :videos,
     class_name: :Video,
-    foreign_key: :uploader_id
+    foreign_key: :uploader_id,
+    dependent: :destroy
 
   has_many :likes,
     class_name: :Like,
-    foreign_key: :user_id
+    foreign_key: :user_id,
+    dependent: :destroy
 
   has_many :liked_videos,
     through: :likes,

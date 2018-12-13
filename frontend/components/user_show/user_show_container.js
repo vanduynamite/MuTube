@@ -43,18 +43,22 @@ const msp = (state, ownProps) => {
   if (user) {
     if (renderSections.uploads && user.uploadedVideos) {
       videos.uploads = user.uploadedVideos.map(id => state.entities.videos[id]);
+      videos.uploads = [...new Set(videos.uploads)];
     }
 
     if (renderSections.subfeed && user.subfeedVideos) {
       videos.subfeed = user.subfeedVideos.map(id => state.entities.videos[id]);
+      videos.subfeed = [...new Set(videos.subfeed)];
     }
 
     if (renderSections.liked && user.likedVideos) {
       videos.liked = user.likedVideos.map(id => state.entities.videos[id]);
+      videos.liked = [...new Set(videos.liked)];
     }
 
     if (renderSections.history && user.historyVideos) {
       videos.history = user.historyVideos.map(id => state.entities.videos[id]);
+      videos.history = [...new Set(videos.history)];
     }
   }
 
