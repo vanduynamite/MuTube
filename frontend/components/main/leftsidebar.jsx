@@ -55,13 +55,19 @@ class LeftSidebar extends React.Component {
         </div>
         <div id='left-sidebar' className={ klass }>
 
+          { this.topLeft() }
+
           <div id='left-main-list' className='left-list-container'>
             { this.listItem('Home', homeImg, '/', homeSelected) }
             { this.listItem('Subscriptions', subImg, '/subscriptions', subsSelected) }
           </div>
 
           <div id='left-library-list' className='left-list-container'>
-            <div className='left-list-header'>LIBRARY</div>
+            <Link to={`/users/${this.props.currentUser.id}`}>
+              <div className='left-list-header'>
+                LIBRARY
+              </div>
+            </Link>
               { this.listItem('History', historyImg, '/history', historySelected) }
               { this.listItem('Liked videos', likedImg, '/liked', likedSelected) }
           </div>
@@ -80,13 +86,26 @@ class LeftSidebar extends React.Component {
 
   // subcomponents
 
+  topLeft() {
+    return (
+      <div id='title-left' className='leftsidebar-top'>
+        <div className='highlight-circle' onClick={ this.props.toggleLeftSidebar } >
+          <img id='hamburger-left' src={ window.hamburger } />
+        </div>
+        <Link to='/'><img id='logo-topleft' src={ window.mutube } /></Link>
+      </div>
+    );
+  }
+
   listItem(title, image, link, selected) {
     const klass = selected
       ? 'left-list-item-selected'
       : 'left-list-item';
 
     return (
-      <Link to={ link } className={ klass }>
+      <Link to={ link }
+        className={ klass }
+        onClick={ this.props.toggleLeftSidebar }>
         <div className='left-list-link'>
           <img src={ image } />
           <span>{ title }</span>
@@ -105,7 +124,9 @@ class LeftSidebar extends React.Component {
 
       return (
         <Link key={ sub.id }
-          to={`/users/${sub.id}`} className={ klass } >
+          to={`/users/${sub.id}`}
+          className={ klass }
+          onClick={ this.props.toggleLeftSidebar }>
           <div className='left-list-link'>
             <UserImage user={ sub } small={ true }/>
           </div>
