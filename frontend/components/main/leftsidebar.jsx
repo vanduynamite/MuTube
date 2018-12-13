@@ -22,6 +22,8 @@ class LeftSidebar extends React.Component {
     if (this.props.showSidebar === true) klass = 'leftsidebar-show';
     if (this.props.showSidebar === false) klass = 'leftsidebar-hide';
 
+    const libraryLink = this.props.currentUser ? `/users/${this.props.currentUser.id}` : '/login'
+
     switch (this.props.history.location.pathname) {
       case '/':
         homeSelected = true;
@@ -63,7 +65,7 @@ class LeftSidebar extends React.Component {
           </div>
 
           <div id='left-library-list' className='left-list-container'>
-            <Link to={`/users/${this.props.currentUser.id}`}>
+            <Link to={ libraryLink }>
               <div className='left-list-header'>
                 LIBRARY
               </div>
