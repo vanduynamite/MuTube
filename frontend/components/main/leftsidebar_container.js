@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { toggleLeftSidebar } from '../../actions/ui_actions';
 
 const msp = (state) => {
+  const showSidebar = state.ui.leftSidebar;
   const currentUser = state.entities.users[state.session.id];
   let subscriptions = [];
   if (currentUser) {
@@ -13,6 +14,7 @@ const msp = (state) => {
   }
 
   return {
+    showSidebar,
     currentUser,
     subscriptions,
   };

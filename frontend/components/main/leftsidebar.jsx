@@ -8,7 +8,6 @@ class LeftSidebar extends React.Component {
     super(props);
   }
 
-
   render() {
     let homeSelected = false;
     let subsSelected = false;
@@ -18,6 +17,10 @@ class LeftSidebar extends React.Component {
     let subImg = window.subscriptionsGray;
     let historyImg = window.historyGray;
     let likedImg = window.likedVideosGray;
+
+    let klass = 'leftsidebar-initialized';
+    if (this.props.showSidebar === true) klass = 'leftsidebar-show';
+    if (this.props.showSidebar === false) klass = 'leftsidebar-hide';
 
     switch (this.props.history.location.pathname) {
       case '/':
@@ -46,9 +49,11 @@ class LeftSidebar extends React.Component {
 
     return (
       <div id='left-sidebar-modal'>
-        <div id='modal-background' onClick={ this.props.toggleLeftSidebar }>
+        <div id='modal-background'
+          onClick={ this.props.toggleLeftSidebar }
+          className={ klass }>
         </div>
-        <div id='left-sidebar'>
+        <div id='left-sidebar' className={ klass }>
 
           <div id='left-main-list' className='left-list-container'>
             { this.listItem('Home', homeImg, '/', homeSelected) }

@@ -8,8 +8,21 @@
   box-shadow: inset 0px 2px 2px #eeeeee;
 
   z-index: 4;
+}
 
+#left-sidebar.leftsidebar-initialized {
+  left: -240px;
+}
+
+#left-sidebar.leftsidebar-show {
+  left: 0px;
   animation-name: slide-from-left;
+  animation-duration: .3s;
+}
+
+#left-sidebar.leftsidebar-hide {
+  left: -240px;
+  animation-name: slide-to-left;
   animation-duration: .3s;
 }
 
@@ -18,31 +31,73 @@
    100% {left: 0px;}
 }
 
+@keyframes slide-to-left {
+   0%   {left: 0px;}
+   100% {left: -240px;}
+}
+
+
+
+
 #modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  left: 240px;
   height: 100%;
   width: 100%;
   background: #000000;
-  opacity: 0.50;
-  z-index: 3;
+}
 
+#modal-background.leftsidebar-show {
+  left: 240px;
   animation-name: get-darker;
   animation-duration: .3s;
+  opacity: 0.50;
+  z-index: 3;
+  visibility: visible;
+}
+
+#modal-background.leftsidebar-initialized {
+  left: 0px;
+  opacity: 0.0;
+  z-index: 0;
+  visibility: hidden;
+}
+
+#modal-background.leftsidebar-hide {
+  left: 0px;
+  animation-name: get-lighter;
+  animation-duration: .3s;
+  opacity: 0.0;
+  z-index: 0;
+  visibility: hidden;
 }
 
 @keyframes get-darker {
-  0%    {opacity: 0; left: 0px}
-  100%  {opactiy: 0.5; left: 240px}
+  0%    {opacity: 0; left: 0px;}
+  100%  {opacity: 0.5; left: 240px}
+}
+
+@keyframes get-lighter {
+  0%    {opacity: 0.5; left: 240px; z-index: 3; visibility: visible}
+  99%  {opacity: 0; left: 0px; z-index: 3; visibility: visible}
+  100%  {opacity: 0; left: 0px; z-index: 0; visibility: hidden}
 }
 
 
 #left-main-list {
   // margin-top: 12px;
 }
+
+
+
+
+
+
+
+
+
 
 .left-list-container {
   border-bottom: 1px solid #eeeeee;

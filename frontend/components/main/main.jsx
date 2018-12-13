@@ -15,7 +15,7 @@ class Main extends React.Component {
       <div id='main'>
         <Titlebar />
         <div id='main-content'>
-          { this.props.ui.leftSidebar ? <LeftSidebar /> : <></> }
+          <LeftSidebar />
           <Switch>
             <Route exact path='/' component={ VideoIndex } />
             <Route path='/videos/:videoId' component={ VideoShow } />
