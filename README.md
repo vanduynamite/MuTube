@@ -52,7 +52,7 @@ The CSS and level of detail on µTube is pristine, with all font colors, sizes, 
 
 ![µTubeSignIn](https://github.com/vanduynamite/MuTube/blob/master/readme_imgs/µTube_sign_in.png)
 
-![YouTubeSignIn](https://github.com/vanduynamite/MuTube/blob/master/readme_imgs/YouTube_sign_ing.png)
+![YouTubeSignIn](https://github.com/vanduynamite/MuTube/blob/master/readme_imgs/YouTube_sign_in.png)
 
 ### Other Features
 There are of course many other features of µTube worth exploring. Try out the left sidebar through which you can explore specific lists of videos including your subscription feed, or try adding a comment and then deleting it. Of course try uploading a video, either by a file dialog, or through drag-and-drop! And more than anything, take a look at the code driving it - it is all from scratch and I am proud of every part.
