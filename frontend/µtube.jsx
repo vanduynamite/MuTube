@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const store = configureStore(prevState);
   const root = document.getElementById('root');
-  window.merge = merge;
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.actions = Actions;
+  // window.merge = merge;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
+  // window.actions = Actions;
 
   ReactDOM.render(<Root store={store} />, root);
 });
 
 // DEBUG:
-const store = configureStore();
+// const store = configureStore();
